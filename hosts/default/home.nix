@@ -20,6 +20,7 @@
     vscode
     gcc
     rustup
+    gh
 
     # Applications
     vesktop
