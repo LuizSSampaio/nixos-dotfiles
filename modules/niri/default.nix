@@ -9,13 +9,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Enable niri via home-manager module (provided by niri-flake.homeModules.niri)
-    programs.niri = {
-      enable = true;
-      package = pkgs.niri;
-    };
-
-    # Niri settings
+    # Niri settings (programs.niri.enable is set by nixosModules.niri at system level)
     programs.niri.settings = {
       # Input configuration
       input = {
