@@ -9,9 +9,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Niri settings (programs.niri.enable is set by nixosModules.niri at system level)
     programs.niri.settings = {
-      # Input configuration
       input = {
         keyboard.xkb = {
           layout = "us";
@@ -32,7 +30,7 @@ in {
       prefer-no-csd = true;
 
       # Screenshot path
-      screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+      # screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
       # Keybindings
       binds = with config.lib.niri.actions; {
@@ -176,23 +174,23 @@ in {
       wl-clip-persist
 
       # Screenshot tool
-      grim
-      slurp
+      # grim
+      # slurp
 
       # Screen locker
-      swaylock
+      # swaylock
 
       # Notification daemon
-      mako
+      # mako
 
       # XWayland
       xwayland
     ];
 
     # Enable mako for notifications
-    services.mako = {
-      enable = true;
-      defaultTimeout = 5000;
-    };
+    # services.mako = {
+    #   enable = true;
+    #   defaultTimeout = 5000;
+    # };
   };
 }
