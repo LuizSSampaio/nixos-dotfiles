@@ -30,7 +30,7 @@
 	          useUserPackages = true;
 		        useGlobalPkgs = true;
 		        extraSpecialArgs = { inherit inputs; };
-		        user.luiz = (./. + "/hosts/${hostname}/user.nix");
+		        users.luiz = (./. + "/hosts/${hostname}/user.nix");
 	          };
 	        }
 	      ];
