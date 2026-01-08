@@ -7,10 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri-flake = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { nixpkgs, home-manager, niri-flake, ... } @ inputs:
@@ -25,8 +21,6 @@
             { networking.hostName = hostname; }
             ./modules/system/configuration.nix
             (./. + "/hosts/${hostname}/hardware-configuration.nix")
-            { nixpkgs.overlays = [ niri-flake.overlays.niri ]; }
-            niri-flake.nixosModules.niri
             home-manager.nixosModules.home-manager
             {
               home-manager = {

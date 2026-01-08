@@ -4,6 +4,5 @@
   imports = [ ../../modules/default.nix ];
 
   config.modules = {
-    niri.enable = true;
   };
 }
