@@ -25,7 +25,6 @@
 	        { networking.hostName = hostname; }
 	        ./modules/system/configuration.nix
 	        (./. + "/hosts/${hostname}/hardware-configuration.nix")
-	        niri.nixosModules.niri
 	        { nixpkgs.overlays = [ niri.overlays.niri ]; }
 	        home-manager.nixosModules.home-manager {
 	          home-manager = {
