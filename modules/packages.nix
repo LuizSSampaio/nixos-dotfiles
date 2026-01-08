@@ -11,7 +11,7 @@
     mpv
     heroic
     obsidian
-    prism-launcher
+    prismlauncher
   ];
   cli = with pkgs; [
     _1password-cli
