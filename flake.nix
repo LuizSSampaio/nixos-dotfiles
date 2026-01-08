@@ -7,13 +7,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # niri = {
-    #   url = "github:sodiboo/niri-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, niri, ... } @ inputs:
     let
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
       lib = nixpkgs.lib;
@@ -25,12 +25,18 @@
 	        { networking.hostName = hostname; }
 	        ./modules/system/configuration.nix
 	        (./. + "/hosts/${hostname}/hardware-configuration.nix")
+	        niri.nixosModules.niri
+	        { nixpkgs.overlays = [ niri.overlays.niri ]; }
 	        home-manager.nixosModules.home-manager {
 	          home-manager = {
 	          useUserPackages = true;
 		        useGlobalPkgs = true;
 		        extraSpecialArgs = { inherit inputs; };
 		        users.luiz = (./. + "/hosts/${hostname}/user.nix");
+		        sharedModules = [
+		          niri.homeModules.config
+		          niri.homeModules.stylix
+		        ];
 	          };
 	        }
 	      ];
