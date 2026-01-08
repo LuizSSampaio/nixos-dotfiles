@@ -34,11 +34,6 @@
                 useGlobalPkgs = true;
                 extraSpecialArgs = { inherit inputs; };
                 users.luiz = (./. + "/hosts/${hostname}/user.nix");
-                # Only use homeModules.config for settings validation
-                # nixosModules.niri already handles package installation
-                sharedModules = [
-                  niri-flake.homeModules.config
-                ];
               };
             }
           ];
