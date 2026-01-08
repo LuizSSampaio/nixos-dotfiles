@@ -34,6 +34,7 @@
 		        extraSpecialArgs = { inherit inputs; };
 		        users.luiz = (./. + "/hosts/${hostname}/user.nix");
 		        sharedModules = [
+		          niri.homeModules.niri
 		          niri.homeModules.config
 		          niri.homeModules.stylix
 		        ];
