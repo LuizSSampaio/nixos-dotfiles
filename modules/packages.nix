@@ -10,7 +10,7 @@
     qbittorrent
     mpv
     heroic
-    # obsidian  # temporarily disabled - build failing
+    obsidian
     prismlauncher
   ];
   cli = with pkgs; [
