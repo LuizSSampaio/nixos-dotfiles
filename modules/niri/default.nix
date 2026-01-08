@@ -107,13 +107,42 @@ in {
         "Mod+C".action = center-column;
 
         # Screenshot
-        "Print".action = screenshot;
-        "Ctrl+Print".action = screenshot-screen;
-        "Alt+Print".action = screenshot-window;
+        # "Print".action = screenshot;
+        # "Ctrl+Print".action = screenshot-screen;
+        # "Alt+Print".action = screenshot-window;
 
         # Session control
-        "Mod+Shift+E".action = quit;
-        "Mod+Shift+P".action = power-off-monitors;
+        "Mod+Ctrl+Shift+E".action = quit;
+
+        # Media keys
+        "XF86AudioPlay".action.spawn = [
+          (lib.getExe pkgs.playerctl)
+          "play-pause"
+        ];
+        "XF86AudioStop".action.spawn = [
+          (lib.getExe pkgs.playerctl)
+          "pause"
+        ];
+        "XF86AudioNext".action.spawn = [
+          (lib.getExe pkgs.playerctl)
+          "next"
+        ];
+        "XF86AudioPrev".action.spawn = [
+          (lib.getExe pkgs.playerctl)
+          "previous"
+        ];
+        "XF86AudioRaiseVolume".action.spawn = [
+          "${pkgs.wireplumber}/bin/wpctl"
+          "set-volume"
+          "@DEFAULT_AUDIO_SINK@"
+          "5%+"
+        ];
+        "XF86AudioLowerVolume".action.spawn = [
+          "${pkgs.wireplumber}/bin/wpctl"
+          "set-volume"
+          "@DEFAULT_AUDIO_SINK@"
+          "5%-"
+        ];
       };
 
       # Layout configuration
