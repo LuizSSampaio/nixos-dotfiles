@@ -30,6 +30,7 @@
     gcc
     gnumake
     opencode
+    gh
   ];
 in {
   home = {
