@@ -16,9 +16,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable niri window manager (provided by niri-flake.nixosModules.niri)
-  programs.niri.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
