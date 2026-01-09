@@ -9,6 +9,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      wl-clipboard hyprland
+    ];
+
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.systemd.variables = ["--all"];
     home.sessionVariables.NIXOS_OZONE_WL = "1";
