@@ -10,6 +10,9 @@ in {
 
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland.systemd.variables = ["--all"];
     home.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    services.hyprpolkitagent.enable = true;
   };
 }
