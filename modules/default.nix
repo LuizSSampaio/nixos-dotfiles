@@ -5,5 +5,6 @@
   imports = [
     ./packages.nix
     ./hyprland
+    ./greetd
   ];
 }
