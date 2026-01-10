@@ -40,7 +40,7 @@ in {
 
         # Move and resize with mouse
         "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
+        "$mod, mouse:273, resizeactive"
 
         # Clipboard
         "$mod, C, sendshortcut, CTRL, Insert"
