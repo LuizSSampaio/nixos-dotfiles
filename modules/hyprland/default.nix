@@ -6,6 +6,7 @@ let
 in {
   imports = [
     ./bindings.nix
+    ./env.nix
     ./looknfeel.nix
     ./input.nix
     ./windows.nix
@@ -22,7 +23,6 @@ in {
 
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.systemd.variables = ["--all"];
-    home.sessionVariables.NIXOS_OZONE_WL = "1";
 
     services.hyprpolkitagent.enable = true;
   };
