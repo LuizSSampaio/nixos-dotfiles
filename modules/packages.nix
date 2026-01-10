@@ -24,6 +24,9 @@
     fzf
     zoxide
     eza
+    impala
+    bluetui
+    wiremix
   ];
   dev = with pkgs; [
     cmake
