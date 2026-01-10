@@ -25,7 +25,7 @@ in {
         };
       };
 
-      misc {
+      misc = {
         key_press_enables_dpms = true;  # key press will trigger wake
         mouse_move_enables_dpms = true; # mouse move will trigger wake
       };
