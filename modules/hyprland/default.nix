@@ -8,6 +8,7 @@ in {
     ./bindings.nix
     ./looknfeel.nix
     ./input.nix
+    ./windows.nix
   ];
 
   options.modules.hyprland = {
