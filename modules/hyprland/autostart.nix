@@ -3,6 +3,7 @@
 with lib;
 let
   statusbar = "ashell";
+  notification = "dunst";
 
   cfg = config.modules.hyprland;
 in {
@@ -10,6 +11,7 @@ in {
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         "${statusbar}"
+        "${notification}"
       ];
     };
   };
