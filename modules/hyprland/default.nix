@@ -4,6 +4,10 @@ with lib;
 let
   cfg = config.modules.hyprland;
 in {
+  imports = [
+    ./bindings.nix
+  ];
+
   options.modules.hyprland = {
     enable = mkEnableOption "hyprland window manager";
   };
