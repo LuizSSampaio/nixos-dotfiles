@@ -32,7 +32,7 @@ in {
         # Slowdown mouse scrolling
         mouse-scroll-multiplier = 0.95;
 
-        theme = "gruvbox";
+        # theme = "gruvbox";
       };
     };
   };
