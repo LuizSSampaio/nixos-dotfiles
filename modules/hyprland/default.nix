@@ -6,6 +6,7 @@ let
 in {
   imports = [
     ./bindings.nix
+    ./input.nix
   ];
 
   options.modules.hyprland = {
