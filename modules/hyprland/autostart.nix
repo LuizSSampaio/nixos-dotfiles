@@ -7,8 +7,10 @@ let
   cfg = config.modules.hyprland;
 in {
   config = mkIf cfg.enable {
-    exec-once = [
-      "${statusbar}"
-    ];
+    wayland.windowManager.hyprland.settings = {
+      exec-once = [
+        "${statusbar}"
+      ];
+    };
   };
 }
