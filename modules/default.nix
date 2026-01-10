@@ -7,5 +7,7 @@
     ./hyprland
     ./ghostty
     ./ashell
+    ./walker
+    ./dunst
   ];
 }
