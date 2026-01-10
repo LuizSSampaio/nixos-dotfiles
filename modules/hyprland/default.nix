@@ -6,6 +6,7 @@ let
 in {
   imports = [
     ./bindings.nix
+    ./looknfeel.nix
     ./input.nix
   ];
 
