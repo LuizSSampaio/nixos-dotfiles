@@ -7,5 +7,6 @@
     hyprland.enable = true;
     ghostty.enable = true;
     ashell.enable = true;
+    walker.enable = true;
   };
 }
