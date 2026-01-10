@@ -6,5 +6,6 @@
     ./packages.nix
     ./hyprland
     ./ghostty
+    ./ashell
   ];
 }
