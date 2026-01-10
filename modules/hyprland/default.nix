@@ -9,7 +9,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    config.desktopEnvironment.startCmd = "start-hyprland";
     home.packages = with pkgs; [
       wl-clipboard hyprland
     ];
