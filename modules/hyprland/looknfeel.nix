@@ -50,9 +50,9 @@ in {
 
         groupbar = {
           font_size = 12;
-          font_family = monospace;
-          font_weight_active = ultraheavy;
-          font_weight_inactive = normal;
+          font_family = "monospace";
+          font_weight_active = "ultraheavy";
+          font_weight_inactive = "normal";
 
           indicator_height = 0;
           indicator_gap = 5;
