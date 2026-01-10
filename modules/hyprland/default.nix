@@ -5,10 +5,11 @@ let
   cfg = config.modules.hyprland;
 in {
   imports = [
+    ./autostart.nix
     ./bindings.nix
     ./env.nix
-    ./looknfeel.nix
     ./input.nix
+    ./looknfeel.nix
     ./windows.nix
   ];
 
