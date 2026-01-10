@@ -7,6 +7,8 @@ let
   cfg = config.modules.hyprland;
 in {
   config = mkIf cfg.enable {
-    "${statusbar}"
+    exec-once = [
+      "${statusbar}"
+    ];
   };
 }
