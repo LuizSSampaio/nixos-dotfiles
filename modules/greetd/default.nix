@@ -19,7 +19,7 @@ in {
         };
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time -cmd ${config.desktopEnvironment.startCmd}";
-          user = "greeter"
+          user = "greeter";
         };
       };
     };
