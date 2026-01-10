@@ -56,5 +56,10 @@
     '';
   };
 
+  networking = {
+    wireless.iwd.enable = true;
+    firewall.enable = true;
+  };
+
   system.stateVersion = "25.11";
 }
