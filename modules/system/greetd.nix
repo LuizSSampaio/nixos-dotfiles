@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.modules.greetd;
+  cfg = config.modules.system.greetd;
   session = "start-hyprland";
   username = "luiz";
 in {
-  options.modules.greetd = {
+  options.modules.system.greetd = {
     enable = mkEnableOption "greetd display manager";
   };
 

@@ -19,7 +19,7 @@
           system = system;
           modules = [
             { networking.hostName = hostname; }
-            ./modules/system/configuration.nix
+            (./. + "/hosts/${hostname}/system.nix")
             (./. + "/hosts/${hostname}/hardware-configuration.nix")
             home-manager.nixosModules.home-manager
             {
