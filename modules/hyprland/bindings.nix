@@ -10,6 +10,7 @@ in {
 
       bind = [
         "$mod, RETURN, exec, $terminal"
+        "$mod, SPACE, exec, walker --width 644 --maxheight 300 --minheight 300 '$@'"
 
         "$mod, W, killactive"
 
