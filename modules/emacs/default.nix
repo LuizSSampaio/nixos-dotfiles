@@ -8,6 +8,8 @@ in {
   imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ];
 
   config = mkIf cfg.enable {
+    imports = [ ./doom.d ];
+
     programs.doom-emacs = {
       enable = true;
       doomDir = "./doom.d";
