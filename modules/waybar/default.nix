@@ -149,19 +149,10 @@ in {
 
         #workspaces button.active {
           font-weight: bold;
-          border-bottom: none;
-          box-shadow: none;
         }
 
         #workspaces button.visible:not(.active) {
-          background-color: @bg-alt;
           color: @white;
-          box-shadow: inset 0 0 0 1px @yellow;
-        }
-
-        #workspaces button.urgent {
-          background-color: @red;
-          color: @bg-solid;
         }
 
         #workspaces button.empty {
