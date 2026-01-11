@@ -153,10 +153,9 @@ in {
         @define-color white #fbf1c7;
 
         * {
-          font-family: "JetBrainsMono Nerd Font", monospace;
+          all: unset;
+          font-family: "JetBrains Mono", "Symbols Nerd Font", sans-serif;
           font-size: 12px;
-          border: none;
-          border-radius: 0;
         }
 
         window#waybar {
@@ -185,7 +184,6 @@ in {
         }
 
         #workspaces button {
-          all: unset;
           padding: 4px 10px;
           margin: 0 2px;
           border-radius: 6px;

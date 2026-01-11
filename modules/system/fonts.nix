@@ -7,11 +7,12 @@ in {
 
   config = mkIf cfg.enable {
     fonts = {
-      fonts = with pkgs; [
+      packages = with pkgs; [
         jetbrains-mono
         roboto
         openmoji-color
         nerd-fonts.jetbrains-mono
+        nerd-fonts.symbols
       ];
 
       fontconfig = {
