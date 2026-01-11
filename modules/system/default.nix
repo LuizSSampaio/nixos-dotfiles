@@ -1,19 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./fonts.nix
-    ./greetd.nix
-  ];
+  imports = [ ./fonts.nix ./greetd.nix ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
 
-  environment.systemPackages = with pkgs; [
-     neovim
-     git
-  ];
+  environment.systemPackages = with pkgs; [ neovim git ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -28,10 +22,11 @@
     isNormalUser = true;
     description = "Luiz Henrique Silva Sampaio";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
-  environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
+  environment.pathsToLink =
+    [ "/share/applications" "/share/xdg-desktop-portal" ];
 
   system.autoUpgrade = {
     enable = true;

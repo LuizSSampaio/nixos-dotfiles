@@ -9,10 +9,7 @@ let
 in {
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
-      exec-once = [
-        "${statusbar}"
-        "${notification}"
-      ];
+      exec-once = [ "${statusbar}" "${notification}" ];
     };
   };
 }

@@ -1,8 +1,7 @@
 { pkgs, lib, config, ... }:
 
 with lib;
-let
-  cfg = config.modules.hyprland;
+let cfg = config.modules.hyprland;
 in {
   imports = [
     ./autostart.nix
@@ -18,12 +17,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      wl-clipboard hyprland
-    ];
+    home.packages = with pkgs; [ wl-clipboard hyprland ];
 
     wayland.windowManager.hyprland.enable = true;
-    wayland.windowManager.hyprland.systemd.variables = ["--all"];
+    wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
 
     services.hyprpolkitagent.enable = true;
   };

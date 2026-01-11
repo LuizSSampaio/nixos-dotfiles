@@ -1,17 +1,12 @@
 { pkgs, lib, config, ... }:
 
 with lib;
-let
-  cfg = config.modules.dunst;
+let cfg = config.modules.dunst;
 in {
-  options.modules.dunst = {
-    enable = mkEnableOption "dunst";
-  };
+  options.modules.dunst = { enable = mkEnableOption "dunst"; };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      dunst
-    ];
+    home.packages = with pkgs; [ dunst ];
 
     services.dunst = {
       enable = true;
@@ -28,7 +23,9 @@ in {
           idle_threshold = 120;
           font = "JetBrainsMono NerdFont 12";
           line_height = 0;
-          format = "<b>%s</b>\n%b";
+          format = ''
+            <b>%s</b>
+            %b'';
           alingment = "center";
           icon_position = "off";
           startup_notification = "false";

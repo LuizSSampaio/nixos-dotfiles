@@ -1,8 +1,7 @@
 { pkgs, lib, config, ... }:
 
 with lib;
-let
-  cfg = config.modules.hyprland;
+let cfg = config.modules.hyprland;
 in {
   config = mkIf cfg.enable {
     home.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -22,13 +21,9 @@ in {
     home.sessionVariables.XDG_SESSION_DESKTOP = "Hyprland";
 
     wayland.windowManager.hyprland.settings = {
-      xwayland = {
-        force_zero_scaling = true;
-      };
+      xwayland = { force_zero_scaling = true; };
 
-      ecosystem = {
-        no_update_news = true;
-      };
+      ecosystem = { no_update_news = true; };
     };
   };
 }

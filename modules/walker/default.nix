@@ -1,12 +1,9 @@
 { pkgs, lib, config, inputs, ... }:
 
 with lib;
-let
-  cfg = config.modules.walker;
+let cfg = config.modules.walker;
 in {
-  options.modules.walker = {
-    enable = mkEnableOption "walker launcher";
-  };
+  options.modules.walker = { enable = mkEnableOption "walker launcher"; };
 
   imports = [ inputs.walker.homeManagerModules.default ];
 
@@ -23,10 +20,16 @@ in {
           list = "No Results";
         };
         providers.prefixes = [
-          { provider = "websearch"; prefix = "+"; }
-          { provider = "providerlist"; prefix = "_"; }
+          {
+            provider = "websearch";
+            prefix = "+";
+          }
+          {
+            provider = "providerlist";
+            prefix = "_";
+          }
         ];
-        keybinds.quick_activate = ["F1" "F2" "F3"];
+        keybinds.quick_activate = [ "F1" "F2" "F3" ];
       };
 
       # Custom theme
@@ -35,9 +38,7 @@ in {
           style = ''
             /* Your CSS here */
           '';
-          layouts = {
-            "layout" = ''<!-- Your XML layout -->'';
-          };
+          layouts = { "layout" = "<!-- Your XML layout -->"; };
         };
       };
     };

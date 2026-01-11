@@ -1,12 +1,9 @@
 { pkgs, lib, config, ... }:
 
 with lib;
-let
-  cfg = config.modules.system.fonts;
+let cfg = config.modules.system.fonts;
 in {
-  options.modules.system.fonts = {
-    enable = mkEnableOption "custom fonts";
-  };
+  options.modules.system.fonts = { enable = mkEnableOption "custom fonts"; };
 
   config = mkIf cfg.enable {
     fonts = {
@@ -19,9 +16,7 @@ in {
 
       fontconfig = {
         hinting.autohint = true;
-        defaultFonts = {
-          emoji = [ "OpenMoji Color" ];
-        };
+        defaultFonts = { emoji = [ "OpenMoji Color" ]; };
       };
     };
   };

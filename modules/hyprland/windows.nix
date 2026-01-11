@@ -1,14 +1,10 @@
 { pkgs, lib, config, ... }:
 
-let
-  cfg = config.modules.hyprland;
+let cfg = config.modules.hyprland;
 in {
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
-      workspace = [
-        "w[tv1], gapsout:0, gapsin:0"
-        "f[1], gapsout:0, gapsin:0"
-      ];
+      workspace = [ "w[tv1], gapsout:0, gapsin:0" "f[1], gapsout:0, gapsin:0" ];
 
       windowrule = [
         "border_size 0, rounding 0, match:float 0, match:workspace w[tv1]"
@@ -50,7 +46,7 @@ in {
         "opacity 1 0.98, match:tag chromium-based-browser"
         "opacity 1 0.98, match:tag firefox-based-browser"
 
-        "opacity 1.0 1.0, match:initial_title ((?i)(?:[a-z0-9-]+\.)*youtube\.com_/|app\.zoom\.us_/wc/home)"
+        "opacity 1.0 1.0, match:initial_title ((?i)(?:[a-z0-9-]+.)*youtube.com_/|app.zoom.us_/wc/home)"
 
         # Davinci Resolve
         "stay_focused on, match:class .*[Rr]esolve.*, match:float 1"
@@ -74,9 +70,7 @@ in {
         "idle_inhibit fullscreen, match:class steam"
       ];
 
-      layerrule = [
-        "no_anim on, match:namespace walker"
-      ];
+      layerrule = [ "no_anim on, match:namespace walker" ];
     };
   };
 }

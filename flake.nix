@@ -32,7 +32,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
       lib = nixpkgs.lib;

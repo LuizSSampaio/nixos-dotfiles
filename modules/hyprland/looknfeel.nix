@@ -1,7 +1,6 @@
 { pkgs, lib, config, ... }:
 
-let
-  cfg = config.modules.hyprland;
+let cfg = config.modules.hyprland;
 in {
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
@@ -24,7 +23,6 @@ in {
       decoration = {
         rounding = 6;
 
-
         shadow = {
           enabled = true;
           range = 2;
@@ -37,12 +35,12 @@ in {
           size = 2;
           passes = 2;
           special = true;
-          brightness = 0.60;
+          brightness = 0.6;
           contrast = 0.75;
         };
       };
 
-       group = {
+      group = {
         "col.border_active" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.border_inactive" = "rgba(595959aa)";
         "col.border_locked_active" = -1;
@@ -106,21 +104,17 @@ in {
         force_split = 2;
       };
 
-      master = {
-        new_status = "master";
-      };
+      master = { new_status = "master"; };
 
       misc = {
         disable_hyprland_logo = true;
-        disable_splash_rendering  = true;
+        disable_splash_rendering = true;
         focus_on_activate = true;
         anr_missed_pings = 3;
         on_focus_under_fullscreen = 1;
       };
 
-      cursor = {
-        hide_on_key_press = true;
-      };
+      cursor = { hide_on_key_press = true; };
     };
   };
 }

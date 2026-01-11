@@ -1,4 +1,5 @@
-{ pkgs, ...}: let
+{ pkgs, ... }:
+let
   gui = with pkgs; [
     _1password-gui
     mission-center
@@ -28,15 +29,5 @@
     bluetui
     wiremix
   ];
-  dev = with pkgs; [
-    cmake
-    gcc
-    gnumake
-    opencode
-    gh
-  ];
-in {
-  home = {
-    packages = gui ++ cli ++ dev;
-  };
-}
+  dev = with pkgs; [ cmake gcc gnumake opencode gh ];
+in { home = { packages = gui ++ cli ++ dev; }; }
