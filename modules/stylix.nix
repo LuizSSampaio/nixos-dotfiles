@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  programs.dconf.enable = true;
-
   stylix = {
     enable = true;
 

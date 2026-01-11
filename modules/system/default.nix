@@ -40,6 +40,8 @@
     config = { hyprland = { default = [ "hyprland" "gtk" ]; }; };
   };
 
+  programs.dconf.enable = true;
+
   nix = {
     settings.auto-optimise-store = true;
 
