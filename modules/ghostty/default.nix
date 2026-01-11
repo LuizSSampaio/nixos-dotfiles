@@ -10,8 +10,22 @@ in {
   config = mkIf cfg.enable {
     programs.ghostty = {
       enable = true;
+      package = pkgs.ghostty.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          mkdir -p $out/share/ghostty/themes
+          cp -r ${
+            pkgs.fetchFromGitHub {
+              owner = "mbadolato";
+              repo = "iTerm2-Color-Schemes";
+              rev = "master";
+              sha256 = "sha256-28c8f5ba952ad402d226eac53e9c0eaa7a0d98b3";
+            }
+          }/schemes/*.itermcolors $out/share/ghostty/themes/
+        '';
+      });
+      enableZshIntegration = true;
+
       settings = {
-        # Window settings
         window-padding-x = 14;
         window-padding-y = 10;
         window-decoration = "none";
@@ -20,18 +34,10 @@ in {
         resize-overlay = "never";
         gtk-toolbar-style = "flat";
 
-        # Cursor styling
         cursor-style = "block";
         cursor-style-blink = false;
 
-        # font-family = cfg.primary_font;
-        font-style = "regular";
-        font-size = 10;
-
-        # Slowdown mouse scrolling
         mouse-scroll-multiplier = 0.95;
-
-        # theme = "gruvbox";
       };
     };
   };
