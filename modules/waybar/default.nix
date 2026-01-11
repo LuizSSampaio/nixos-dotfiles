@@ -14,15 +14,12 @@ in {
         mainBar = {
           layer = "top";
           position = "top";
-          margin-top = 4;
-          margin-left = 4;
-          margin-right = 4;
           spacing = 2;
 
           modules-left = [ "hyprland/workspaces" ];
           modules-center = [ "clock" ];
           modules-right =
-            [ "tray" "bluetooth" "network" "pulseaudio" "battery" ];
+            [ "tray" "bluetooth" "network" "wireplumber" "battery" ];
 
           "hyprland/workspaces" = {
             format = "{icon}";
@@ -89,7 +86,7 @@ in {
             "format" = "";
             format-muted = "󰝟";
             scroll-step = 5;
-            on-click = "wiremix";
+            on-click = "ghostty -e wiremix";
             tooltip-format = "Playing at {volume}%";
             on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
             max-volume = 150;
@@ -117,25 +114,9 @@ in {
       };
 
       style = ''
-        /* Gruvbox color palette */
-        @define-color bg rgba(40, 40, 40, 0.9);
-        @define-color bg-solid #282828;
-        @define-color bg-alt rgba(60, 56, 54, 0.95);
-        @define-color fg #ebdbb2;
-        @define-color fg-alt #d5c4a1;
-        @define-color gray #928374;
-        @define-color red #fb4934;
-        @define-color green #b8bb26;
-        @define-color yellow #fabd2f;
-        @define-color blue #83a598;
-        @define-color purple #d3869b;
-        @define-color aqua #8ec07c;
-        @define-color orange #fe8019;
-        @define-color white #fbf1c7;
-
         * {
           all: unset;
-          font-family: "JetBrains Mono", "Symbols Nerd Font", sans-serif;
+          font-family: JetBrains Mono Nerd Font;
           font-size: 12px;
         }
 
