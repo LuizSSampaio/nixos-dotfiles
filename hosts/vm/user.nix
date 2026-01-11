@@ -8,6 +8,7 @@
     ghostty.enable = true;
     git.enable = true;
     dunst.enable = true;
+    starship.enable = true;
     walker.enable = true;
     waybar.enable = true;
     zsh.enable = true;

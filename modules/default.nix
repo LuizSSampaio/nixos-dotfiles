@@ -10,6 +10,7 @@
     ./ashell
     ./walker
     ./dunst
+    ./starship
     ./waybar
     ./zsh
   ];
