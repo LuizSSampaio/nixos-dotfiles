@@ -8,5 +8,6 @@
     ghostty.enable = true;
     dunst.enable = true;
     walker.enable = true;
+    waybar.enable = true;
   };
 }
