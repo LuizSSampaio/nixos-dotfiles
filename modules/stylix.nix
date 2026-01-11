@@ -3,7 +3,7 @@
 {
   stylix = {
     base16Scheme =
-      "${pkgs.base16-scheme}/share/themes/gruvbox-dark-medium.yaml";
+      "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
     image = pkgs.fetchurl {
       url = "https://gruvbox-wallpapers.pages.dev/wallpapers/pixelart/dock.png";
