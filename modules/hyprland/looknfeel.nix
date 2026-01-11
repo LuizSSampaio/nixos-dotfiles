@@ -10,9 +10,6 @@ in {
 
         border_size = 2;
 
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
-
         resize_on_border = false;
 
         allow_tearing = false;
@@ -27,7 +24,6 @@ in {
           enabled = true;
           range = 2;
           render_power = 3;
-          color = "rgba(1a1a1aee)";
         };
 
         blur = {
@@ -41,8 +37,6 @@ in {
       };
 
       group = {
-        "col.border_active" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.border_inactive" = "rgba(595959aa)";
         "col.border_locked_active" = -1;
         "col.border_locked_inactive" = -1;
 
@@ -57,11 +51,6 @@ in {
           height = 22;
           gaps_in = 5;
           gaps_out = 0;
-
-          text_color = "rgb(ffffff)";
-          text_color_inactive = "rgba(ffffff90)";
-          "col.active" = "rgba(00000040)";
-          "col.inactive" = "rgba(00000020)";
 
           gradients = true;
           gradient_rounding = 0;
