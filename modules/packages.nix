@@ -13,7 +13,6 @@ let
     imv
     vesktop
     heroic
-    obsidian
     prismlauncher
   ];
   cli = with pkgs; [
