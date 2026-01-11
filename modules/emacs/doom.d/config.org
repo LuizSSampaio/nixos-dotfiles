@@ -1,0 +1,9 @@
+#+title: Config
+
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-gruvbox)
+(setq display-line-numbers-type 'relative)
+
+
+(setq org-directory "~/org/")
+#+end_src
