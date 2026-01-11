@@ -24,7 +24,7 @@
       enable = true;
       package = pkgs.yaru-theme;
       dark = "Yaru-prussiangreen";
-      light = "Yaru-prussiangreen"
+      light = "Yaru-prussiangreen";
     };
 
     fonts = {
