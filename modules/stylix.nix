@@ -20,20 +20,24 @@
         package = pkgs.roboto-serif;
         name = "Roboto Serif";
       };
-
       sansSerif = {
         package = pkgs.roboto;
         name = "Roboto";
       };
-
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetbrainsMono Nerd Font";
       };
-
       emoji = {
         package = pkgs.openmoji-color;
         name = "OpenMoji Color";
+      };
+
+      sizes = {
+        applications = 10;
+        terminal = 10;
+        desktop = 10;
+        popups = 10;
       };
     };
   };
