@@ -24,117 +24,98 @@ in {
           modules-right =
             [ "tray" "bluetooth" "network" "pulseaudio" "battery" ];
 
-          # Workspaces with icons
           "hyprland/workspaces" = {
             format = "{icon}";
             on-click = "activate";
-            all-outputs = false;
-            sort-by = "id";
-            persistent-workspaces = { "*" = 5; };
             format-icons = {
               "1" = "1";
               "2" = "2";
               "3" = "3";
               "4" = "4";
               "5" = "5";
-              "urgent" = "";
-              "default" = "";
+              "6" = "6";
+              "7" = "7";
+              "8" = "8";
+              "9" = "9";
+              active = "󱓻";
+            };
+            persistent-workspaces = {
+              "1" = [ ];
+              "2" = [ ];
+              "3" = [ ];
+              "4" = [ ];
+              "5" = [ ];
             };
           };
 
-          # Clock with calendar icon
           clock = {
-            format = " {:%a %H:%M}";
+            format = "{:%a %H:%M}";
             tooltip-format = ''
               <big>{:%Y %B}</big>
               <tt><small>{calendar}</small></tt>'';
           };
 
-          # System tray
           tray = {
             icon-size = 14;
-            spacing = 8;
+            spacing = 13;
           };
 
-          # Bluetooth - icon only, details on hover
           bluetooth = {
-            format = "";
-            format-connected = " {num_connections}";
+            format = "󰂯";
             format-disabled = "󰂲";
-            format-off = "󰂲";
-            tooltip-format = ''
-              {controller_alias}	{controller_address}
-
-              {status}'';
-            tooltip-format-connected = ''
-              {controller_alias}	{controller_address}
-
-              {num_connections} connected
-
-              {device_enumerate}'';
-            tooltip-format-enumerate-connected =
-              "{device_alias}	{device_address}";
-            tooltip-format-enumerate-connected-battery =
-              "{device_alias}	{device_address}	{device_battery_percentage}%";
-            on-click = "blueman-manager";
+            format-connected = "";
+            tooltip-format = "Devices connected: {num_connections}";
+            on-click = "ghostty -e bluetui";
           };
 
-          # Network - icon with signal indicator
           network = {
-            format-wifi = "󰤨";
-            format-ethernet = "󰈀";
-            format-linked = "󰈀";
-            format-disconnected = "󰤭";
+            format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+            format = "{icon}";
+            format-wifi = "{icon}";
+            format-ethernet = "󰀂";
+            format-disconnected = "󰖪";
             tooltip-format-wifi = ''
-              {essid} ({signalStrength}%)
-              {ifname}: {ipaddr}/{cidr}'';
-            tooltip-format-ethernet = "{ifname}: {ipaddr}/{cidr}";
+              {essid} ({frequency} GHz)
+              ⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}'';
+            tooltip-format-ethernet =
+              "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
             tooltip-format-disconnected = "Disconnected";
-            on-click = "nm-connection-editor";
+            interval = 3;
+            nospacing = 1;
+            on-click = "ghostty -e impala";
           };
 
-          # Audio - icon with volume
-          pulseaudio = {
-            format = "{icon}";
-            format-bluetooth = "󰂯";
-            format-bluetooth-muted = "󰂲";
+          wireplumber = {
+            "format" = "";
             format-muted = "󰝟";
-            format-icons = {
-              headphone = "󰋋";
-              hands-free = "󰋎";
-              headset = "󰋎";
-              phone = "";
-              portable = "";
-              car = "";
-              default = [ "󰕿" "󰖀" "󰕾" ];
-            };
-            tooltip-format = ''
-              {desc}
-              Volume: {volume}%'';
-            on-click = "pavucontrol";
             scroll-step = 5;
+            on-click = "wiremix";
+            tooltip-format = "Playing at {volume}%";
+            on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            max-volume = 150;
           };
 
-          # Battery - icon only, percentage on hover
           battery = {
-            states = {
-              warning = 30;
-              critical = 15;
+            interval = 5;
+            format = "{capacity}% {icon}";
+            format-discharging = "{icon}";
+            format-charging = "{icon}";
+            format-plugged = "";
+            format-icons = {
+              charging = [ "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅" ];
+              default = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
             };
-            format = "{icon}";
-            format-charging = "󰂄";
-            format-plugged = "󰚥";
-            format-full = "󰁹";
-            format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-            tooltip-format = ''
-              {capacity}%
-              {timeTo}
-              {power}W'';
+            format-full = "Charged ";
+            tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
+            tooltip-format-charging = "{power:>1.0f}W↑ {capacity}%";
+            states = {
+              warning = 20;
+              critical = 10;
+            };
           };
         };
       };
 
-      # Gruvbox style with enhanced workspace highlighting
       style = ''
         /* Gruvbox color palette */
         @define-color bg rgba(40, 40, 40, 0.9);
