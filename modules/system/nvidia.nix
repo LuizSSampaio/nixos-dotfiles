@@ -6,11 +6,7 @@ in {
   options.modules.system.nvidia = { enable = mkEnableOption "nvidia support"; };
 
   config = mkIf cfg.enable {
-    hardware.graphics = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
+    hardware.graphics.enable = true;
 
     services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
