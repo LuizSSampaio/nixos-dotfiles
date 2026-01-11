@@ -37,9 +37,6 @@ in {
       };
 
       group = {
-        "col.border_locked_active" = -1;
-        "col.border_locked_inactive" = -1;
-
         groupbar = {
           font_size = 12;
           font_family = "monospace";
