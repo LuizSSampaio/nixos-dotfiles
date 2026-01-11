@@ -9,5 +9,6 @@
     dunst.enable = true;
     walker.enable = true;
     waybar.enable = true;
+    zsh.enable = true;
   };
 }
