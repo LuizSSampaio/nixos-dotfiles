@@ -8,10 +8,8 @@ in {
   config = mkIf cfg.enable {
     programs.git = {
       enable = true;
-      user = {
-        name = "Luiz Henrique Silva Sampaio";
-        email = "luizhsampaio07@gmail.com";
-      };
+      userName = "Luiz Henrique Silva Sampaio";
+      userEmail = "luizhsampaio07@gmail.com";
     };
   };
 }
