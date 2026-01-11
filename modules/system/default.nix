@@ -7,7 +7,7 @@
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
 
-  environment.systemPackages = with pkgs; [ neovim git ];
+  environment.systemPackages = with pkgs; [ neovim ];
 
   nixpkgs.config.allowUnfree = true;
 

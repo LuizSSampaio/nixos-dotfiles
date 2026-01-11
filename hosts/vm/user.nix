@@ -6,6 +6,7 @@
   config.modules = {
     hyprland.enable = true;
     ghostty.enable = true;
+    git.enable = true;
     dunst.enable = true;
     walker.enable = true;
     waybar.enable = true;

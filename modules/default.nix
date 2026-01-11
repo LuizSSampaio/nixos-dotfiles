@@ -6,6 +6,7 @@
     ./packages.nix
     ./hyprland
     ./ghostty
+    ./git
     ./ashell
     ./walker
     ./dunst
