@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./fonts.nix ./greetd.nix ];
+  imports = [ ./fonts.nix ./greetd.nix ./nvidia.nix ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
