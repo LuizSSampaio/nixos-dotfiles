@@ -83,8 +83,9 @@ in {
           };
 
           wireplumber = {
-            "format" = "";
+            format = "{icon}";
             format-muted = "󰝟";
+            format-icons = [ "󰕿" "󰖀" "󰕾" ];
             scroll-step = 5;
             on-click = "ghostty -e wiremix";
             tooltip-format = "Playing at {volume}%";
@@ -138,8 +139,6 @@ in {
           padding: 4px 10px;
           margin: 0 2px;
           background-color: transparent;
-          /* color: @gray;
-          font-size: 14px; */
           transition: all 0.2s ease;
         }
 
@@ -149,8 +148,9 @@ in {
         }
 
         #workspaces button.active {
-          /* color: @bg-solid;*/
           font-weight: bold;
+          border-bottom: none;
+          box-shadow: none;
         }
 
         #workspaces button.visible:not(.active) {
@@ -169,7 +169,6 @@ in {
         }
 
         #clock {
-          color: @fg;
           font-weight: bold;
           padding: 4px 12px;
         }
@@ -193,8 +192,6 @@ in {
         #battery {
           padding: 4px 10px;
           margin: 0 2px;
-          color: @fg;
-          /*font-size: 14px;*/
         }
       '';
     };
