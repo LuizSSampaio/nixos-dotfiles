@@ -14,6 +14,9 @@
 
     polarity = "dark";
 
+    stylix.cursor.package = pkgs.bibata-cursors;
+    stylix.cursor.name = "Bibata-Modern-Classic";
+
     fonts = {
       serif = {
         package = pkgs.roboto-serif;
