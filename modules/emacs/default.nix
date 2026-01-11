@@ -5,11 +5,9 @@ let cfg = config.modules.emacs;
 in {
   options.modules.emacs = { enable = mkEnableOption "emacs"; };
 
-  imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ];
+  imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ./doom.d ];
 
   config = mkIf cfg.enable {
-    imports = [ ./doom.d ];
-
     programs.doom-emacs = {
       enable = true;
       doomDir = "./doom.d";
