@@ -19,7 +19,6 @@ in {
           horizontal_padding = 12;
           text_icon_padding = 12;
           frame_width = 4;
-          separator_color = "frame";
           idle_threshold = 120;
           line_height = 0;
           format = ''
