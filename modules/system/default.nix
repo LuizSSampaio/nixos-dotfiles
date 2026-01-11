@@ -22,7 +22,7 @@
     isNormalUser = true;
     description = "Luiz Henrique Silva Sampaio";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [ ];
+    shell = pkgs.zsh;
   };
 
   environment.pathsToLink =
