@@ -27,7 +27,7 @@ in {
         mv = "mv -iv";
         cp = "cp -riv";
         cat = "bat --paging=never --style=plain";
-        cd = "zd";
+        cd = "z";
         ls = "eza -lh --group-directories-first --icons=auto";
         lsa = "ls -a";
         lt = "eza --tree --level=2 --long --icons --git";
