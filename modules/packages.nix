@@ -31,5 +31,5 @@ let
     bluetui
     wiremix
   ];
-  dev = with pkgs; [ cmake gcc gnumake opencode gh ];
+  dev = with pkgs; [ cmake gcc gnumake opencode ];
 in { home = { packages = gui ++ cli ++ dev; }; }
