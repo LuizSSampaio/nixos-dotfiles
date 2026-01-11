@@ -5,12 +5,12 @@ let cfg = config.modules.emacs;
 in {
   options.modules.emacs = { enable = mkEnableOption "emacs"; };
 
-  imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ./doom.d ];
+  imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ];
 
   config = mkIf cfg.enable {
     programs.doom-emacs = {
       enable = true;
-      doomDir = "./modules/emacs/doom.d";
+      doomDir = ./doom.d;
     };
 
     services.emacs.enable = true;
