@@ -10,7 +10,7 @@ in {
   config = mkIf cfg.enable {
     programs.doom-emacs = {
       enable = true;
-      doomDir = "./doom.d";
+      doomDir = "./modules/emacs/doom.d";
     };
 
     services.emacs.enable = true;
