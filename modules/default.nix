@@ -5,6 +5,7 @@
   imports = [
     ./packages.nix
     ./hyprland
+    ./emacs
     ./ghostty
     ./git
     ./ashell
