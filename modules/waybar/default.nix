@@ -14,8 +14,8 @@ in {
         mainBar = {
           layer = "top";
           position = "top";
-          height = 30;
-          spacing = 4;
+          height = 26;
+          spacing = 2;
 
           modules-left = [ "hyprland/workspaces" ];
           modules-center = [ "clock" ];
@@ -50,8 +50,8 @@ in {
 
           # System tray
           tray = {
-            icon-size = 16;
-            spacing = 10;
+            icon-size = 14;
+            spacing = 8;
           };
 
           # Bluetooth - icon only, details on hover
@@ -135,8 +135,9 @@ in {
       # Gruvbox style with enhanced workspace highlighting
       style = ''
         /* Gruvbox color palette */
-        @define-color bg #282828;
-        @define-color bg-alt #3c3836;
+        @define-color bg rgba(40, 40, 40, 0.9);
+        @define-color bg-solid #282828;
+        @define-color bg-alt rgba(60, 56, 54, 0.95);
         @define-color fg #ebdbb2;
         @define-color fg-alt #d5c4a1;
         @define-color gray #928374;
@@ -151,30 +152,51 @@ in {
 
         * {
           font-family: "JetBrainsMono Nerd Font", monospace;
-          font-size: 14px;
+          font-size: 12px;
           min-height: 0;
+          padding: 0;
+          margin: 0;
         }
 
         window#waybar {
           background-color: @bg;
           color: @fg;
-          border-bottom: 2px solid @bg-alt;
+          border-bottom: 1px solid @bg-alt;
+        }
+
+        /* Global padding for left/right sections */
+        .modules-left {
+          padding-left: 4px;
+        }
+
+        .modules-right {
+          padding-right: 4px;
         }
 
         /* Workspaces */
         #workspaces {
-          margin: 0 4px;
+          padding: 0;
+          margin: 0;
         }
 
         #workspaces button {
-          padding: 0 10px;
-          margin: 4px 2px;
+          padding: 2px 8px;
+          margin: 2px 1px;
           border-radius: 4px;
           background-color: transparent;
           color: @gray;
           border: none;
           transition: all 0.2s ease;
-          font-size: 16px;
+          font-size: 13px;
+          /* Center icons vertically and horizontally */
+          min-width: 20px;
+          min-height: 20px;
+        }
+
+        #workspaces button label {
+          /* Ensure icon is centered */
+          padding: 0;
+          margin: 0;
         }
 
         #workspaces button:hover {
@@ -185,7 +207,7 @@ in {
         /* Active workspace - purple background */
         #workspaces button.active {
           background-color: @purple;
-          color: @bg;
+          color: @bg-solid;
           font-weight: bold;
         }
 
@@ -199,7 +221,7 @@ in {
         /* Urgent workspace */
         #workspaces button.urgent {
           background-color: @red;
-          color: @bg;
+          color: @bg-solid;
         }
 
         /* Empty workspace - dimmed */
@@ -218,12 +240,12 @@ in {
         #clock {
           color: @fg;
           font-weight: bold;
-          padding: 0 12px;
+          padding: 2px 10px;
         }
 
         /* Tray */
         #tray {
-          margin: 0 8px;
+          padding: 2px 6px;
         }
 
         #tray > .passive {
@@ -240,12 +262,15 @@ in {
         #network,
         #pulseaudio,
         #battery {
-          padding: 0 12px;
-          margin: 4px 2px;
+          padding: 2px 8px;
+          margin: 2px 1px;
           border-radius: 4px;
           background-color: @bg-alt;
           color: @fg;
-          font-size: 16px;
+          font-size: 13px;
+          /* Center icons */
+          min-width: 18px;
+          min-height: 18px;
         }
 
         /* Bluetooth */
@@ -305,13 +330,13 @@ in {
 
         #battery.critical:not(.charging) {
           background-color: @red;
-          color: @bg;
+          color: @bg-solid;
           animation: blink 0.5s linear infinite alternate;
         }
 
         @keyframes blink {
           to {
-            background-color: @bg;
+            background-color: @bg-solid;
             color: @red;
           }
         }
