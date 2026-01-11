@@ -34,5 +34,10 @@ in {
         lta = "lt -a";
       };
     };
+
+    programs.zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }

@@ -26,7 +26,6 @@ let
     bat
     fd
     fzf
-    zoxide
     eza
     impala
     bluetui
