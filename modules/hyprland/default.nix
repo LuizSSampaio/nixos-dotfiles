@@ -3,8 +3,15 @@
 with lib;
 let cfg = config.modules.hyprland;
 in {
-  imports =
-    [ ./bindings.nix ./env.nix ./input.nix ./looknfeel.nix ./windows.nix ];
+  imports = [
+    ./bindings.nix
+    ./env.nix
+    ./input.nix
+    ./looknfeel.nix
+    ./windows.nix
+    ./hypridle.nix
+    ./hyprlock.nix
+  ];
 
   options.modules.hyprland = {
     enable = mkEnableOption "hyprland window manager";
