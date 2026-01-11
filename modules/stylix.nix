@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 
 {
   stylix = {
@@ -26,12 +26,12 @@
 
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetbrainsMono Nerd Font"
+        name = "JetbrainsMono Nerd Font";
       };
 
       emoji = {
         package = pkgs.openmoji-color;
-        name = "OpenMoji Color"
+        name = "OpenMoji Color";
       };
     };
   };
