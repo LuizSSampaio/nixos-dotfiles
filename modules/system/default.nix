@@ -34,6 +34,17 @@
     dates = "2:00";
   };
 
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+      gtkUsePortal = true;
+    };
+  };
+
   nix = {
     settings.auto-optimise-store = true;
 
