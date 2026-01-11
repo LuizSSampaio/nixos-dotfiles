@@ -120,22 +120,12 @@ in {
           font-size: 12px;
         }
 
-        window#waybar {
-          background-color: @bg;
-          color: @fg;
-          border-radius: 8px;
+        .modules-left {
+          margin-left: 4px;
         }
 
-        /* Vertical padding for the entire bar */
-        #waybar {
-          padding: 4px 8px;
-        }
-
-        /* Global padding for left/right sections */
-        .modules-left,
-        .modules-center,
         .modules-right {
-          padding: 0;
+          margin-right: 4px;
         }
 
         /* Workspaces */
