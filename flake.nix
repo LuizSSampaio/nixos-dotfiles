@@ -34,6 +34,10 @@
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -48,6 +52,7 @@
             { networking.hostName = hostname; }
             (./. + "/hosts/${hostname}/system.nix")
             (./. + "/hosts/${hostname}/hardware-configuration.nix")
+            stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
               nix.settings.allowed-users = [ "luiz" ];
