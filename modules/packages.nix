@@ -17,6 +17,9 @@ let
   cli = with pkgs; [
     _1password-cli
     atuin
+    btop
+    unzip
+    zip
     fastfetch
     ffmpeg
     ripgrep
