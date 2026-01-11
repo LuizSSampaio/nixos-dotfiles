@@ -18,7 +18,7 @@ in {
               owner = "mbadolato";
               repo = "iTerm2-Color-Schemes";
               rev = "master";
-              hash = "sha256-GZ6F+T1pTt5LLheu4/3pf0eBpwkd1wu3+l6ReFNUhac="
+              hash = "sha256-GZ6F+T1pTt5LLheu4/3pf0eBpwkd1wu3+l6ReFNUhac=";
             }
           }/schemes/*.itermcolors $out/share/ghostty/themes/
         '';
