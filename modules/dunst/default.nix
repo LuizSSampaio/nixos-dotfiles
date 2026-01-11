@@ -21,7 +21,6 @@ in {
           frame_width = 4;
           separator_color = "frame";
           idle_threshold = 120;
-          font = "JetBrainsMono NerdFont 12";
           line_height = 0;
           format = ''
             <b>%s</b>
@@ -31,9 +30,6 @@ in {
           startup_notification = "false";
           corner_radius = 6;
 
-          frame_color = "#44465c";
-          background = "#303241";
-          foreground = "#d9e0ee";
           timeout = 2;
         };
       };
