@@ -61,6 +61,7 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 extraSpecialArgs = { inherit inputs; };
+                sharedModules = [ stylix.homeManagerModules.stylix ];
                 users.luiz = (./. + "/hosts/${hostname}/user.nix");
               };
             }
