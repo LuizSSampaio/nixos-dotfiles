@@ -14,7 +14,9 @@ in {
         mainBar = {
           layer = "top";
           position = "top";
-          height = 26;
+          margin-top = 4;
+          margin-left = 4;
+          margin-right = 4;
           spacing = 2;
 
           modules-left = [ "hyprland/workspaces" ];
@@ -153,50 +155,44 @@ in {
         * {
           font-family: "JetBrainsMono Nerd Font", monospace;
           font-size: 12px;
-          min-height: 0;
-          padding: 0;
-          margin: 0;
+          border: none;
+          border-radius: 0;
         }
 
         window#waybar {
           background-color: @bg;
           color: @fg;
-          border-bottom: 1px solid @bg-alt;
+          border-radius: 8px;
+        }
+
+        /* Vertical padding for the entire bar */
+        #waybar {
+          padding: 4px 8px;
         }
 
         /* Global padding for left/right sections */
-        .modules-left {
-          padding-left: 4px;
-        }
-
+        .modules-left,
+        .modules-center,
         .modules-right {
-          padding-right: 4px;
+          padding: 0;
         }
 
         /* Workspaces */
         #workspaces {
+          background: transparent;
           padding: 0;
           margin: 0;
         }
 
         #workspaces button {
-          padding: 2px 8px;
-          margin: 2px 1px;
-          border-radius: 4px;
+          all: unset;
+          padding: 4px 10px;
+          margin: 0 2px;
+          border-radius: 6px;
           background-color: transparent;
           color: @gray;
-          border: none;
+          font-size: 14px;
           transition: all 0.2s ease;
-          font-size: 13px;
-          /* Center icons vertically and horizontally */
-          min-width: 20px;
-          min-height: 20px;
-        }
-
-        #workspaces button label {
-          /* Ensure icon is centered */
-          padding: 0;
-          margin: 0;
         }
 
         #workspaces button:hover {
@@ -215,7 +211,7 @@ in {
         #workspaces button.visible:not(.active) {
           background-color: @bg-alt;
           color: @white;
-          border: 1px solid @yellow;
+          box-shadow: inset 0 0 0 1px @yellow;
         }
 
         /* Urgent workspace */
@@ -233,19 +229,19 @@ in {
         #workspaces button.persistent:not(.empty):not(.active) {
           background-color: @bg-alt;
           color: @white;
-          border: 1px solid @aqua;
+          box-shadow: inset 0 0 0 1px @aqua;
         }
 
         /* Clock */
         #clock {
           color: @fg;
           font-weight: bold;
-          padding: 2px 10px;
+          padding: 4px 12px;
         }
 
         /* Tray */
         #tray {
-          padding: 2px 6px;
+          padding: 4px 8px;
         }
 
         #tray > .passive {
@@ -262,15 +258,12 @@ in {
         #network,
         #pulseaudio,
         #battery {
-          padding: 2px 8px;
-          margin: 2px 1px;
-          border-radius: 4px;
+          padding: 4px 10px;
+          margin: 0 2px;
+          border-radius: 6px;
           background-color: @bg-alt;
           color: @fg;
-          font-size: 13px;
-          /* Center icons */
-          min-width: 18px;
-          min-height: 18px;
+          font-size: 14px;
         }
 
         /* Bluetooth */
