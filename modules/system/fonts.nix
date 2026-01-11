@@ -12,7 +12,7 @@ in {
         roboto
         openmoji-color
         nerd-fonts.jetbrains-mono
-        nerd-fonts.symbols
+        nerd-fonts.symbols-only
       ];
 
       fontconfig = {
