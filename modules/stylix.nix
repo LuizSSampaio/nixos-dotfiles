@@ -9,8 +9,7 @@
 
     image = pkgs.fetchurl {
       url = "https://gruvbox-wallpapers.pages.dev/wallpapers/pixelart/dock.png";
-      hash =
-        "sha256-b7e95e0874aea54c0af2afdb1976f7389a5fd12b84905c57dbbb65168f06c6ff";
+      hash = "sha256-t+leCHSupUwK8q/bGXb3OJpf0SuEkFxX27tlFo8Gxv8=";
     };
 
     polarity = "dark";
