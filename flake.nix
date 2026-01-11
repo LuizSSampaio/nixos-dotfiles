@@ -44,10 +44,10 @@
             { networking.hostName = hostname; }
             (./. + "/hosts/${hostname}/system.nix")
             (./. + "/hosts/${hostname}/hardware-configuration.nix")
-            nix.settings.allowed-users = [ "luiz" ];
-            nix.settings.trusted-users = [ "luiz" ];
             home-manager.nixosModules.home-manager
             {
+              nix.settings.allowed-users = [ "luiz" ];
+              nix.settings.trusted-users = [ "luiz" ];
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = true;
