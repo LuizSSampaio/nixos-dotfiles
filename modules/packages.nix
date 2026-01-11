@@ -10,6 +10,8 @@ let
     localsend
     qbittorrent
     mpv
+    imv
+    vesktop
     heroic
     obsidian
     prismlauncher
@@ -30,6 +32,7 @@ let
     impala
     bluetui
     wiremix
+    yazi
   ];
   dev = with pkgs; [ cmake gcc gnumake opencode ];
 in { home = { packages = gui ++ cli ++ dev; }; }
