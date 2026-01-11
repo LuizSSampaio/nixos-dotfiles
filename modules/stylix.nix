@@ -14,10 +14,10 @@
 
     polarity = "dark";
 
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-    };
+    # cursor = {
+    #   package = pkgs.bibata-cursors;
+    #   name = "Bibata-Modern-Classic";
+    # };
 
     fonts = {
       serif = {
