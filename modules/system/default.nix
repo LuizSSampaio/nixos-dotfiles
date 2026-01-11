@@ -37,7 +37,7 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
-    hyprland = { default = [ "hyprland" "gtk" ]; };
+    config = { hyprland = { default = [ "hyprland" "gtk" ]; }; };
   };
 
   nix = {
