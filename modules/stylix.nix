@@ -20,6 +20,13 @@
       size = 24;
     };
 
+    icons = {
+      enable = true;
+      package = pkgs.yaru-theme;
+      dark = "Yaru-prussiangreen";
+      light = "Yaru-prussiangreen"
+    };
+
     fonts = {
       serif = {
         package = pkgs.roboto-serif;
