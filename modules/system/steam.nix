@@ -8,7 +8,11 @@ in {
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
+      gamescopeSession.enable = true;
+
       remotePlay.openFirewall = true;
     };
   };
+
+  programs.gamemode.enable = true;
 }
