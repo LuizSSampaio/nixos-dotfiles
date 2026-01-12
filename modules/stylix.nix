@@ -52,5 +52,15 @@
         popups = 10;
       };
     };
+
+    # Plymouth boot splash configuration
+    # Stylix will automatically theme Plymouth with Gruvbox colors
+    targets.plymouth = {
+      enable = true;
+      # NixOS snowflake logo (has rotational symmetry, animation looks good)
+      logo = pkgs.nixos-icons
+        + "/share/icons/hicolor/256x256/apps/nix-snowflake.png";
+      logoAnimated = true;
+    };
   };
 }

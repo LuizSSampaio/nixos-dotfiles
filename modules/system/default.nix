@@ -1,11 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./greetd.nix ./nvidia.nix ./steam.nix ];
+  imports = [ ./greetd.nix ./nvidia.nix ./steam.nix ./plymouth.nix ];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  # Bootloader configuration moved to host-specific files (hosts/*/system.nix)
+  # This allows different bootloader setups for VM (GRUB) vs laptop (systemd-boot + LUKS)
 
   environment.systemPackages = with pkgs; [ neovim ];
 
