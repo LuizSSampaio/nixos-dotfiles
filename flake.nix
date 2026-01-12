@@ -41,7 +41,6 @@
             (./. + "/hosts/${hostname}/system.nix")
             (./. + "/hosts/${hostname}/hardware-configuration.nix")
             stylix.nixosModules.stylix
-            vicinae.homeManagerModules.default
             home-manager.nixosModules.home-manager
             {
               nix.settings.allowed-users = [ "luiz" ];
@@ -50,7 +49,10 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 extraSpecialArgs = { inherit inputs; };
-                sharedModules = [ stylix.homeModules.stylix ];
+                sharedModules = [
+                  stylix.homeModules.stylix
+                  vicinae.homeManagerModules.default
+                ];
                 users.luiz = (./. + "/hosts/${hostname}/user.nix");
               };
             }
