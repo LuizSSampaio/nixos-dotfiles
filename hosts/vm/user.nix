@@ -4,7 +4,10 @@
   imports = [ ../../modules/default.nix ];
 
   config.modules = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      monitors = [ ", 1920x1080@60, 0x0, 1" ];
+    };
     ghostty.enable = true;
     git.enable = true;
     dunst.enable = true;
