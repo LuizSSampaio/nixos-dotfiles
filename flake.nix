@@ -28,7 +28,7 @@
     vicinae.url = "github:vicinaehq/vicinae";
   };
 
-  outputs = { nixpkgs, home-manager, stylix, ... }@inputs:
+  outputs = { nixpkgs, home-manager, stylix, vicinae, ... }@inputs:
     let
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
       lib = nixpkgs.lib;
