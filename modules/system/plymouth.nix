@@ -29,5 +29,15 @@ in {
       "rd.udev.log_level=3"
       "udev.log_priority=3"
     ];
+
+    # Stylix Plymouth theming (NixOS system-level)
+    # This applies Gruvbox colors from your Stylix config to the boot splash
+    stylix.targets.plymouth = {
+      enable = true;
+      # NixOS snowflake logo (has rotational symmetry, animation looks good)
+      logo = pkgs.nixos-icons
+        + "/share/icons/hicolor/256x256/apps/nix-snowflake.png";
+      logoAnimated = true;
+    };
   };
 }
