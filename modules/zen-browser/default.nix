@@ -23,7 +23,7 @@ in {
             return-youtube-dislikes
             # tweaks-for-youtube
             youtube-no-translation
-            languagetool
+            # languagetool
           ];
 
         search = {
