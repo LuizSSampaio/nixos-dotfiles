@@ -21,7 +21,7 @@ in {
             # onepassword-password-manager
             privacy-badger
             return-youtube-dislikes
-            tweaks-for-youtube
+            # tweaks-for-youtube
             youtube-no-translation
             languagetool
           ];
