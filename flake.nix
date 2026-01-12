@@ -80,7 +80,7 @@
     in {
       nixosConfigurations = {
         vm = mkSystem inputs.nixpkgs "x86_64-linux" "vm";
-        laptop = mkSystem inputs.nixpkgs "x86_64-linux" "laptop";
+        legion = mkSystem inputs.nixpkgs "x86_64-linux" "legion";
       };
     };
 }
