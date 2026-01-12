@@ -16,5 +16,6 @@
     ./waybar
     ./vicinae
     ./zsh
+    ./zen-browser
   ];
 }
