@@ -15,6 +15,8 @@
 
   console.keyMap = "us-acentos";
 
+  time.timeZone = "America/Sao_Paulo";
+
   users.users.luiz = {
     isNormalUser = true;
     description = "Luiz Henrique Silva Sampaio";
