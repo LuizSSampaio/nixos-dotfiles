@@ -3,5 +3,8 @@
 {
   imports = [ ../../modules/system/default.nix ];
 
-  config.modules.system = { greetd.enable = true; };
+  config.modules.system = {
+    greetd.enable = true;
+    steam.enable = true;
+  };
 }

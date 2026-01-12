@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./greetd.nix ./nvidia.nix ];
+  imports = [ ./greetd.nix ./nvidia.nix ./steam.nix ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
