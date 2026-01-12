@@ -10,7 +10,8 @@
     useOSProber = true;
   };
 
-  config.modules.system = {
+  # Enable system modules
+  modules.system = {
     greetd.enable = true;
     steam.enable = true;
     plymouth.enable = true;
