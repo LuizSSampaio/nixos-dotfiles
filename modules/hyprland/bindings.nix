@@ -14,10 +14,10 @@ in {
         "$mod, W, killactive"
 
         # Apps
-        "$mod SHIFT, F, nautilus --new-window"
+        "$mod SHIFT, F, exec, nautilus --new-window"
         "$mod SHIFT, B, exec, xdg-settings get default-web-browser"
-        "$mod SHIFT, E, emacs"
-        "$mod SHIFT, slash, 1password"
+        "$mod SHIFT, E, exec, emacs"
+        "$mod SHIFT, slash, exec, 1password"
 
         # Control Tiling
         "$mod, P, togglesplit"
@@ -44,7 +44,7 @@ in {
         "$mod ALT, K, resizeactive, 0 -100.0"
         "$mod ALT, L, resizeactive, 0 100.0"
 
-        # Move and resize with mouse
+        # move and resize with mouse
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizeactive"
 
