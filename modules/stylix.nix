@@ -52,8 +52,11 @@
         popups = 10;
       };
     };
+  };
 
-    # Plymouth target is configured at NixOS system level (modules/system/plymouth.nix)
-    # since it's a boot-time feature, not a home-manager feature
+  # X resources for XWayland apps (e.g., Emacs) to use correct cursor size
+  xresources.properties = {
+    "Xcursor.theme" = "Bibata-Modern-Classic";
+    "Xcursor.size" = 24;
   };
 }
