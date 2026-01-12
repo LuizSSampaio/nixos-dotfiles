@@ -11,6 +11,7 @@ in {
     ./windows.nix
     ./hypridle.nix
     ./hyprlock.nix
+    ./hyprpaper.nix
   ];
 
   options.modules.hyprland = {
@@ -35,7 +36,7 @@ in {
       hyprland
       brightnessctl
       playerctl
-      libnotify # for notify-send (volume/brightness OSD)
+      libnotify
     ];
 
     services.playerctld.enable = true;
