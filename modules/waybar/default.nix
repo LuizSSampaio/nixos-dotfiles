@@ -151,7 +151,7 @@ in {
           font-weight: bold;
         }
 
-        #workspaces button.visible:not(.active) {
+        #workspaces button:not(.empty):not(.active) {
           color: @white;
         }
 
