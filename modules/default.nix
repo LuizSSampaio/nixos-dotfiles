@@ -10,11 +10,9 @@
     ./ghostty
     ./git
     ./ashell
-    ./walker
     ./dunst
     ./starship
     ./waybar
-    ./wofi
     ./zsh
   ];
 }
