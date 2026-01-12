@@ -13,5 +13,6 @@
     zsh.enable = true;
     emacs.enable = true;
     vicinae.enable = true;
+    zen-browser.enable = true;
   };
 }
