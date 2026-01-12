@@ -11,7 +11,7 @@ in {
     programs.zen-browser = {
       enable = true;
 
-      profiles."*" = {
+      profiles.* = {
         extensions.packages =
           with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
             ublock-origin
