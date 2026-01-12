@@ -5,6 +5,8 @@ in {
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
       "$terminal" = lib.mkDefault "ghostty";
+      "$file-explorer" = lib.mkDefault "nautilus --new-window";
+      "$browser" = lib.mkDefault "zen-beta";
       "$mod" = lib.mkDefault "SUPER";
 
       bind = [
@@ -14,8 +16,8 @@ in {
         "$mod, W, killactive"
 
         # Apps
-        "$mod SHIFT, F, exec, nautilus --new-window"
-        "$mod SHIFT, B, exec, xdg-settings get default-web-browser"
+        "$mod SHIFT, F, exec, $file-explorer"
+        "$mod SHIFT, B, exec, $browser"
         "$mod SHIFT, E, exec, emacs"
         "$mod SHIFT, slash, exec, 1password"
 
