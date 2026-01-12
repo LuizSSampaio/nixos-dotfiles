@@ -12,5 +12,6 @@
     waybar.enable = true;
     zsh.enable = true;
     emacs.enable = true;
+    vicinae.enable = true;
   };
 }

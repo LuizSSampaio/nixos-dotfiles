@@ -2,10 +2,12 @@
   description = "A NixOS Configuration";
 
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-substituters =
+      [ "https://nix-community.cachix.org" "https://vicinae.cachix.org" ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
     ];
   };
 
@@ -23,6 +25,7 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vicinae.url = "github:vicinaehq/vicinae";
   };
 
   outputs = { nixpkgs, home-manager, stylix, ... }@inputs:
@@ -38,6 +41,7 @@
             (./. + "/hosts/${hostname}/system.nix")
             (./. + "/hosts/${hostname}/hardware-configuration.nix")
             stylix.nixosModules.stylix
+            vicinae.homeManagerModules.default
             home-manager.nixosModules.home-manager
             {
               nix.settings.allowed-users = [ "luiz" ];

@@ -13,6 +13,7 @@
     ./dunst
     ./starship
     ./waybar
+    ./vicinae
     ./zsh
   ];
 }

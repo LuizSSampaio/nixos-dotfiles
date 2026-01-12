@@ -9,7 +9,7 @@ in {
 
       bind = [
         "$mod, RETURN, exec, $terminal"
-        "$mod, SPACE, exec, wofi --show drun --sort-order=alphabetical"
+        "$mod, SPACE, exec, vicinae toggle"
 
         "$mod, W, killactive"
 
