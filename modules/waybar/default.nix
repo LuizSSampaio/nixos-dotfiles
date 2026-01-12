@@ -103,7 +103,7 @@ in {
               charging = [ "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅" ];
               default = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
             };
-            format-full = "Charged ";
+            format-full = "{icon}";
             tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
             tooltip-format-charging = "{power:>1.0f}W↑ {capacity}%";
             states = {
@@ -116,47 +116,27 @@ in {
 
       style = ''
         * {
-          all: unset;
           font-family: JetBrains Mono Nerd Font;
           font-size: 12px;
         }
 
         .modules-left {
-          margin-left: 4px;
+          margin-left: 8px;
         }
 
         .modules-right {
-          margin-right: 4px;
-        }
-
-        #workspaces {
-          background: transparent;
-          padding: 0;
-          margin: 0;
+          margin-right: 8px;
         }
 
         #workspaces button {
-          padding: 4px 10px;
-          margin: 0 2px;
-          background-color: transparent;
+          all: initial;
+          padding: 0px 6px;
+          margin: 0 1.5px;
           transition: all 0.2s ease;
         }
 
-        #workspaces button:hover {
-          background-color: @bg-alt;
-          color: @white;
-        }
-
-        #workspaces button.active {
-          font-weight: bold;
-        }
-
-        #workspaces button:not(.empty):not(.active) {
-          color: @white;
-        }
-
         #workspaces button.empty {
-          color: @gray;
+          opacity: 0.5;
         }
 
         #clock {
