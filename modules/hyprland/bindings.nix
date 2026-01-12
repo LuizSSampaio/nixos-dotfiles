@@ -56,17 +56,21 @@ in {
         # Screenshot
         ", Print, exec, watershot directory ~/Pictures/Screenshots --copy"
 
-        # Media
-        ", XF86MonBrightnessUp, exec, brightnessctl -q s +10%"
-        ", XF86MonBrightnessDown, exec, brightnessctl -q s 10%-"
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
+        # Brightness (with notification)
+        ", XF86MonBrightnessUp, exec, brightnessctl -q s +10% && notify-send -h string:x-canonical-private-synchronous:brightness -h int:value:$(brightnessctl -m | cut -d, -f4 | tr -d '%') -t 1500 'Brightness'"
+        ", XF86MonBrightnessDown, exec, brightnessctl -q s 10%- && notify-send -h string:x-canonical-private-synchronous:brightness -h int:value:$(brightnessctl -m | cut -d, -f4 | tr -d '%') -t 1500 'Brightness'"
+
+        # Volume (with notification)
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && notify-send -h string:x-canonical-private-synchronous:volume -h int:value:$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}') -t 1500 'Volume'"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send -h string:x-canonical-private-synchronous:volume -h int:value:$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}') -t 1500 'Volume'"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send -h string:x-canonical-private-synchronous:volume -t 1500 \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 'Muted' || echo 'Unmuted')\""
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && notify-send -h string:x-canonical-private-synchronous:mic -t 1500 \"Mic $(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED && echo 'Muted' || echo 'Unmuted')\""
+
+        # Media player controls
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPause, exec, playerctl pause"
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPrev, exec, playerctl previous"
-        ", XF86AudioMicMute, exec, pactl set-source-mute @DEFAULT_SOURCE@ toggle"
 
       ] ++ (builtins.concatLists (builtins.genList (i:
         let ws = i + 1;

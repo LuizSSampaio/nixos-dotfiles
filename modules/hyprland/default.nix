@@ -30,7 +30,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ wl-clipboard hyprland ];
+    home.packages = with pkgs; [
+      wl-clipboard
+      hyprland
+      brightnessctl
+      playerctl
+      libnotify # for notify-send (volume/brightness OSD)
+    ];
+
+    services.playerctld.enable = true;
 
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
