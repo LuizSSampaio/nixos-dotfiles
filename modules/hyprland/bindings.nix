@@ -51,9 +51,9 @@ in {
         "$mod, mouse:273, resizeactive"
 
         # Clipboard
-        "$mod, C, sendshortcut, CTRL, Insert"
-        "$mod, V, sendshortcut, SHIFT, Insert"
-        "$mod, X, sendshortcut, CTRL, X"
+        "$mod, C, sendshortcut, CTRL, Insert,"
+        "$mod, V, sendshortcut, SHIFT, Insert,"
+        "$mod, X, sendshortcut, CTRL, X,"
 
         # Screenshot
         ", Print, exec, watershot directory ~/Pictures/Screenshots --copy"
