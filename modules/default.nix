@@ -5,6 +5,7 @@
   imports = [
     ./packages.nix
     ./stylix.nix
+    ./xdg-hidden-apps.nix
     ./hyprland
     ./emacs
     ./ghostty
