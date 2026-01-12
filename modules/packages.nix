@@ -34,4 +34,13 @@ let
     yazi
   ];
   dev = with pkgs; [ cmake gcc gnumake opencode ];
-in { home = { packages = gui ++ cli ++ dev; }; }
+in {
+  home = { packages = gui ++ cli ++ dev; };
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/luiz/nixos-dotfiles";
+  };
+}
