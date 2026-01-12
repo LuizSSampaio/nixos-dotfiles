@@ -14,6 +14,7 @@
     ./dunst
     ./starship
     ./waybar
+    ./wofi
     ./zsh
   ];
 }
