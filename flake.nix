@@ -51,6 +51,7 @@
           system = system;
           modules = [
             { networking.hostName = hostname; }
+            { nixpkgs.config.allowUnfree = true; }
             (./. + "/hosts/${hostname}/system.nix")
             (./. + "/hosts/${hostname}/hardware-configuration.nix")
             stylix.nixosModules.stylix

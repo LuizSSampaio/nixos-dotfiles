@@ -9,8 +9,6 @@
 
   environment.systemPackages = with pkgs; [ neovim ];
 
-  nixpkgs.config.allowUnfree = true;
-
   services.xserver.xkb = {
     layout = "us";
     variant = "intl";
