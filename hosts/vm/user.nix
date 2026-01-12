@@ -9,7 +9,7 @@
     git.enable = true;
     dunst.enable = true;
     starship.enable = true;
-    walker.enable = true;
+    wofi.enable = true;
     waybar.enable = true;
     zsh.enable = true;
     emacs.enable = true;
