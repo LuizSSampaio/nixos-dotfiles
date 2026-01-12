@@ -11,7 +11,13 @@ in {
     programs.zen-browser = {
       enable = true;
 
-      profiles."default" = {
+      profiles.managed = {
+        id = 0;
+        isDefault = true;
+        name = "Managed by Nix";
+
+        settings = { "extensions.autoDisableScopes" = 0; };
+
         extensions.packages =
           with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
             ublock-origin
