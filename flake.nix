@@ -39,6 +39,10 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    watershot = {
+      url = "github:Kirottu/watershot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, stylix, vicinae, ... }@inputs:

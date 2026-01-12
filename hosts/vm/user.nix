@@ -10,6 +10,7 @@
     dunst.enable = true;
     starship.enable = true;
     waybar.enable = true;
+    watershot.enable = true;
     zsh.enable = true;
     emacs.enable = true;
     vicinae.enable = true;

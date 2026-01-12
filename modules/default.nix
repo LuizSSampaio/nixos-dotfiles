@@ -15,6 +15,7 @@
     ./starship
     ./waybar
     ./vicinae
+    ./watershot
     ./zsh
     ./zen-browser
   ];

@@ -47,6 +47,9 @@ in {
         "$mod, V, sendshortcut, SHIFT, Insert"
         "$mod, X, sendshortcut, CTRL, X"
 
+        # Screenshot
+        ", Print, exec, watershot directory ~/Pictures/Screenshots --copy"
+
         # TODO: Media Keys
         # TODO: Groups
       ] ++ (builtins.concatLists (builtins.genList (i:
