@@ -18,7 +18,7 @@ in {
             clearurls
             sponsorblock
             darkreader
-            onepassword-password-manager
+            # onepassword-password-manager
             privacy-badger
             return-youtube-dislikes
             tweaks-for-youtube
