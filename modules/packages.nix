@@ -14,6 +14,7 @@ let
     vesktop
     heroic
     prismlauncher
+    gnome-disk-utility
   ];
   cli = with pkgs; [
     _1password-cli
