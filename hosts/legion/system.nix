@@ -28,6 +28,12 @@
     };
   };
 
+  fileSystems."/mnt/storage" = {
+    device = "/dev/mapper/vg--storage-storage";
+    fsType = "ext4";
+    options = [ "defaults" "nofail" ];
+  };
+
   modules.system = {
     nvidia.enable = true;
     greetd.enable = true;
