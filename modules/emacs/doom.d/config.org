@@ -3,6 +3,7 @@
 #+begin_src emacs-lisp
 (setq doom-theme 'doom-gruvbox)
 (setq display-line-numbers-type 'relative)
+(setq scroll-preserve-screen-position t)
 
 
 (setq org-directory "~/org/")
