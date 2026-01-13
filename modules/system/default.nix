@@ -9,6 +9,7 @@
   };
 
   services.flatpak.enable = true;
+  services.gvfs.enable = true;
 
   console.keyMap = "us-acentos";
 
