@@ -18,5 +18,6 @@
     ./watershot
     ./zsh
     ./zen-browser
+    ./direnv
   ];
 }

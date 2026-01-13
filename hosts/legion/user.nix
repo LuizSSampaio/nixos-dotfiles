@@ -22,5 +22,6 @@
     emacs.enable = true;
     vicinae.enable = true;
     zen-browser.enable = true;
+    direnv.enable = true;
   };
 }
