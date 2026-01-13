@@ -34,7 +34,7 @@ let
     wiremix
     yazi
   ];
-  dev = with pkgs; [ cmake gcc gnumake opencode ];
+  dev = with pkgs; [ cmake gcc gnumake opencode ispell ];
 in {
   home = { packages = gui ++ cli ++ dev; };
 
