@@ -43,9 +43,10 @@
       url = "github:Kirottu/watershot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
-  outputs = { nixpkgs, home-manager, stylix, vicinae, ... }@inputs:
+  outputs = { nixpkgs, home-manager, stylix, vicinae, nix-flatpak, ... }@inputs:
     let
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
       lib = nixpkgs.lib;
@@ -70,6 +71,7 @@
                 sharedModules = [
                   stylix.homeModules.stylix
                   vicinae.homeManagerModules.default
+                  nix-flatpak.homeManagerModules.nix-flatpak
                 ];
                 users.luiz = (./. + "/hosts/${hostname}/user.nix");
               };

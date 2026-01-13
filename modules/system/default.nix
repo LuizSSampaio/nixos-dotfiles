@@ -8,6 +8,8 @@
     variant = "intl";
   };
 
+  services.flatpak.enable = true;
+
   console.keyMap = "us-acentos";
 
   time.timeZone = "America/Sao_Paulo";

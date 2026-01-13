@@ -37,6 +37,17 @@ let
 in {
   home = { packages = gui ++ cli ++ dev; };
 
+  services.flatpak.packages = [
+    rec {
+      appId = "com.hypixel.HytaleLauncher";
+      sha256 = "1qv57dxbgi5mq4mqiy9p43irl9s2dhj0w227wyrdf0jbncrz8wvf";
+      bundle = "${pkgs.fetchurl {
+        url = "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak";
+        inherit sha256;
+      }}";
+    }
+  ];
+
   programs.nh = {
     enable = true;
     clean.enable = true;
