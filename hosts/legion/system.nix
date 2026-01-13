@@ -22,7 +22,7 @@
     };
 
     cryptstorage = {
-      device = "/dev/disk/by-uuid/1d8fc969-553f-4b90-ae84-95c4621ab338";
+      device = "/dev/disk/by-uuid/b6abffa9-06b2-47e4-8a01-2b73dca6da81";
       allowDiscards = true;
       bypassWorkqueues = true;
     };
