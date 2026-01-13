@@ -31,25 +31,6 @@ in {
             youtube-no-translation
             # languagetool
           ];
-
-        search = {
-          force = true;
-          default = "@kg";
-          engines = {
-            kagi = {
-              name = "Kagi Search";
-              urls = {
-                template = "https://kagi.com/search?q={searchTerms}";
-                params = [{
-                  name = "query";
-                  value = "searchTerms";
-                }];
-              };
-              icon = "https://kagi.com/favicon.ico";
-              definedAliases = [ "@kg" ];
-            };
-          };
-        };
       };
     };
   };
