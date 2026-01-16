@@ -19,5 +19,6 @@
     ./zsh
     ./zen-browser
     ./direnv
+    ./zed-editor
   ];
 }
