@@ -82,10 +82,23 @@
   services.resolved.enable = true;
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  services.tailscale.enable = true;
   networking = {
     wireless.iwd.enable = true;
-    firewall.enable = true;
+    nftables.enable = true;
+    firewall = {
+      enable = true;
+      trustedInterfaces = [ "tailscale0" ];
+      allowedUDPPorts = [ config.services.tailscale.port ];
+    };
   };
+
+  systemd.services.tailscaled.serviceConfig.Environment = [
+    "TS_DEBUG_FIREWALL_MODE=nftables"
+  ];
+
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
 
   system.stateVersion = "25.11";
 }
