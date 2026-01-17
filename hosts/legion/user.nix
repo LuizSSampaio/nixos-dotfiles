@@ -23,5 +23,6 @@
     vicinae.enable = true;
     zen-browser.enable = true;
     direnv.enable = true;
+    zed-editor.enable = true;
   };
 }
