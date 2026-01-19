@@ -55,6 +55,9 @@ in
         vim.enable_vim_sneak = true;
 
         relative_line_numbers = true;
+        file_finder = {
+          modal_width = "medium";
+        };
 
         indent_guides = {
           enabled = true;
@@ -63,6 +66,7 @@ in
 
         inlay_hints.enabled = true;
 
+        auto_install_extensions = true;
         load_direnv = "shell_hook";
       };
 
