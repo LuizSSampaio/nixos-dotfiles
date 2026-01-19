@@ -31,6 +31,16 @@ in {
 
         base_keymap = "VSCode";
         vim_mode = true;
+        vim.enable_vim_sneak = true;
+
+        relative_line_numbers = true;
+
+        indent_guides = {
+          enabled = true;
+          coloring = "indent_aware";
+        };
+
+        inlay_hints.enabled = true;
 
         load_direnv = "shell_hook";
       };
