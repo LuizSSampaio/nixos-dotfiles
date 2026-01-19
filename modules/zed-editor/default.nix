@@ -29,7 +29,7 @@ in {
           experimental.show = false;
         };
 
-        base_keymap = "None";
+        base_keymap = "VSCode";
         vim_mode = true;
 
         load_direnv = "shell_hook";
