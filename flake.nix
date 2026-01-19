@@ -2,8 +2,10 @@
   description = "A NixOS Configuration";
 
   nixConfig = {
-    extra-substituters =
-      [ "https://nix-community.cachix.org" "https://vicinae.cachix.org" ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://vicinae.cachix.org"
+    ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -46,12 +48,21 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
-  outputs = { nixpkgs, home-manager, stylix, vicinae, nix-flatpak, ... }@inputs:
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      stylix,
+      vicinae,
+      nix-flatpak,
+      ...
+    }@inputs:
     let
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
       lib = nixpkgs.lib;
 
-      mkSystem = pkgs: system: hostname:
+      mkSystem =
+        pkgs: system: hostname:
         pkgs.lib.nixosSystem {
           system = system;
           modules = [
@@ -79,10 +90,18 @@
           ];
           specialArgs = { inherit inputs; };
         };
-    in {
+    in
+    {
       nixosConfigurations = {
         vm = mkSystem inputs.nixpkgs "x86_64-linux" "vm";
         legion = mkSystem inputs.nixpkgs "x86_64-linux" "legion";
+      };
+
+      devShells.x86_64-linux.default = pkgs.mkShell {
+        packages = with pkgs; [
+          nil
+          nixfmt-rfc-style
+        ];
       };
     };
 }
