@@ -1,10 +1,17 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
-let cfg = config.modules.hyprland;
-in {
+let
+  cfg = config.modules.hyprland;
+in
+{
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
-      "$terminal" = lib.mkDefault "ghostty";
+      "$terminal" = lib.mkDefault "GTK_IM_MODULE=simple ghostty";
       "$file-explorer" = lib.mkDefault "nautilus --new-window";
       "$browser" = lib.mkDefault "zen-beta";
       "$mod" = lib.mkDefault "SUPER";
@@ -74,15 +81,20 @@ in {
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPrev, exec, playerctl previous"
 
-      ] ++ (builtins.concatLists (builtins.genList (i:
-        let ws = i + 1;
-        in [
-          "$mod, code:1${toString i}, workspace, ${toString ws}"
-          "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-          "$mod SHIFT ALT, code:1${toString i}, movetoworkspacesilent, ${
-            toString ws
-          }"
-        ]) 9));
+      ]
+      ++ (builtins.concatLists (
+        builtins.genList (
+          i:
+          let
+            ws = i + 1;
+          in
+          [
+            "$mod, code:1${toString i}, workspace, ${toString ws}"
+            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            "$mod SHIFT ALT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
+          ]
+        ) 9
+      ));
     };
   };
 }
