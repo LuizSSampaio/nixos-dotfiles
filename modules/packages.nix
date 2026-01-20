@@ -15,6 +15,7 @@ let
     heroic
     prismlauncher
     gnome-disk-utility
+    obs-studio
   ];
   cli = with pkgs; [
     _1password-cli
@@ -34,9 +35,18 @@ let
     wiremix
     yazi
   ];
-  dev = with pkgs; [ cmake gcc gnumake opencode ispell ];
-in {
-  home = { packages = gui ++ cli ++ dev; };
+  dev = with pkgs; [
+    cmake
+    gcc
+    gnumake
+    opencode
+    ispell
+  ];
+in
+{
+  home = {
+    packages = gui ++ cli ++ dev;
+  };
 
   services.flatpak.packages = [
     rec {
