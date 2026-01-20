@@ -29,7 +29,7 @@ in
         "mcp-server-github"
         "charmed-icons"
       ];
-      mutableUserSettings = false;
+
       userSettings = {
         features = {
           copilot = false;
