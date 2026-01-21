@@ -1,12 +1,16 @@
-{ pkgs, lib, config, ... }:
-
-with lib;
-let cfg = config.modules.zsh;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.zsh;
 in {
-  options.modules.zsh = { enable = mkEnableOption "zsh shell"; };
+  options.modules.zsh = {enable = mkEnableOption "zsh shell";};
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ zsh ];
+    home.packages = with pkgs; [zsh];
 
     programs.zsh = {
       enable = true;
@@ -32,6 +36,7 @@ in {
         lsa = "ls -a";
         lt = "eza --tree --level=2 --long --icons --git";
         lta = "lt -a";
+        n = "nvim";
       };
     };
 
