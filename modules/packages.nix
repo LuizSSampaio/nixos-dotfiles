@@ -36,11 +36,7 @@ let
     yazi
   ];
   dev = with pkgs; [
-    cmake
-    gcc
-    gnumake
     opencode
-    ispell
   ];
 in
 {
