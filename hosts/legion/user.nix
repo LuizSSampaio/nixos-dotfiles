@@ -1,4 +1,9 @@
-{ config, lib, inputs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [ ../../modules/default.nix ];
@@ -19,10 +24,9 @@
     waybar.enable = true;
     watershot.enable = true;
     zsh.enable = true;
-    emacs.enable = true;
     vicinae.enable = true;
     zen-browser.enable = true;
     direnv.enable = true;
-    zed-editor.enable = true;
+    nvim.enable = true;
   };
 }
