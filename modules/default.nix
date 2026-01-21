@@ -1,4 +1,9 @@
-{ inputs, pkgs, config, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 
 {
   home.stateVersion = "25.11";
@@ -20,5 +25,6 @@
     ./zen-browser
     ./direnv
     ./zed-editor
+    ./nvim
   ];
 }

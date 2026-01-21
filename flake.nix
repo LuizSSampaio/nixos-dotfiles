@@ -46,6 +46,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -55,6 +59,7 @@
       stylix,
       vicinae,
       nix-flatpak,
+      nvf,
       ...
     }@inputs:
     let
@@ -83,6 +88,7 @@
                   stylix.homeModules.stylix
                   vicinae.homeManagerModules.default
                   nix-flatpak.homeManagerModules.nix-flatpak
+                  nvf.homeManagerModules.default
                 ];
                 users.luiz = (./. + "/hosts/${hostname}/user.nix");
               };
