@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -187,7 +186,7 @@ in {
         terminal = {
           toggleterm = {
             enable = true;
-            lazygit.enable = true;
+            lazygit.enable = false;
           };
         };
 
