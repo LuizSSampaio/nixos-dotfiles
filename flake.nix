@@ -15,6 +15,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,72 +46,63 @@
       url = "github:Kirottu/watershot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-flatpak = {
-      url = "github:gmodena/nix-flatpak/?ref=latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      home-manager,
-      stylix,
-      vicinae,
-      nix-flatpak,
-      nvf,
-      ...
-    }@inputs:
-    let
-      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-      lib = nixpkgs.lib;
+  outputs = {
+    nixpkgs,
+    home-manager,
+    stylix,
+    vicinae,
+    nix-flatpak,
+    nvf,
+    ...
+  } @ inputs: let
+    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
 
-      mkSystem =
-        pkgs: system: hostname:
-        pkgs.lib.nixosSystem {
-          system = system;
-          modules = [
-            { networking.hostName = hostname; }
-            { nixpkgs.config.allowUnfree = true; }
-            (./. + "/hosts/${hostname}/system.nix")
-            (./. + "/hosts/${hostname}/hardware-configuration.nix")
-            stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager
-            {
-              nix.settings.allowed-users = [ "luiz" ];
-              nix.settings.trusted-users = [ "luiz" ];
-              home-manager = {
-                useUserPackages = true;
-                useGlobalPkgs = true;
-                extraSpecialArgs = { inherit inputs; };
-                sharedModules = [
-                  stylix.homeModules.stylix
-                  vicinae.homeManagerModules.default
-                  nix-flatpak.homeManagerModules.nix-flatpak
-                  nvf.homeManagerModules.default
-                ];
-                users.luiz = (./. + "/hosts/${hostname}/user.nix");
-              };
-            }
-          ];
-          specialArgs = { inherit inputs; };
-        };
-    in
-    {
-      nixosConfigurations = {
-        vm = mkSystem inputs.nixpkgs "x86_64-linux" "vm";
-        legion = mkSystem inputs.nixpkgs "x86_64-linux" "legion";
-      };
-
-      devShells.x86_64-linux.default = pkgs.mkShell {
-        packages = with pkgs; [
-          nil
-          nixfmt-rfc-style
+    mkSystem = pkgs: system: hostname:
+      pkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          {networking.hostName = hostname;}
+          {nixpkgs.config.allowUnfree = true;}
+          (./. + "/hosts/${hostname}/system.nix")
+          (./. + "/hosts/${hostname}/hardware-configuration.nix")
+          stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+          {
+            nix.settings.allowed-users = ["luiz"];
+            nix.settings.trusted-users = ["luiz"];
+            home-manager = {
+              useUserPackages = true;
+              useGlobalPkgs = true;
+              extraSpecialArgs = {inherit inputs;};
+              sharedModules = [
+                stylix.homeModules.stylix
+                vicinae.homeManagerModules.default
+                nix-flatpak.homeManagerModules.nix-flatpak
+                nvf.homeManagerModules.default
+              ];
+              users.luiz = ./. + "/hosts/${hostname}/user.nix";
+            };
+          }
         ];
+        specialArgs = {inherit inputs;};
       };
+  in {
+    nixosConfigurations = {
+      # vm = mkSystem inputs.nixpkgs "x86_64-linux" "vm";
+      legion = mkSystem inputs.nixpkgs "x86_64-linux" "legion";
     };
+
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      packages = with pkgs; [
+        nil
+        nixfmt-rfc-style
+      ];
+    };
+  };
 }
