@@ -24,7 +24,7 @@ in {
           {
             key = "<leader>e";
             mode = "n";
-            action = "<Cmd>Neotree show toogle<CR>";
+            action = "<Cmd>Neotree toggle<CR>";
             silent = true;
             desc = "File Tree [Neotree]";
           }
