@@ -14,6 +14,10 @@ in {
       enableZshIntegration = true;
       settings = {
         default_layout = "compact";
+        show_startup_tips = false;
+        simplified_ui = true;
+        pane_frames = false;
+        copy_on_select = true;
       };
     };
   };
