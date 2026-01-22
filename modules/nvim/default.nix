@@ -166,7 +166,6 @@ in {
         };
 
         dashboard = {
-          dashboard-nvim.enable = false;
           alpha.enable = true;
         };
 
@@ -179,6 +178,7 @@ in {
         };
 
         clipboard = {
+          enable = true;
           providers.wl-copy.enable = true;
           registers = "unnamedplus";
         };
