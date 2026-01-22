@@ -1,27 +1,11 @@
 {
   lib,
   config,
-  pkgs,
-  inputs,
   ...
 }:
 with lib; let
   inherit (config.lib.stylix) colors;
   cfg = config.modules.zellij;
-
-  zellij-forgot = pkgs.stdenvNoCC.mkDerivation rec {
-    pname = "zellij-forgot";
-    version = "0.4.2";
-    src = pkgs.fetchurl {
-      url = "https://github.com/karimould/zellij-forgot/releases/download/${version}/zellij_forgot.wasm";
-      hash = "sha256-H5N8cA65vo8ganQHlLHLgvVxS+kQPQOXodYgnLmjWWk=";
-    };
-    dontUnpack = true;
-    installPhase = ''
-      mkdir -p $out/bin
-      cp $src $out/bin/zellij_forgot.wasm
-    '';
-  };
 in {
   options.modules.zellij = {
     enable = mkEnableOption "zellij";
@@ -36,26 +20,32 @@ in {
         show_startup_tips = false;
         simplified_ui = true;
         copy_on_select = true;
+        copy_command = "wl-copy";
         default_layout = "default";
 
         plugins = {
+          zellij-forgot = {
+            _props = {
+              location = "https://github.com/karimould/zellij-forgot/releases/latest/download/zellij_forgot.wasm";
+            };
+          };
           zjstatus = {
             _props = {
-              location = "file:${inputs.zjstatus.packages.${pkgs.system}.default}/bin/zjstatus.wasm";
+              location = "https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm";
             };
             _children = [
               {
                 hide_frame_for_single_pane = true;
 
-                format_left = "{mode} #[fg=#${colors.base0D},bold]{session}";
+                format_left = "{mode}";
                 format_center = "{tabs}";
-                format_right = "{command_git_branch}";
+                format_right = "#[fg=#${colors.base0D},bold]{session}";
                 format_space = "";
 
                 border_enabled = false;
                 border_char = "─";
                 border_format = "#[fg=#${colors.base03}]{char}";
-                border_position = "top";
+                border_position = "bottom";
 
                 mode_normal = "#[bg=#${colors.base0D},fg=#${colors.base00},bold] NORMAL ";
                 mode_locked = "#[bg=#${colors.base03},fg=#${colors.base00},bold] LOCKED ";
@@ -78,11 +68,6 @@ in {
                 tab_active = "#[fg=#${colors.base0D},bold,italic] {name} ";
                 tab_active_fullscreen = "#[fg=#${colors.base0D},bold,italic] {name} [] ";
                 tab_active_sync = "#[fg=#${colors.base0D},bold,italic] {name} <> ";
-
-                command_git_branch_command = "git rev-parse --abbrev-ref HEAD";
-                command_git_branch_format = "#[fg=#${colors.base0D}] {stdout} ";
-                command_git_branch_interval = "10";
-                command_git_branch_rendermode = "static";
               }
             ];
           };
@@ -93,13 +78,6 @@ in {
         default = {
           layout = {
             _children = [
-              {
-                pane = {
-                  _props = {
-                    name = "";
-                  };
-                };
-              }
               {
                 pane = {
                   _props = {
@@ -115,6 +93,13 @@ in {
                   ];
                 };
               }
+              {
+                pane = {
+                  _props = {
+                    name = "";
+                  };
+                };
+              }
             ];
           };
         };
@@ -124,7 +109,7 @@ in {
         keybinds {
             shared_except "locked" {
                 bind "Ctrl y" {
-                    LaunchOrFocusPlugin "file:${zellij-forgot}/bin/zellij_forgot.wasm" {
+                    LaunchOrFocusPlugin "https://github.com/karimould/zellij-forgot/releases/latest/download/zellij-forgot.wasm" {
                         floating true
                     }
                 }
