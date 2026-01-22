@@ -15,6 +15,42 @@ in {
       enable = true;
 
       settings.vim = {
+        options = {
+          shiftwidth = 4;
+          tabstop = 4;
+        };
+
+        keymaps = [
+          {
+            key = "<leader>e";
+            mode = "n";
+            action = "<Cmd>Neotree show toogle<CR>";
+            silent = true;
+            desc = "File Tree [Neotree]";
+          }
+          {
+            key = "<leader>bd";
+            mode = "n";
+            action = "<Cmd>Bdelet<CR>";
+            silent = true;
+            desc = "Close buffer";
+          }
+          {
+            key = "H";
+            mode = "n";
+            action = "<Cmd>BufferLineCyclePrev<CR>";
+            silent = true;
+            desc = "Previous buffer";
+          }
+          {
+            key = "L";
+            mode = "n";
+            action = "<Cmd>BufferLineCycleNext<CR>";
+            silent = true;
+            desc = "Next buffer";
+          }
+        ];
+
         spellcheck = {
           enable = true;
           programmingWordlist.enable = true;
@@ -24,11 +60,19 @@ in {
           enable = true;
 
           formatOnSave = true;
-          lightbulb.enable = true;
           trouble.enable = true;
           otter-nvim.enable = true;
           nvim-docs-view.enable = true;
           harper-ls.enable = true;
+        };
+
+        diagnostics = {
+          enable = true;
+          config = {
+            signs = true;
+            update_in_insert = true;
+            virtual_text = true;
+          };
         };
 
         debugger = {
@@ -47,50 +91,15 @@ in {
           markdown.enable = true;
           bash.enable = true;
           clang.enable = true;
-          css.enable = false;
-          html.enable = false;
           json.enable = true;
-          sql.enable = false;
-          java.enable = false;
-          kotlin.enable = false;
-          ts.enable = false;
-          go.enable = false;
           lua.enable = true;
           zig.enable = true;
-          python.enable = false;
           typst.enable = true;
           rust = {
             enable = true;
             extensions.crates-nvim.enable = true;
           };
           toml.enable = true;
-          assembly.enable = false;
-          astro.enable = false;
-          nu.enable = false;
-          csharp.enable = false;
-          julia.enable = false;
-          vala.enable = false;
-          scala.enable = false;
-          r.enable = false;
-          gleam.enable = false;
-          dart.enable = false;
-          ocaml.enable = false;
-          elixir.enable = false;
-          haskell.enable = false;
-          hcl.enable = false;
-          ruby.enable = false;
-          fsharp.enable = false;
-          just.enable = false;
-          qml.enable = false;
-          tailwind.enable = false;
-          svelte.enable = false;
-
-          # Nim LSP is broken on Darwin and therefore
-          # should be disabled by default. Users may still enable
-          # `vim.languages.vim` to enable it, this does not restrict
-          # that.
-          # See: <https://github.com/PMunch/nimlsp/issues/178#issue-2128106096>
-          nim.enable = false;
         };
 
         visuals = {
@@ -101,7 +110,13 @@ in {
           fidget-nvim.enable = true;
 
           highlight-undo.enable = true;
-          indent-blankline.enable = true;
+          indent-blankline = {
+            enable = true;
+            setupOpts = {
+              scope.enabled = true;
+              indent.char = "│";
+            };
+          };
         };
 
         statusline.lualine.enable = true;
@@ -153,7 +168,10 @@ in {
           project-nvim.enable = true;
         };
 
-        clipboard.providers.wl-copy.enable = true;
+        clipboard = {
+          providers.wl-copy.enable = true;
+          registers = "unnamedplus";
+        };
 
         utility = {
           ccc.enable = false;
@@ -170,6 +188,8 @@ in {
           # Issues with treesitter
           # nvim-biscuits.enable = true;
           direnv.enable = true;
+
+          preview.glow.enable = true;
 
           motion = {
             hop.enable = true;
@@ -194,7 +214,6 @@ in {
           borders.enable = true;
           noice.enable = true;
           colorizer.enable = true;
-          modes-nvim.enable = true;
           illuminate.enable = true;
           breadcrumbs = {
             enable = true;
