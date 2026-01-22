@@ -119,7 +119,17 @@ in {
           };
         };
 
-        statusline.lualine.enable = true;
+        statusline.lualine = {
+          enable = true;
+          componentSeparator = {
+            left = "";
+            right = "";
+          };
+          sectionSeparator = {
+            left = "";
+            right = "";
+          };
+        };
 
         theme.enable = true;
 
