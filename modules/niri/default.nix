@@ -11,6 +11,8 @@ in {
     ./config.nix
     ./bindings.nix
     ./windows.nix
+    ./swaylock.nix
+    ./swayidle.nix
   ];
 
   options.modules.niri = {
@@ -89,6 +91,7 @@ in {
       playerctl
       libnotify
       xwayland-satellite
+      jq
     ];
 
     services.playerctld.enable = true;
