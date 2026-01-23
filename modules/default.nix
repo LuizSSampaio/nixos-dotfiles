@@ -4,6 +4,7 @@
     ./packages.nix
     ./stylix.nix
     ./wayland.nix
+    ./wlsunset.nix
     ./xdg-hidden-apps.nix
     ./hyprland
     ./emacs

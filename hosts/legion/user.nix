@@ -15,6 +15,11 @@
         ",preferred,auto,auto"
       ];
     };
+    wlsunset = {
+      enable = true;
+      latitude = -20.4;
+      longitude = -43.5;
+    };
     ghostty.enable = true;
     git.enable = true;
     dunst.enable = true;
