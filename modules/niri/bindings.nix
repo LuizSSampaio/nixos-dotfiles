@@ -13,6 +13,7 @@ in {
       # Application launchers
       "Mod+Return".action = spawn "ghostty";
       "Mod+Space".action = spawn "vicinae" "toggle";
+      "Mod+Escape".action = spawn "vicinae" "vicinae://extensions/vicinae/power";
 
       "Mod+Shift+B".action = spawn "zen-beta";
       "Mod+Shift+F".action = spawn "nautilus" "--new-window";
