@@ -5,8 +5,36 @@
 }:
 with lib; let
   cfg = config.modules.waybar;
+
+  hyprlandEnabled = config.modules.hyprland.enable or false;
+  niriEnabled = config.modules.niri.enable or false;
+  hasWM = hyprlandEnabled || niriEnabled;
+
+  workspaceModule =
+    if hyprlandEnabled
+    then "hyprland/workspaces"
+    else if niriEnabled
+    then "niri/workspaces"
+    else null;
+
+  workspaceIcons = {
+    "1" = "1";
+    "2" = "2";
+    "3" = "3";
+    "4" = "4";
+    "5" = "5";
+    "6" = "6";
+    "7" = "7";
+    "8" = "8";
+    "9" = "9";
+    active = "󱓻";
+    focused = "󱓻";
+    default = "";
+  };
 in {
-  options.modules.waybar = {enable = mkEnableOption "waybar";};
+  options.modules.waybar = {
+    enable = mkEnableOption "waybar";
+  };
 
   config = mkIf cfg.enable {
     programs.waybar = {
@@ -19,25 +47,20 @@ in {
           position = "top";
           spacing = 2;
 
-          modules-left = ["hyprland/workspaces"];
+          modules-left = optional hasWM workspaceModule;
           modules-center = ["clock"];
-          modules-right = ["tray" "bluetooth" "network" "wireplumber" "battery"];
+          modules-right = [
+            "tray"
+            "bluetooth"
+            "network"
+            "wireplumber"
+            "battery"
+          ];
 
-          "hyprland/workspaces" = {
+          "hyprland/workspaces" = mkIf hyprlandEnabled {
             format = "{icon}";
             on-click = "activate";
-            format-icons = {
-              "1" = "1";
-              "2" = "2";
-              "3" = "3";
-              "4" = "4";
-              "5" = "5";
-              "6" = "6";
-              "7" = "7";
-              "8" = "8";
-              "9" = "9";
-              active = "󱓻";
-            };
+            format-icons = workspaceIcons;
             persistent-workspaces = {
               "1" = [];
               "2" = [];
@@ -45,6 +68,13 @@ in {
               "4" = [];
               "5" = [];
             };
+          };
+
+          "niri/workspaces" = mkIf niriEnabled {
+            format = "{icon}";
+            format-icons = workspaceIcons;
+            all-outputs = false;
+            disable-click = false;
           };
 
           clock = {
@@ -68,7 +98,13 @@ in {
           };
 
           network = {
-            format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+            format-icons = [
+              "󰤯"
+              "󰤟"
+              "󰤢"
+              "󰤥"
+              "󰤨"
+            ];
             format = "{icon}";
             format-wifi = "{icon}";
             format-ethernet = "󰀂";
@@ -86,7 +122,11 @@ in {
           wireplumber = {
             format = "{icon}";
             format-muted = "󰝟";
-            format-icons = ["󰕿" "󰖀" "󰕾"];
+            format-icons = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
             scroll-step = 5;
             on-click = "ghostty -e wiremix";
             tooltip-format = "Playing at {volume}%";
@@ -101,8 +141,30 @@ in {
             format-charging = "{icon}";
             format-plugged = "";
             format-icons = {
-              charging = ["󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅"];
-              default = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+              charging = [
+                "󰢜"
+                "󰂆"
+                "󰂇"
+                "󰂈"
+                "󰢝"
+                "󰂉"
+                "󰢞"
+                "󰂊"
+                "󰂋"
+                "󰂅"
+              ];
+              default = [
+                "󰁺"
+                "󰁻"
+                "󰁼"
+                "󰁽"
+                "󰁾"
+                "󰁿"
+                "󰂀"
+                "󰂁"
+                "󰂂"
+                "󰁹"
+              ];
             };
             format-full = "{icon}";
             tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
@@ -138,6 +200,10 @@ in {
 
         #workspaces button.empty {
           opacity: 0.5;
+        }
+
+        #workspaces button.active,
+        #workspaces button.focused {
         }
 
         #clock {
