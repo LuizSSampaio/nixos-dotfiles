@@ -1,9 +1,12 @@
-{ pkgs, lib, config, ... }:
-
-with lib;
-let cfg = config.modules.waybar;
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.waybar;
 in {
-  options.modules.waybar = { enable = mkEnableOption "waybar"; };
+  options.modules.waybar = {enable = mkEnableOption "waybar";};
 
   config = mkIf cfg.enable {
     programs.waybar = {
@@ -16,10 +19,9 @@ in {
           position = "top";
           spacing = 2;
 
-          modules-left = [ "hyprland/workspaces" ];
-          modules-center = [ "clock" ];
-          modules-right =
-            [ "tray" "bluetooth" "network" "wireplumber" "battery" ];
+          modules-left = ["hyprland/workspaces"];
+          modules-center = ["clock"];
+          modules-right = ["tray" "bluetooth" "network" "wireplumber" "battery"];
 
           "hyprland/workspaces" = {
             format = "{icon}";
@@ -37,11 +39,11 @@ in {
               active = "󱓻";
             };
             persistent-workspaces = {
-              "1" = [ ];
-              "2" = [ ];
-              "3" = [ ];
-              "4" = [ ];
-              "5" = [ ];
+              "1" = [];
+              "2" = [];
+              "3" = [];
+              "4" = [];
+              "5" = [];
             };
           };
 
@@ -66,7 +68,7 @@ in {
           };
 
           network = {
-            format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+            format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
             format = "{icon}";
             format-wifi = "{icon}";
             format-ethernet = "󰀂";
@@ -74,8 +76,7 @@ in {
             tooltip-format-wifi = ''
               {essid} ({frequency} GHz)
               ⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}'';
-            tooltip-format-ethernet =
-              "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+            tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
             tooltip-format-disconnected = "Disconnected";
             interval = 3;
             nospacing = 1;
@@ -85,7 +86,7 @@ in {
           wireplumber = {
             format = "{icon}";
             format-muted = "󰝟";
-            format-icons = [ "󰕿" "󰖀" "󰕾" ];
+            format-icons = ["󰕿" "󰖀" "󰕾"];
             scroll-step = 5;
             on-click = "ghostty -e wiremix";
             tooltip-format = "Playing at {volume}%";
@@ -100,8 +101,8 @@ in {
             format-charging = "{icon}";
             format-plugged = "";
             format-icons = {
-              charging = [ "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅" ];
-              default = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+              charging = ["󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅"];
+              default = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
             };
             format-full = "{icon}";
             tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
