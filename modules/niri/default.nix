@@ -52,9 +52,9 @@ in {
               description = "Y position";
             };
             scale = mkOption {
-              type = types.float;
-              default = 1.0;
-              description = "Scale factor";
+              type = types.nullOr types.float;
+              default = null;
+              description = "Scale factor (null for auto)";
             };
             vrr = mkOption {
               type = types.bool;
@@ -92,6 +92,7 @@ in {
       libnotify
       xwayland-satellite
       jq
+      swaybg
     ];
 
     services.playerctld.enable = true;
