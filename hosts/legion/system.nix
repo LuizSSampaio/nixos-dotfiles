@@ -1,7 +1,5 @@
-{ config, lib, pkgs, inputs, ... }:
-
-{
-  imports = [ ../../modules/system/default.nix ];
+{...}: {
+  imports = [../../modules/system/default.nix];
 
   boot.loader = {
     systemd-boot = {
@@ -31,12 +29,18 @@
   fileSystems."/mnt/storage" = {
     device = "/dev/mapper/vg--storage-storage";
     fsType = "ext4";
-    options = [ "defaults" "nofail" ];
+    options = [
+      "defaults"
+      "nofail"
+    ];
   };
 
   modules.system = {
     nvidia.enable = true;
-    greetd.enable = true;
+    greetd = {
+      enable = true;
+      session = "niri";
+    };
     steam.enable = true;
     plymouth.enable = true;
   };
