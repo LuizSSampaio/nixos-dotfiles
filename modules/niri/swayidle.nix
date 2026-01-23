@@ -40,7 +40,7 @@ in {
         }
         {
           event = "lock";
-          command = "${pkgs.swaylock}/bin/pidof swaylock || ${pkgs.swaylock}/bin/swaylock -f";
+          command = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
         }
       ];
     };

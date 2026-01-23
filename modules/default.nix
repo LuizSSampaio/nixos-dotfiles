@@ -6,6 +6,7 @@
     ./wayland.nix
     ./wlsunset.nix
     ./xdg-hidden-apps.nix
+    ./hyprlock
     ./hyprland
     ./emacs
     ./ghostty

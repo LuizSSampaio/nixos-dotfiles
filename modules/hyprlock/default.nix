@@ -1,8 +1,18 @@
-{ pkgs, lib, config, ... }:
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.modules.hyprland;
-in {
+let
+  cfg = config.modules.hyprlock;
+in
+{
+  options.modules.hyprlock = {
+    enable = mkEnableOption "hyprlock screen locker";
+  };
+
   config = mkIf cfg.enable {
     programs.hyprlock = {
       enable = true;
@@ -11,8 +21,12 @@ in {
           disable_loading_bar = true;
           no_fade_in = false;
         };
-        auth = { fingerprint.enabled = true; };
-        background = { monitor = ""; };
+        auth = {
+          fingerprint.enabled = true;
+        };
+        background = {
+          monitor = "";
+        };
 
         input-field = {
           monitor = "";
@@ -23,7 +37,7 @@ in {
 
           outline_thickness = 4;
 
-          placeholder_text = "  Enter Password 󰈷 ";
+          placeholder_text = "  Enter Password 󰈷 ";
           fail_text = "Wrong";
 
           rounding = 0;

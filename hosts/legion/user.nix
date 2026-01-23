@@ -10,6 +10,7 @@
         ",preferred,auto,auto"
       ];
     };
+    hyprlock.enable = true;
     niri = {
       enable = true;
       monitors = [

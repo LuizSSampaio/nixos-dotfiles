@@ -11,7 +11,6 @@ in {
     ./config.nix
     ./bindings.nix
     ./windows.nix
-    ./swaylock.nix
     ./swayidle.nix
   ];
 

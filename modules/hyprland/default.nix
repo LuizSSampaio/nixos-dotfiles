@@ -1,7 +1,11 @@
-{ pkgs, lib, config, ... }:
-
-with lib;
-let cfg = config.modules.hyprland;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.hyprland;
 in {
   imports = [
     ./bindings.nix
@@ -10,7 +14,6 @@ in {
     ./looknfeel.nix
     ./windows.nix
     ./hypridle.nix
-    ./hyprlock.nix
     ./hyprpaper.nix
   ];
 
@@ -19,14 +22,16 @@ in {
 
     monitors = mkOption {
       type = types.listOf types.str;
-      default = [ ", preferred, auto, 1" ];
+      default = [", preferred, auto, 1"];
       description = ''
         List of monitor configurations for Hyprland.
         Format: "name, resolution@rate, position, scale"
         Default uses auto-detection for all monitors.
       '';
-      example =
-        [ "eDP-1, 1920x1080@60, 0x0, 1" "HDMI-A-1, 2560x1440@144, 1920x0, 1" ];
+      example = [
+        "eDP-1, 1920x1080@60, 0x0, 1"
+        "HDMI-A-1, 2560x1440@144, 1920x0, 1"
+      ];
     };
   };
 
@@ -41,10 +46,14 @@ in {
 
     services.playerctld.enable = true;
 
-    wayland.windowManager.hyprland.enable = true;
-    wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
+    wayland.windowManager.hyprland = {
+      enable = true;
+      systemd.variables = ["--all"];
 
-    wayland.windowManager.hyprland.settings = { monitor = cfg.monitors; };
+      settings = {
+        monitor = cfg.monitors;
+      };
+    };
 
     services.hyprpolkitagent.enable = true;
   };
