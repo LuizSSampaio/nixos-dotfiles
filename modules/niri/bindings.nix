@@ -12,10 +12,10 @@ in {
     in {
       # Application launchers
       "Mod+Return".action = spawn "ghostty";
-      "Mod+Space".action = spawn "vicinae toggle";
+      "Mod+Space".action = spawn "vicinae" "toggle";
 
       "Mod+Shift+B".action = spawn "zen-beta";
-      "Mod+Shift+F".action = spawn "nautilus --new-window";
+      "Mod+Shift+F".action = spawn "nautilus" "--new-window";
       "Mod+Shift+E".action = spawn-sh "$EDITOR";
       "Mod+Shift+Slash".action = spawn "1password";
 
@@ -23,6 +23,7 @@ in {
       "Mod+W".action = close-window;
       "Mod+Ctrl+Alt+Shift+E".action = quit;
       "Mod+Slash".action = show-hotkey-overlay;
+      "Mod+O".action = toggle-overview;
 
       # Focus navigation (vim-style)
       "Mod+H".action = focus-column-left;
@@ -45,8 +46,6 @@ in {
       # Monitor focus
       "Mod+Ctrl+H".action = focus-monitor-left;
       "Mod+Ctrl+L".action = focus-monitor-right;
-      "Mod+Ctrl+Left".action = focus-monitor-left;
-      "Mod+Ctrl+Right".action = focus-monitor-right;
 
       # Move window to monitor
       "Mod+Ctrl+Shift+H".action = move-column-to-monitor-left;
@@ -76,15 +75,15 @@ in {
       "Mod+9".action = focus-workspace 9;
 
       # Move window to workspace
-      "Mod+Shift+1".action = move-column-to-workspace 1;
-      "Mod+Shift+2".action = move-column-to-workspace 2;
-      "Mod+Shift+3".action = move-column-to-workspace 3;
-      "Mod+Shift+4".action = move-column-to-workspace 4;
-      "Mod+Shift+5".action = move-column-to-workspace 5;
-      "Mod+Shift+6".action = move-column-to-workspace 6;
-      "Mod+Shift+7".action = move-column-to-workspace 7;
-      "Mod+Shift+8".action = move-column-to-workspace 8;
-      "Mod+Shift+9".action = move-column-to-workspace 9;
+      "Mod+Shift+1".action.move-window-to-workspace = 1;
+      "Mod+Shift+2".action.move-window-to-workspace = 2;
+      "Mod+Shift+3".action.move-window-to-workspace = 3;
+      "Mod+Shift+4".action.move-window-to-workspace = 4;
+      "Mod+Shift+5".action.move-window-to-workspace = 5;
+      "Mod+Shift+6".action.move-window-to-workspace = 6;
+      "Mod+Shift+7".action.move-window-to-workspace = 7;
+      "Mod+Shift+8".action.move-window-to-workspace = 8;
+      "Mod+Shift+9".action.move-window-to-workspace = 9;
 
       # Column/window sizing
       "Mod+R".action = switch-preset-column-width;
@@ -107,12 +106,9 @@ in {
       "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
       # Screenshots
-      "Print".action = screenshot;
-      "Ctrl+Print".action = screenshot-screen;
-      "Alt+Print".action = screenshot-window;
-
-      # Power actions
-      "Mod+Shift+P".action = power-off-monitors;
+      "Print".action.screenshot = {};
+      "Ctrl+Print".action.screenshot-screen = {};
+      "Alt+Print".action.screenshot-window = {};
 
       # Media controls
       "XF86AudioRaiseVolume" = {
