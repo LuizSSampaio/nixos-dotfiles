@@ -87,6 +87,10 @@ in {
 
       environment = {
         DISPLAY = ":0"; # for xwayland-satellite
+
+        # Desktop environment identification
+        XDG_CURRENT_DESKTOP = "niri";
+        XDG_SESSION_DESKTOP = "niri";
       };
 
       spawn-at-startup = [

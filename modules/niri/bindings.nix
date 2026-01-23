@@ -11,7 +11,7 @@ in {
       sh = spawn "sh" "-c";
     in {
       # Application launchers
-      "Mod+Return".action = spawn-sh "GTK_IM_MODULE=simple ghostty";
+      "Mod+Return".action = spawn "ghostty";
       "Mod+Space".action = spawn "vicinae toggle";
 
       "Mod+Shift+B".action = spawn "zen-beta";

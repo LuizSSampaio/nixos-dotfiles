@@ -3,6 +3,7 @@
   imports = [
     ./packages.nix
     ./stylix.nix
+    ./wayland.nix
     ./xdg-hidden-apps.nix
     ./hyprland
     ./emacs
