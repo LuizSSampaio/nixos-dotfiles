@@ -1,15 +1,35 @@
-{ config, pkgs, ... }:
-
 {
-  imports = [ ./greetd.nix ./nvidia.nix ./steam.nix ./plymouth.nix ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./greetd.nix
+    ./nvidia.nix
+    ./steam.nix
+    ./plymouth.nix
+  ];
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "intl";
+  services = {
+    xserver.xkb = {
+      layout = "us";
+      variant = "intl";
+    };
+
+    flatpak.enable = true;
+    gvfs.enable = true;
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
+    resolved.enable = true;
+    blueman.enable = true;
+    tailscale.enable = true;
   };
-
-  services.flatpak.enable = true;
-  services.gvfs.enable = true;
 
   console.keyMap = "us-acentos";
 
@@ -32,12 +52,17 @@
   users.users.luiz = {
     isNormalUser = true;
     description = "Luiz Henrique Silva Sampaio";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
   };
 
-  environment.pathsToLink =
-    [ "/share/applications" "/share/xdg-desktop-portal" ];
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
+  ];
 
   system.autoUpgrade = {
     enable = true;
@@ -47,8 +72,24 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
-    config = { hyprland = { default = [ "hyprland" "gtk" ]; }; };
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+    config = {
+      hyprland = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+      };
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+      };
+    };
   };
 
   programs.dconf.enable = true;
@@ -71,25 +112,14 @@
   };
 
   security.rtkit.enable = true;
-  services.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
-  services.resolved.enable = true;
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-  services.tailscale.enable = true;
   networking = {
     wireless.iwd.enable = true;
     nftables.enable = true;
     firewall = {
       enable = true;
-      trustedInterfaces = [ "tailscale0" ];
-      allowedUDPPorts = [ config.services.tailscale.port ];
+      trustedInterfaces = ["tailscale0"];
+      allowedUDPPorts = [config.services.tailscale.port];
     };
   };
 
