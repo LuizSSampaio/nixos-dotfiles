@@ -18,7 +18,7 @@ in {
     programs.niri.settings.window-rules = [
       # Default rule: apply corner radius to all windows
       {
-        geometry-corner-radius = mkCornerRadius 6.0;
+        geometry-corner-radius = mkCornerRadius 4.0;
         clip-to-geometry = true;
       }
 
@@ -74,16 +74,6 @@ in {
         ];
         open-floating = true;
         open-focused = false;
-      }
-
-      # Browser DevTools - open wider
-      {
-        matches = [
-          {title = "DevTools";}
-        ];
-        default-column-width = {
-          proportion = 0.5;
-        };
       }
 
       # Terminal windows - default to narrower
