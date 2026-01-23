@@ -5,6 +5,7 @@
 }:
 with lib; let
   cfg = config.modules.niri;
+  stylixImage = config.stylix.image or null;
 
   mkOutputs = monitors:
     builtins.listToAttrs (
@@ -93,9 +94,19 @@ in {
         XDG_SESSION_DESKTOP = "niri";
       };
 
-      spawn-at-startup = [
-        {command = ["xwayland-satellite"];}
-      ];
+      spawn-at-startup =
+        [
+          {command = ["xwayland-satellite"];}
+        ]
+        ++ optional (stylixImage != null) {
+          command = [
+            "swaybg"
+            "-i"
+            "${stylixImage}"
+            "-m"
+            "fill"
+          ];
+        };
 
       prefer-no-csd = true;
 
