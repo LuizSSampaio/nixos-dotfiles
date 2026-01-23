@@ -61,6 +61,8 @@ in {
         };
       };
 
+      gestures.hot-corners.enable = false;
+
       layout = {
         gaps = 4;
 
