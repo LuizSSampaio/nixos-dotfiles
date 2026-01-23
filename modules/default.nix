@@ -20,5 +20,6 @@
     ./zed-editor
     ./nvim
     ./zellij
+    ./niri
   ];
 }

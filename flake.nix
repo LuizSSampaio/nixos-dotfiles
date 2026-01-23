@@ -5,11 +5,13 @@
     extra-substituters = [
       "https://nix-community.cachix.org"
       "https://vicinae.cachix.org"
+      "https://niri.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
   };
 
@@ -50,6 +52,10 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -59,6 +65,7 @@
     vicinae,
     nix-flatpak,
     nvf,
+    niri,
     ...
   } @ inputs: let
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
@@ -85,6 +92,7 @@
                 vicinae.homeManagerModules.default
                 nix-flatpak.homeManagerModules.nix-flatpak
                 nvf.homeManagerModules.default
+                niri.homeModules.niri
               ];
               users.luiz = ./. + "/hosts/${hostname}/user.nix";
             };
