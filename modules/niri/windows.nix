@@ -124,6 +124,9 @@ in {
           matches = [
             {app-id = "^zen.*$";}
           ];
+          open-maximized-to-edges = true;
+          open-on-output = "eDP-2";
+
           opacity = 0.99;
         }
       ];
