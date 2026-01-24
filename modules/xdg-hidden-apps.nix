@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   xdg.desktopEntries = {
     yazi = {
       name = "Yazi";
@@ -10,10 +10,6 @@
     };
     btop = {
       name = "Btop";
-      noDisplay = true;
-    };
-    blueman-manager = {
-      name = "Bluetooth Manager";
       noDisplay = true;
     };
     kvantummanager = {

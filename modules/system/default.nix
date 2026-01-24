@@ -28,7 +28,6 @@
 
     power-profiles-daemon.enable = true;
     resolved.enable = true;
-    blueman.enable = true;
     tailscale.enable = true;
   };
 
