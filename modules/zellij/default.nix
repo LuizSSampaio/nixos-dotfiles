@@ -22,7 +22,7 @@ in {
         copy_on_select = true;
         copy_command = "wl-copy";
         default_layout = "default";
-        default_mode = "locked";
+        # default_mode = "locked";
 
         plugins = {
           zellij-forgot = {
