@@ -13,7 +13,6 @@ in {
     ./input.nix
     ./looknfeel.nix
     ./windows.nix
-    ./hypridle.nix
     ./hyprpaper.nix
   ];
 

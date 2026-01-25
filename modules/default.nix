@@ -7,6 +7,7 @@
     ./wlsunset.nix
     ./xdg-hidden-apps.nix
     ./hyprlock
+    ./hypridle
     ./hyprland
     ./emacs
     ./ghostty

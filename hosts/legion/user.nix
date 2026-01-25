@@ -11,6 +11,7 @@
       ];
     };
     hyprlock.enable = true;
+    hypridle.enable = true;
     niri = {
       enable = true;
       monitors = [

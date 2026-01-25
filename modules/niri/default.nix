@@ -11,7 +11,6 @@ in {
     ./config.nix
     ./bindings.nix
     ./windows.nix
-    ./swayidle.nix
   ];
 
   options.modules.niri = {
