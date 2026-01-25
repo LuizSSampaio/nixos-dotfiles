@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   gui = with pkgs; [
     _1password-gui
     mission-center
@@ -16,6 +15,7 @@ let
     prismlauncher
     gnome-disk-utility
     obs-studio
+    vial
   ];
   cli = with pkgs; [
     _1password-cli
@@ -38,8 +38,7 @@ let
   dev = with pkgs; [
     opencode
   ];
-in
-{
+in {
   home = {
     packages = gui ++ cli ++ dev;
   };
