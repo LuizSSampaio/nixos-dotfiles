@@ -16,6 +16,8 @@
     gnome-disk-utility
     obs-studio
     vial
+    zapzap
+    cinny
   ];
   cli = with pkgs; [
     _1password-cli
