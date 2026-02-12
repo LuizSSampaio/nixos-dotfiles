@@ -98,6 +98,7 @@ in {
           typst.enable = true;
           just.enable = true;
           java.enable = true;
+          qml.enable = true;
           rust = {
             enable = true;
             extensions.crates-nvim.enable = true;
