@@ -83,6 +83,7 @@ in {
         };
 
         languages = {
+          enableDAP = true;
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;
