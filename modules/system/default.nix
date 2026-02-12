@@ -29,6 +29,13 @@
     power-profiles-daemon.enable = true;
     resolved.enable = true;
     tailscale.enable = true;
+
+    udev = {
+      enable = true;
+      packages = with pkgs; [
+        vial
+      ];
+    };
   };
 
   console.keyMap = "us-acentos";
