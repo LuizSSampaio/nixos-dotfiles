@@ -110,7 +110,7 @@ in {
         keybinds {
             shared_except "locked" {
                 bind "Ctrl y" {
-                    LaunchOrFocusPlugin "https://github.com/karimould/zellij-forgot/releases/latest/download/zellij-forgot.wasm" {
+                    LaunchOrFocusPlugin "zellij-forgot" {
                         floating true
                     }
                 }
