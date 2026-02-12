@@ -16,8 +16,6 @@
     gnome-disk-utility
     obs-studio
     vial
-    zapzap
-    cinny
   ];
   cli = with pkgs; [
     _1password-cli
@@ -54,6 +52,8 @@ in {
         inherit sha256;
       }}";
     }
+    "in.cinny.Cinny"
+    "com.rtosta.zapzap"
   ];
 
   programs.nh = {
