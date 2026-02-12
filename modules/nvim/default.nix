@@ -16,8 +16,8 @@ in {
 
       settings.vim = {
         options = {
-          shiftwidth = 4;
-          tabstop = 4;
+          shiftwidth = 2;
+          tabstop = 2;
         };
 
         keymaps = [
@@ -95,6 +95,8 @@ in {
           lua.enable = true;
           zig.enable = true;
           typst.enable = true;
+          just.enable = true;
+          java.enable = true;
           rust = {
             enable = true;
             extensions.crates-nvim.enable = true;
@@ -162,7 +164,7 @@ in {
           enable = true;
           gitsigns.enable = true;
           gitsigns.codeActions.enable = false;
-          neogit.enable = true;
+          neogit.enable = false;
         };
 
         dashboard = {
@@ -216,7 +218,7 @@ in {
         terminal = {
           toggleterm = {
             enable = true;
-            lazygit.enable = false;
+            lazygit.enable = true;
           };
         };
 
@@ -238,11 +240,16 @@ in {
         assistant = {
           chatgpt.enable = false;
           copilot = {
-            enable = false;
+            enable = true;
             cmp.enable = false;
           };
           codecompanion-nvim.enable = false;
-          avante-nvim.enable = true;
+          avante-nvim = {
+            enable = true;
+            setupOpts = {
+              provider = "copilot";
+            };
+          };
         };
 
         comments = {
