@@ -54,6 +54,7 @@ in {
     }
     "in.cinny.Cinny"
     "com.rtosta.zapzap"
+    "im.riot.Riot"
   ];
 
   programs.nh = {
