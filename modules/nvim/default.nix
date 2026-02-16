@@ -18,6 +18,7 @@ in {
         options = {
           shiftwidth = 2;
           tabstop = 2;
+          scrolloff = 5;
         };
 
         keymaps = [
