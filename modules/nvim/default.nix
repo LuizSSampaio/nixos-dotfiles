@@ -94,7 +94,7 @@ in {
           clang.enable = true;
           json.enable = true;
           lua.enable = true;
-          zig.enable = false;
+          zig.enable = true;
           typst.enable = true;
           just.enable = true;
           java.enable = true;
