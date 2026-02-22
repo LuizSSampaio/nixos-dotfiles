@@ -29,7 +29,7 @@
       ];
     };
     wlsunset = {
-      enable = true;
+      enable = false;
       latitude = -20.4;
       longitude = -43.5;
     };
