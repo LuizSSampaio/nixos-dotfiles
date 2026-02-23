@@ -12,7 +12,6 @@
     ./emacs
     ./ghostty
     ./git
-    ./ashell
     ./dunst
     ./starship
     ./waybar
