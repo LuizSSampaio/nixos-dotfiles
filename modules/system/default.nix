@@ -8,6 +8,7 @@
     ./nvidia.nix
     ./steam.nix
     ./plymouth.nix
+    ./polkit-kde.nix
   ];
 
   services = {

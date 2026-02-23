@@ -62,5 +62,6 @@
     };
     steam.enable = true;
     plymouth.enable = true;
+    polkit-kde.enable = true;
   };
 }
