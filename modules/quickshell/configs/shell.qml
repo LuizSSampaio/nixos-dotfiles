@@ -10,10 +10,12 @@ PanelWindow {
     }
 
     implicitHeight: 24
+    color: Colors.base00
 
     Text {
         anchors.centerIn: parent
 
         text: "hello world"
+        color: Colors.base05
     }
 }
