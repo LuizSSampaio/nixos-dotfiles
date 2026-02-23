@@ -38,6 +38,7 @@
     dunst.enable = true;
     starship.enable = true;
     waybar.enable = true;
+    quickshell.enable = false;
     watershot.enable = true;
     zsh.enable = true;
     vicinae.enable = true;

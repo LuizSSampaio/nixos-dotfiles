@@ -24,5 +24,6 @@
     ./nvim
     ./zellij
     ./niri
+    ./quickshell
   ];
 }
