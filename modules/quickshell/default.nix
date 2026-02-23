@@ -37,6 +37,7 @@ with lib; let
     cp ${./configs/shell.qml} $out/shell.qml
     cp ${./configs/qmldir} $out/qmldir
     cp ${colorsQml} $out/Colors.qml
+    cp ${./configs/Clock.qml} $out/Clock.qml
   '';
 in {
   options.modules.quickshell = {

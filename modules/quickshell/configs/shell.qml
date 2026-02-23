@@ -1,21 +1,52 @@
 import Quickshell
 import Quickshell.Wayland
 import QtQuick
+import QtQuick.Layouts
 
-PanelWindow {
-    anchors {
-        top: true
-        left: true
-        right: true
-    }
+ShellRoot {
+    Variants {
+        model: Quickshell.screens
 
-    implicitHeight: 24
-    color: Colors.base00
+        delegate: PanelWindow {
+            id: bar
 
-    Text {
-        anchors.centerIn: parent
+            required property var modelData
+            screen: modelData
 
-        text: "hello world"
-        color: Colors.base05
+            anchors {
+                top: true
+                left: true
+                right: true
+            }
+
+            implicitHeight: 24
+            color: Colors.base00
+
+            WlrLayershell.namespace: "quickshell:bar"
+            WlrLayershell.layer: WlrLayer.Top
+            WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: 8
+                anchors.rightMargin: 8
+                spacing: 0
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                Clock {}
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                RowLayout {
+                    spacing: 4
+                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                }
+            }
+        }
     }
 }
