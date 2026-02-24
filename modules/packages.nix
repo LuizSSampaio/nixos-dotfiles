@@ -16,6 +16,7 @@
     gnome-disk-utility
     obs-studio
     vial
+    kdePackages.kdenlive
   ];
   cli = with pkgs; [
     _1password-cli
