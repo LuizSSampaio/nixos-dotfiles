@@ -25,5 +25,6 @@
     ./zellij
     ./niri
     ./quickshell
+    ./obs-studio
   ];
 }

@@ -40,5 +40,6 @@
     direnv.enable = true;
     nvim.enable = true;
     zellij.enable = true;
+    obs-studio.enable = true;
   };
 }

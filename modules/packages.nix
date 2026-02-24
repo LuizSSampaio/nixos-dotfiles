@@ -14,7 +14,6 @@
     heroic
     prismlauncher
     gnome-disk-utility
-    obs-studio
     vial
     kdePackages.kdenlive
   ];
