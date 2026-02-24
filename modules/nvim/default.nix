@@ -97,6 +97,7 @@ in {
           lua.enable = true;
           zig.enable = true;
           typst.enable = true;
+          ts.enable = true;
           just.enable = true;
           java.enable = true;
           qml.enable = true;
