@@ -28,18 +28,12 @@
         }
       ];
     };
-    wlsunset = {
-      enable = false;
-      latitude = -20.4;
-      longitude = -43.5;
-    };
     ghostty.enable = true;
     git.enable = true;
     dunst.enable = true;
     starship.enable = true;
     waybar.enable = true;
     quickshell.enable = false;
-    watershot.enable = true;
     zsh.enable = true;
     vicinae.enable = true;
     zen-browser.enable = true;
