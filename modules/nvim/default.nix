@@ -247,9 +247,9 @@ in {
             enable = true;
             cmp.enable = false;
           };
-          codecompanion-nvim.enable = false;
+          codecompanion-nvim.enable = true;
           avante-nvim = {
-            enable = true;
+            enable = false;
             setupOpts = {
               provider = "copilot";
             };
