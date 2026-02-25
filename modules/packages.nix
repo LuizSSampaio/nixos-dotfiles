@@ -10,7 +10,6 @@
     qbittorrent
     mpv
     imv
-    vesktop
     heroic
     prismlauncher
     gnome-disk-utility
