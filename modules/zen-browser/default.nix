@@ -124,14 +124,18 @@ in {
         };
 
         extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-          kagi-search
           ublock-origin
           clearurls
           sponsorblock
-          darkreader
           privacy-badger
           return-youtube-dislikes
           youtube-no-translation
+          terms-of-service-didnt-read
+          bitwarden
+          fastforwardteam
+          github-file-icons
+          istilldontcareaboutcookies
+          stylus
         ];
       };
     };
