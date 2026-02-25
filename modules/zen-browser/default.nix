@@ -87,6 +87,26 @@ in {
           };
         };
 
+        search = {
+          force = true;
+          default = "searxng";
+          engines.searxng = {
+            name = "SearXNG";
+            urls = [
+              {
+                template = "https://search.lsamp.dev";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = ["@s"];
+          };
+        };
+
         settings = {
           "extensions.autoDisableScopes" = 0;
 
