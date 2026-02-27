@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   gui = with pkgs; [
-    _1password-gui
+    bitwarden-desktop
     mission-center
     nautilus
     pinta
@@ -17,7 +17,7 @@
     kdePackages.kdenlive
   ];
   cli = with pkgs; [
-    _1password-cli
+    bitwarden-cli
     atuin
     btop
     unzip
