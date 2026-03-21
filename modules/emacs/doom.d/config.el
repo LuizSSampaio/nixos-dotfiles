@@ -52,3 +52,27 @@
         "w" #'typst-ts-watch-mode   ;; start/stop typst watch
         "p" #'typst-ts-preview      ;; open preview from typst watch
         "P" #'typst-preview-mode))  ;; start typst-preview live preview
+
+(after! eglot
+  (add-to-list 'eglot-server-programs
+               '((c-mode c++-mode c-ts-mode c++-ts-mode)
+                 . ("clangd"
+                    "--query-driver=/nix/store/**,/run/current-system/sw/bin/**,/run/wrappers/bin/**"
+                    "--header-insertion-decorators=0"
+                    "--clang-tidy"))))
+
+(after! file-templates
+  (setf (alist-get "\\.h\\'" file-templates-alist nil 'remove) nil)
+  (setf (alist-get "\\.hpp\\'" file-templates-alist nil 'remove) nil)
+
+  (set-file-template! "\\.h\\'"
+    :mode '(c-mode c++-mode)
+    :project t
+    "/* -*- mode: %b -*- */\n"
+    "#pragma once\n\n")
+
+  (set-file-template! "\\.hpp\\'"
+    :mode 'c++-mode
+    :project t
+    "/* -*- mode: c++ -*- */\n"
+    "#pragma once\n\n"))
