@@ -40,7 +40,6 @@ in {
         };
 
         ExtensionSettings = mkExtensionSettings {
-          "{d634138d-c276-4fc8-924b-40a0ea21d284}" = "1password-x-password-manager";
           "languagetool-webextension@languagetool.org" = "languagetool";
           "enhancerforyoutube@maximerf.addons.mozilla.org" = "enhancer-for-youtube";
           "myallychou@gmail.com" = "youtube-recommended-videos";
