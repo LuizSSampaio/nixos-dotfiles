@@ -1,5 +1,6 @@
-{...}: {
-  imports = [../../modules/default.nix];
+{ ... }:
+{
+  imports = [ ../../modules/default.nix ];
 
   config.modules = {
     hyprland = {
@@ -39,7 +40,8 @@
     zen-browser.enable = true;
     direnv.enable = true;
     nvim.enable = true;
-    zellij.enable = true;
+    emacs.enable = true;
+    zellij.enable = false;
     obs-studio.enable = true;
   };
 }
