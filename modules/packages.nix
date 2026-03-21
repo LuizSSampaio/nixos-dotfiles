@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   gui = with pkgs; [
     bitwarden-desktop
     mission-center
@@ -15,6 +16,7 @@
     gnome-disk-utility
     vial
     kdePackages.kdenlive
+    tutanota-desktop
   ];
   cli = with pkgs; [
     bitwarden-cli
@@ -33,11 +35,13 @@
     bluetui
     wiremix
     yazi
+    gnupg
   ];
   dev = with pkgs; [
     opencode
   ];
-in {
+in
+{
   home = {
     packages = gui ++ cli ++ dev;
   };
@@ -51,8 +55,6 @@ in {
         inherit sha256;
       }}";
     }
-    "in.cinny.Cinny"
-    "com.rtosta.zapzap"
     "im.riot.Riot"
   ];
 
