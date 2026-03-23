@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./greetd.nix
     ./nvidia.nix
@@ -30,6 +31,7 @@
     power-profiles-daemon.enable = true;
     resolved.enable = true;
     tailscale.enable = true;
+    upower.enable = true;
 
     udev = {
       enable = true;
@@ -90,7 +92,7 @@
     ];
     config = {
       common = {
-        default = ["gtk"];
+        default = [ "gtk" ];
       };
       hyprland = {
         default = [
@@ -99,7 +101,7 @@
         ];
       };
       niri = {
-        default = ["gtk"];
+        default = [ "gtk" ];
       };
     };
   };
@@ -130,9 +132,12 @@
     nftables.enable = true;
     firewall = {
       enable = true;
-      trustedInterfaces = ["tailscale0"];
-      allowedTCPPorts = [53317];
-      allowedUDPPorts = [53317 config.services.tailscale.port];
+      trustedInterfaces = [ "tailscale0" ];
+      allowedTCPPorts = [ 53317 ];
+      allowedUDPPorts = [
+        53317
+        config.services.tailscale.port
+      ];
     };
   };
 
