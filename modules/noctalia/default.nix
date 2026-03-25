@@ -3,9 +3,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.noctalia;
-in {
+in
+{
   options.modules.noctalia = {
     enable = mkEnableOption "noctalia shell";
   };
@@ -20,24 +22,23 @@ in {
             position = "top";
             barType = "floating";
             showCapsule = true;
-            backgroundOpacity = 0.93;
             widgets = {
               left = [
-                {id = "Launcher";}
+                { id = "Launcher"; }
                 {
                   id = "Clock";
                   formatHorizontal = "HH:mm ddd, MMM d";
                 }
-                {id = "SystemMonitor";}
-                {id = "MediaMini";}
+                { id = "SystemMonitor"; }
+                { id = "MediaMini"; }
               ];
               center = [
-                {id = "Workspace";}
+                { id = "Workspace"; }
               ];
               right = [
-                {id = "Tray";}
-                {id = "NotificationHistory";}
-                {id = "Brightness";}
+                { id = "Tray"; }
+                { id = "NotificationHistory"; }
+                { id = "Brightness"; }
                 {
                   id = "Battery";
                   displayMode = "alwaysShow";
@@ -77,7 +78,7 @@ in {
     # Niri integration: spawn noctalia-shell on startup
     (mkIf (cfg.enable && (config.modules.niri.enable or false)) {
       programs.niri.settings.spawn-at-startup = [
-        {command = ["noctalia-shell"];}
+        { command = [ "noctalia-shell" ]; }
       ];
     })
 
