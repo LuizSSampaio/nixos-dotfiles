@@ -10,7 +10,8 @@ in {
     enable = mkEnableOption "noctalia shell";
   };
 
-  config = mkIf cfg.enable {
+  config = mkMerge [
+    (mkIf cfg.enable {
       programs.noctalia-shell = {
         enable = true;
 
@@ -85,5 +86,6 @@ in {
       wayland.windowManager.hyprland.settings.exec-once = [
         "noctalia-shell"
       ];
-    };
+    })
+  ];
 }
