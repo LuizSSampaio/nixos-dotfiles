@@ -26,5 +26,6 @@
     ./niri
     ./quickshell
     ./obs-studio
+    ./noctalia
   ];
 }

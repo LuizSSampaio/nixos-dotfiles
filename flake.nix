@@ -6,12 +6,14 @@
       "https://nix-community.cachix.org"
       "https://vicinae.cachix.org"
       "https://niri.cachix.org"
+      "https://noctalia.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
 
@@ -56,6 +58,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -66,6 +72,7 @@
     nix-flatpak,
     nvf,
     niri,
+    noctalia,
     ...
   } @ inputs: let
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
@@ -93,6 +100,7 @@
                 nix-flatpak.homeManagerModules.nix-flatpak
                 nvf.homeManagerModules.default
                 niri.homeModules.niri
+                noctalia.homeModules.default
               ];
               users.luiz = ./. + "/hosts/${hostname}/user.nix";
             };

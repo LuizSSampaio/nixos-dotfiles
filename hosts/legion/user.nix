@@ -31,9 +31,9 @@
     };
     ghostty.enable = true;
     git.enable = true;
-    dunst.enable = true;
+    dunst.enable = false;
     starship.enable = true;
-    waybar.enable = true;
+    waybar.enable = false;
     quickshell.enable = false;
     zsh.enable = true;
     vicinae.enable = true;
@@ -43,5 +43,6 @@
     emacs.enable = true;
     zellij.enable = false;
     obs-studio.enable = true;
+    noctalia.enable = true;
   };
 }
