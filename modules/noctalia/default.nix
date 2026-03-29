@@ -66,9 +66,16 @@ in
             telemetryEnabled = false;
           };
 
+          location = {
+            monthBeforeDay = false;
+            weatherEnabled = false;
+          };
+
+          dock.enabled = false;
+
           colorSchemes = {
             darkMode = true;
-            useWallpaperColors = true;
+            useWallpaperColors = false;
             predefinedScheme = "Noctalia (default)";
           };
         };
