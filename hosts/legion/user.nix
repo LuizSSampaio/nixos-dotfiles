@@ -31,17 +31,13 @@
     };
     ghostty.enable = true;
     git.enable = true;
-    dunst.enable = false;
     starship.enable = true;
-    waybar.enable = false;
-    quickshell.enable = false;
     zsh.enable = true;
-    vicinae.enable = true;
+    vicinae.enable = false;
     zen-browser.enable = true;
     direnv.enable = true;
     nvim.enable = true;
     emacs.enable = true;
-    zellij.enable = false;
     obs-studio.enable = true;
     noctalia.enable = true;
   };
