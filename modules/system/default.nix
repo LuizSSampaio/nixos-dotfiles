@@ -128,7 +128,8 @@
   security.rtkit.enable = true;
   hardware.bluetooth.enable = true;
   networking = {
-    wireless.iwd.enable = true;
+    # wireless.iwd.enable = true;
+    networkmanager.enable = true;
     nftables.enable = true;
     firewall = {
       enable = true;
