@@ -3,17 +3,19 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.niri;
-in {
+in
+{
   config = mkIf cfg.enable {
-    programs.niri.settings.binds = with config.lib.niri.actions; let
-      sh = spawn "sh" "-c";
-    in {
+    programs.niri.settings.binds = with config.lib.niri.actions; {
       # Application launchers
       "Mod+Return".action = spawn "ghostty";
-      "Mod+Space".action = spawn "vicinae" "toggle";
-      "Mod+Escape".action = spawn "vicinae" "vicinae://extensions/vicinae/power";
+      "Mod+Space".action = spawn-sh "noctalia-shell ipc call launcher toggle";
+      "Mod+Escape".action = spawn-sh "noctalia-shell ipc call sessionMenu toggle";
+      # "Mod+Space".action = spawn "vicinae" "toggle";
+      # "Mod+Escape".action = spawn "vicinae" "vicinae://extensions/vicinae/power";
 
       "Mod+Shift+B".action = spawn "zen-beta";
       "Mod+Shift+F".action = spawn "nautilus" "--new-window";
@@ -107,55 +109,61 @@ in {
       "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
       # Screenshots
-      "Print".action.screenshot = {};
-      "Ctrl+Print".action.screenshot-screen = {};
-      "Alt+Print".action.screenshot-window = {};
+      "Print".action.screenshot = { };
+      "Ctrl+Print".action.screenshot-screen = { };
+      "Alt+Print".action.screenshot-window = { };
 
-      # Media controls
-      "XF86AudioRaiseVolume" = {
-        allow-when-locked = true;
-        action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send -t 1000 'Volume' $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)\"%\"}')";
-      };
-      "XF86AudioLowerVolume" = {
-        allow-when-locked = true;
-        action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send -t 1000 'Volume' $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)\"%\"}')";
-      };
-      "XF86AudioMute" = {
-        allow-when-locked = true;
-        action = sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-      };
-      "XF86AudioMicMute" = {
-        allow-when-locked = true;
-        action = sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-      };
+      # # Media controls
+      # "XF86AudioRaiseVolume" = {
+      #   allow-when-locked = true;
+      #   action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send -t 1000 'Volume' $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)\"%\"}')";
+      # };
+      # "XF86AudioLowerVolume" = {
+      #   allow-when-locked = true;
+      #   action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send -t 1000 'Volume' $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)\"%\"}')";
+      # };
+      # "XF86AudioMute" = {
+      #   allow-when-locked = true;
+      #   action = sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+      # };
+      # "XF86AudioMicMute" = {
+      #   allow-when-locked = true;
+      #   action = sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+      # };
 
-      # Brightness controls
-      "XF86MonBrightnessUp" = {
-        allow-when-locked = true;
-        action = sh "brightnessctl set 5%+ && notify-send -t 1000 'Brightness' $(brightnessctl -m | cut -d, -f4)";
-      };
-      "XF86MonBrightnessDown" = {
-        allow-when-locked = true;
-        action = sh "brightnessctl set 5%- && notify-send -t 1000 'Brightness' $(brightnessctl -m | cut -d, -f4)";
-      };
+      # # Brightness controls
+      # "XF86MonBrightnessUp" = {
+      #   allow-when-locked = true;
+      #   action = sh "brightnessctl set 5%+ && notify-send -t 1000 'Brightness' $(brightnessctl -m | cut -d, -f4)";
+      # };
+      # "XF86MonBrightnessDown" = {
+      #   allow-when-locked = true;
+      #   action = sh "brightnessctl set 5%- && notify-send -t 1000 'Brightness' $(brightnessctl -m | cut -d, -f4)";
+      # };
 
-      # Media player controls
-      "XF86AudioPlay" = {
-        allow-when-locked = true;
-        action = sh "playerctl play-pause";
-      };
-      "XF86AudioPause" = {
-        allow-when-locked = true;
-        action = sh "playerctl play-pause";
-      };
-      "XF86AudioNext" = {
-        allow-when-locked = true;
-        action = sh "playerctl next";
-      };
-      "XF86AudioPrev" = {
-        allow-when-locked = true;
-        action = sh "playerctl previous";
-      };
+      # # Media player controls
+      # "XF86AudioPlay" = {
+      #   allow-when-locked = true;
+      #   action = sh "playerctl play-pause";
+      # };
+      # "XF86AudioPause" = {
+      #   allow-when-locked = true;
+      #   action = sh "playerctl play-pause";
+      # };
+      # "XF86AudioNext" = {
+      #   allow-when-locked = true;
+      #   action = sh "playerctl next";
+      # };
+      # "XF86AudioPrev" = {
+      #   allow-when-locked = true;
+      #   action = sh "playerctl previous";
+      # };
+
+      "XF86AudioRaiseVolume".action = spawn "noctalia-shell" "ipc" "call" "volume" "increase";
+      "XF86AudioLowerVolume".action = spawn "noctalia-shell" "ipc" "call" "volume" "decrease";
+      "XF86AudioMute".action = spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput";
+      "XF86MonBrightnessUp".action = spawn "noctalia-shell" "ipc" "call" "brightness" "increase";
+      "XF86MonBrightnessDown".action = spawn "noctalia-shell" "ipc" "call" "brightness" "decrease";
     };
   };
 }
