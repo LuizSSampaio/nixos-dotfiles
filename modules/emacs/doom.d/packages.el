@@ -59,3 +59,6 @@
 (package! websocket)        ;; required by typst-preview.el
 (package! typst-preview      ;; from MELPA
   :recipe (:host github :repo "havarddj/typst-preview.el"))
+
+(package! meson-mode
+  :recipe (:host github :repo "wentasah/meson-mode"))

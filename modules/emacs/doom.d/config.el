@@ -76,3 +76,11 @@
     :project t
     "/* -*- mode: c++ -*- */\n"
     "#pragma once\n\n"))
+
+(use-package! meson-mode
+  :mode (("/meson\\.build\\'" . meson-mode)
+         ("/meson_options\\.txt\\'" . meson-mode)))
+
+(after! eglot
+  (add-to-list 'eglot-server-programs
+               '(meson-mode . ("mesonlsp"))))
