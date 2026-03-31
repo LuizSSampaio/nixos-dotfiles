@@ -17,6 +17,7 @@ let
     vial
     kdePackages.kdenlive
     tutanota-desktop
+    chatterino2
   ];
   cli = with pkgs; [
     bitwarden-cli
