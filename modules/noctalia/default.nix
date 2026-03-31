@@ -22,6 +22,7 @@ in
             position = "top";
             barType = "floating";
             showCapsule = true;
+            outerCorners = false;
             widgets = {
               left = [
                 { id = "Launcher"; }
