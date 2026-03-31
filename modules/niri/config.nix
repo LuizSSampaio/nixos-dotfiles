@@ -3,34 +3,37 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.niri;
   stylixImage = config.stylix.image or null;
 
-  mkOutputs = monitors:
+  mkOutputs =
+    monitors:
     builtins.listToAttrs (
       map (m: {
         inherit (m) name;
         value = {
           mode =
-            if m.width != null && m.height != null
-            then {
-              inherit (m) width height refresh;
-            }
-            else null;
+            if m.width != null && m.height != null then
+              {
+                inherit (m) width height refresh;
+              }
+            else
+              null;
           position = {
             inherit (m) x y;
           };
           inherit (m) scale;
           variable-refresh-rate = m.vrr;
         };
-      })
-      monitors
+      }) monitors
     );
-in {
+in
+{
   config = mkIf cfg.enable {
     programs.niri.settings = {
-      outputs = mkIf (cfg.monitors != []) (mkOutputs cfg.monitors);
+      outputs = mkIf (cfg.monitors != [ ]) (mkOutputs cfg.monitors);
 
       input = {
         keyboard = {
@@ -67,9 +70,9 @@ in {
         gaps = 4;
 
         preset-column-widths = [
-          {proportion = 1.0 / 3.0;}
-          {proportion = 1.0 / 2.0;}
-          {proportion = 2.0 / 3.0;}
+          { proportion = 1.0 / 3.0; }
+          { proportion = 1.0 / 2.0; }
+          { proportion = 2.0 / 3.0; }
         ];
 
         default-column-width = {
@@ -93,22 +96,22 @@ in {
 
         # Desktop environment identification
         XDG_CURRENT_DESKTOP = "niri";
+        XDG_SESSION_TYPE = "wayland";
         XDG_SESSION_DESKTOP = "niri";
       };
 
-      spawn-at-startup =
-        [
-          {command = ["xwayland-satellite"];}
-        ]
-        ++ optional (stylixImage != null) {
-          command = [
-            "swaybg"
-            "-i"
-            "${stylixImage}"
-            "-m"
-            "fill"
-          ];
-        };
+      spawn-at-startup = [
+        { command = [ "xwayland-satellite" ]; }
+      ]
+      ++ optional (stylixImage != null) {
+        command = [
+          "swaybg"
+          "-i"
+          "${stylixImage}"
+          "-m"
+          "fill"
+        ];
+      };
 
       prefer-no-csd = true;
 
