@@ -26,6 +26,7 @@
       alsa.enable = true;
       pulse.enable = true;
       jack.enable = true;
+      wireplumber.enable = true;
     };
 
     power-profiles-daemon.enable = true;
@@ -88,11 +89,23 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
     config = {
       common = {
-        default = [ "gtk" ];
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.Screenshot" = [
+          "gnome"
+          "gtk"
+        ];
       };
       hyprland = {
         default = [
@@ -101,7 +114,16 @@
         ];
       };
       niri = {
-        default = [ "gtk" ];
+        default = [
+          "gtk"
+          "gnome"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [
+          "gnome"
+        ];
+        "org.freedesktop.impl.portal.Screenshot" = [
+          "gnome"
+        ];
       };
     };
   };
