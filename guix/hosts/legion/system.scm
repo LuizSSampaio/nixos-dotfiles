@@ -96,7 +96,7 @@
     (mount-point "/boot/efi")
     (device (uuid "8515-3EC5" 'fat32))
     (type "vfat")
-    (flags '(no-atime)))
+    (flags '(noatime)))
 
    ;; Encrypted root
    (file-system
@@ -110,7 +110,7 @@
     (mount-point "/mnt/storage")
     (device "/dev/mapper/vg--storage-storage")
     (type "ext4")
-    (flags '(no-fail))
+    (flags '(nofail))
     (dependencies %mapped-devices))
 
    %base-file-systems))
@@ -275,7 +275,6 @@ table inet filter {
     %base-initrd-modules))
 
   ;; Extra kernel modules loaded at boot (kvm-amd for virtualisation)
-  (kernel-loadable-modules (list kmod))
   (kernel-arguments
    (append '("kvm-amd") %default-kernel-arguments))
 
