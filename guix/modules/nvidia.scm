@@ -2,7 +2,7 @@
 ;; Configures the proprietary NVIDIA driver in PRIME offload mode alongside
 ;; the integrated AMD GPU, mirroring the NixOS nvidia.nix module.
 
-(define-module (luiz modules nvidia)
+(define-module (conf modules nvidia)
   #:use-module (gnu)
   #:use-module (gnu services)
   #:use-module (gnu services shepherd)

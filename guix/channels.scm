@@ -1,4 +1,4 @@
-(define-module (luiz channels)
+(define-module (conf channels)
   #:use-module (guix channels))
 
 ;; Place this file at ~/.config/guix/channels.scm, or pull with:

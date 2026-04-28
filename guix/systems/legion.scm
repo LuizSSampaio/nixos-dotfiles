@@ -1,4 +1,4 @@
-(define-module (luiz systems legion)
+(define-module (conf systems legion)
   #:use-module (gnu)
   #:use-module (gnu system)
   #:use-module (gnu system file-systems)
@@ -12,8 +12,8 @@
   #:use-module (gnu packages certs)
   #:use-module (gnu packages shells)
   #:use-module (gnu packages version-control)
-  #:use-module (luiz systems)
-  #:use-module (luiz modules nvidia)
+  #:use-module (conf systems)
+  #:use-module (conf modules nvidia)
   #:export (%legion-operating-system))
 
 ;; ---------------------------------------------------------------------------
@@ -172,7 +172,7 @@ table inet filter {
 ;; ---------------------------------------------------------------------------
 (define-public %legion-operating-system
   (operating-system
-    (inherit %luiz-initial-os)
+    (inherit %conf-initial-os)
     (host-name "legion")
 
     (mapped-devices  %mapped-devices)
