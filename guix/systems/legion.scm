@@ -57,7 +57,8 @@
     (mount-point "/mnt/storage")
     (device "/dev/mapper/vg--storage-storage")
     (type "ext4")
-    (flags '(nofail))
+    (needed-for-boot? #f)
+    (options "nofail")
     (dependencies %mapped-devices))
 
    %base-file-systems))
