@@ -5,8 +5,6 @@
 (define-module (conf modules nvidia)
   #:use-module (gnu)
   #:use-module (gnu services)
-  #:use-module (gnu services shepherd)
-  #:use-module (gnu packages bash)
   #:use-module (nongnu packages nvidia)
   #:use-module (nongnu services nvidia)
   #:export (nvidia-prime-services
