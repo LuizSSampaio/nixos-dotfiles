@@ -1,8 +1,8 @@
-(define-module (conf channels)
-  #:use-module (guix channels))
-
 ;; Place this file at ~/.config/guix/channels.scm, or pull with:
 ;;   guix pull --channels=guix/channels.scm
+;;
+;; Note: this file must evaluate to a plain channel list — no define-module
+;; header — so that `guix pull` can read it directly.
 
 (list
  ;; Official GNU Guix channel.

@@ -48,9 +48,10 @@
     (initrd microcode-initrd)
     (initrd-modules %conf-initrd-modules)
 
-    ;; kvm-amd enables AMD virtualisation support.
-    (kernel-arguments
-     (append '("kvm-amd") %default-kernel-arguments))
+    ;; Load kvm-amd at boot to enable AMD virtualisation support.
+    ;; This is a kernel module, not a command-line parameter, so it belongs
+    ;; here rather than in kernel-arguments.
+    (kernel-loadable-modules (list kvm-amd))
 
     (bootloader
      (bootloader-configuration
