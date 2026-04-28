@@ -33,6 +33,7 @@
  (gnu system keyboard)
  (gnu system nss)
  (gnu packages)
+ (gnu packages fonts)
  (gnu packages linux)
  (gnu packages admin)
  (gnu packages shells)
@@ -116,7 +117,7 @@
      (device "/dev/mapper/vg--storage-storage")
      (mount-point "/mnt/storage")
      (type "ext4")
-     (flags '(no-fail))
+     (flags '(nofail))
      (dependencies %mapped-devices)))
 
    ;; Include the standard virtual filesystems
@@ -230,6 +231,8 @@
     ;;; --- Display manager: greetd + tuigreet ---
     ;;; Mirrors the NixOS greetd configuration that auto-launches niri-session
     ;;; for user `luiz` and falls back to an interactive tuigreet prompt.
+    ;;; tuigreet must be available on PATH (install via guix home or system
+    ;;; packages from the nonguix channel).
     (service greetd-service-type
              (greetd-configuration
               (greeter-supplementary-groups '("input" "video"))
@@ -240,7 +243,7 @@
                  (terminal-switch #t)
                  (default-session-command
                    (greetd-agreety-session
-                    (command (file-append tuigreet "/bin/tuigreet"))
+                    (command "tuigreet")
                     (command-args '("--greeting" "Welcome to GNU Guix!"
                                    "--asterisks"
                                    "--remember"
@@ -250,7 +253,7 @@
                  (initial-session-user "luiz")
                  (initial-session-command
                    (greetd-agreety-session
-                    (command (file-append niri "/bin/niri-session")))))))))
+                    (command "niri-session"))))))))
 
     ;;; --- NVIDIA (nonguix) ---
     ;;; Installs the proprietary NVIDIA driver and configures PRIME offload.
@@ -349,11 +352,11 @@ table inet filter {
 "))))
 
     ;;; --- udev rules (e.g. for Vial QMK keyboards) ---
-    (udev-rules-service 'vial
-                        (file->etc-file
-                         (plain-file
-                          "vial.rules"
-                          "KERNEL==\"hidraw*\", SUBSYSTEM==\"hidraw\", ATTRS{serial}==\"*vial:f64c2b3c*\", MODE=\"0660\", GROUP=\"plugdev\", TAG+=\"uaccess\", TAG+=\"udev-acl\"\n")))
+    (udev-rules-service
+     'vial
+     (plain-file
+      "vial.rules"
+      "KERNEL==\"hidraw*\", SUBSYSTEM==\"hidraw\", ATTRS{serial}==\"*vial:f64c2b3c*\", MODE=\"0660\", GROUP=\"plugdev\", TAG+=\"uaccess\", TAG+=\"udev-acl\"\n"))
 
     ;;; --- Steam + GameMode ---
     ;;; NOTE: Steam requires the `steam` package from nonguix (unfree).
@@ -364,10 +367,8 @@ table inet filter {
     (service feral-gamemode-service-type))
 
    ;;; Base services (syslog, static networking, etc.)
-   ;;; Strip out services we replace (e.g. networking)
+   ;;; Customise console font for virtual terminals.
    (modify-services %base-services
-     (delete network-manager-service-type)
-     ;; Use our keyboard layout in the console
      (console-font-service-type
       config =>
       (map (lambda (tty)
@@ -413,16 +414,19 @@ table inet filter {
 
  (locale "en_US.UTF-8")
 
- ;; Regional locale overrides matching the NixOS i18n.extraLocaleSettings
+ ;; Regional locale overrides matching the NixOS i18n.extraLocaleSettings.
+ ;; Guix does not have a locale-namedefs field; set these per-user via
+ ;; environment-variables in your guix home configuration:
+ ;;   (environment-variables
+ ;;     '(("LC_ADDRESS"        . "pt_BR.UTF-8")
+ ;;       ("LC_MONETARY"       . "pt_BR.UTF-8")
+ ;;       ("LC_PAPER"          . "pt_BR.UTF-8")
+ ;;       ("LC_TIME"           . "pt_BR.UTF-8")
+ ;;       ...))
  (locale-definitions
   (list
    (locale-definition (name "en_US.utf8") (source "en_US"))
    (locale-definition (name "pt_BR.utf8") (source "pt_BR"))))
-
- (locale-namedefs
-  (plain-file
-   "locale-namedefs"
-   "LC_ADDRESS=pt_BR.UTF-8\nLC_IDENTIFICATION=pt_BR.UTF-8\nLC_MEASUREMENT=pt_BR.UTF-8\nLC_MONETARY=pt_BR.UTF-8\nLC_NAME=pt_BR.UTF-8\nLC_NUMERIC=pt_BR.UTF-8\nLC_PAPER=pt_BR.UTF-8\nLC_TELEPHONE=pt_BR.UTF-8\nLC_TIME=pt_BR.UTF-8\n"))
 
  (keyboard-layout %keyboard-layout)
 

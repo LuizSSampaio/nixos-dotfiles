@@ -84,7 +84,7 @@ Steam ships in the nonguix channel.  After `guix pull`, add it to your user
 profile or the system packages list:
 
 ```scheme
-(use-package-modules nonguix)
+(use-modules (nongnu packages games))
 
 ;; In packages list:
 steam
@@ -102,6 +102,24 @@ blkid /dev/sdXY
 
 Update the `(uuid ...)` fields in the `%mapped-devices` and `%file-systems`
 definitions accordingly.
+
+### Regional locale overrides (pt_BR)
+
+GNU Guix does not support per-LC-category overrides at the system level.
+Set them per-user in your `guix home` configuration:
+
+```scheme
+(environment-variables
+  '(("LC_ADDRESS"        . "pt_BR.UTF-8")
+    ("LC_MONETARY"       . "pt_BR.UTF-8")
+    ("LC_MEASUREMENT"    . "pt_BR.UTF-8")
+    ("LC_PAPER"          . "pt_BR.UTF-8")
+    ("LC_TIME"           . "pt_BR.UTF-8")
+    ("LC_NUMERIC"        . "pt_BR.UTF-8")
+    ("LC_NAME"           . "pt_BR.UTF-8")
+    ("LC_TELEPHONE"      . "pt_BR.UTF-8")
+    ("LC_IDENTIFICATION" . "pt_BR.UTF-8")))
+```
 
 ### Auto-upgrade equivalent
 
