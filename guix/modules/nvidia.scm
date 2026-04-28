@@ -2,11 +2,10 @@
 ;; Configures the proprietary NVIDIA driver in PRIME offload mode alongside
 ;; the integrated AMD GPU, mirroring the NixOS nvidia.nix module.
 
-(define-module (modules nvidia)
+(define-module (luiz modules nvidia)
   #:use-module (gnu)
   #:use-module (gnu services)
   #:use-module (gnu services shepherd)
-  #:use-module (gnu packages)
   #:use-module (gnu packages bash)
   #:use-module (nongnu packages nvidia)
   #:use-module (nongnu services nvidia)
@@ -20,7 +19,7 @@
 ;;; nvidia.nix module.  Drop it into the system profile so the user can run:
 ;;;   nvidia-offload <command>
 ;;; ---------------------------------------------------------------------------
-(define %nvidia-offload-script
+(define-public %nvidia-offload-script
   (program-file
    "nvidia-offload"
    #~(begin
@@ -41,7 +40,7 @@
 ;;; Returns a list of services to splice into the operating-system services
 ;;; list.  Call (append (nvidia-prime-services) %desktop-services) or similar.
 ;;; ---------------------------------------------------------------------------
-(define (nvidia-prime-services)
+(define-public (nvidia-prime-services)
   (list
    ;; Load the proprietary NVIDIA kernel module and user-space components.
    ;; nonguix provides nvidia-service-type which handles module loading,

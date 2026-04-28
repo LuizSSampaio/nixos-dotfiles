@@ -1,5 +1,7 @@
-;; Guix channel definitions.
-;; Place this file at ~/.config/guix/channels.scm or pass it with:
+(define-module (luiz channels)
+  #:use-module (guix channels))
+
+;; Place this file at ~/.config/guix/channels.scm, or pull with:
 ;;   guix pull --channels=guix/channels.scm
 
 (list
