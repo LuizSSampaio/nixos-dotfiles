@@ -71,10 +71,10 @@ prompt walters
 
    ;; Persist common environment variables across all sessions.
    (service home-environment-variables-service-type
-            '(;; Prefer XDG locations for tools that support it.
+            '(;; Default editor for command-line tools.
               ("EDITOR"  . "vi")
               ("VISUAL"  . "vi")
-              ;; Coloured output for common tools.
+              ;; Colored output for common tools.
               ("CLICOLOR" . "1")))))
 
 ;; ---------------------------------------------------------------------------
