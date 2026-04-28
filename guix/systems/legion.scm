@@ -45,7 +45,7 @@
     (mount-point "/boot/efi")
     (device (uuid "8515-3EC5" 'fat32))
     (type "vfat")
-    (flags '(noatime)))
+    (flags '(no-atime)))
 
    (file-system
     (mount-point "/")
