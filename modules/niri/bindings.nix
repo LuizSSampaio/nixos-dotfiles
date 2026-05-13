@@ -18,9 +18,9 @@ in
       # "Mod+Escape".action = spawn "vicinae" "vicinae://extensions/vicinae/power";
 
       "Mod+Shift+B".action = spawn "zen-beta";
-      "Mod+Shift+F".action = spawn "nautilus" "--new-window";
-      "Mod+Shift+E".action = spawn-sh "$EDITOR";
-      "Mod+Shift+Slash".action = spawn "1password";
+      "Mod+Shift+F".action = spawn "dolphin" "--new-window";
+      "Mod+Shift+E".action = spawn-sh "emacs";
+      "Mod+Shift+Slash".action = spawn "bitwarden";
 
       # Window management
       "Mod+W".action = close-window;
