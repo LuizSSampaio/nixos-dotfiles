@@ -42,6 +42,15 @@
     };
   };
 
+  virtualisation.libvirtd = {
+    enable = true;
+    allowedBridges = [
+      "virbr0"
+      "br0"
+    ];
+  };
+  programs.virt-manager.enable = true;
+
   console.keyMap = "us-acentos";
 
   time.timeZone = "America/Sao_Paulo";
@@ -66,6 +75,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "libvirtd"
     ];
     shell = pkgs.zsh;
   };
@@ -150,12 +160,21 @@
   security.rtkit.enable = true;
   hardware.bluetooth.enable = true;
   networking = {
-    # wireless.iwd.enable = true;
     networkmanager.enable = true;
     nftables.enable = true;
     firewall = {
       enable = true;
-      trustedInterfaces = [ "tailscale0" ];
+
+      trustedInterfaces = [
+        "tailscale0"
+        "virbr0"
+      ];
+
+      extraForwardRules = ''
+        iifname "virbr0" accept
+        oifname "virbr0" ct state established,related accept
+      '';
+
       allowedTCPPorts = [ 53317 ];
       allowedUDPPorts = [
         53317
