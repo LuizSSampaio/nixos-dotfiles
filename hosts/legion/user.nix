@@ -36,7 +36,7 @@
     vicinae.enable = false;
     zen-browser.enable = true;
     direnv.enable = true;
-    nvim.enable = true;
+    nvim.enable = false;
     emacs.enable = true;
     obs-studio.enable = true;
     noctalia.enable = true;
