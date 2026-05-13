@@ -62,20 +62,13 @@
                     "--clang-tidy"))))
 
 (after! file-templates
-  (setf (alist-get "\\.h\\'" file-templates-alist nil 'remove) nil)
-  (setf (alist-get "\\.hpp\\'" file-templates-alist nil 'remove) nil)
-
   (set-file-template! "\\.h\\'"
     :mode '(c-mode c++-mode)
-    :project t
-    "/* -*- mode: %b -*- */\n"
-    "#pragma once\n\n")
+    :template "#pragma once\n\n")
 
   (set-file-template! "\\.hpp\\'"
     :mode 'c++-mode
-    :project t
-    "/* -*- mode: c++ -*- */\n"
-    "#pragma once\n\n"))
+    :template "#pragma once\n\n"))
 
 (use-package! meson-mode
   :mode (("/meson\\.build\\'" . meson-mode)
@@ -83,4 +76,4 @@
 
 (after! eglot
   (add-to-list 'eglot-server-programs
-               '(meson-mode . ("mesonlsp"))))
+               '(meson-mode . ("mesonlsp" "--lsp"))))
