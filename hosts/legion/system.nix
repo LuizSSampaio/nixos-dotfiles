@@ -1,5 +1,6 @@
-{lib, ...}: {
-  imports = [../../modules/system/default.nix];
+{ lib, ... }:
+{
+  imports = [ ../../modules/system/default.nix ];
 
   boot = {
     loader = {
@@ -12,7 +13,7 @@
       timeout = 3;
     };
     initrd = {
-      availableKernelModules = ["dm_mod"];
+      availableKernelModules = [ "dm_mod" ];
 
       luks.devices = lib.mkForce {
         cryptroot = {
@@ -51,8 +52,35 @@
   };
 
   swapDevices = lib.mkForce [
-    {device = "/dev/mapper/cryptswap";}
+    { device = "/dev/mapper/cryptswap"; }
   ];
+
+  networking.networkmanager.ensureProfiles.profiles = {
+    br0 = {
+      connection = {
+        id = "br0";
+        type = "bridge";
+        interface-name = "br0";
+        autoconnect = true;
+      };
+      bridge = {
+        stp = false;
+      };
+      ipv4.method = "auto";
+      ipv6.method = "auto";
+    };
+
+    "br0-enp8s0f3u1u1" = {
+      connection = {
+        id = "br0-enp8s0f3u1u1";
+        type = "ethernet";
+        interface-name = "enp8s0f3u1u1";
+        master = "br0";
+        slave-type = "bridge";
+        autoconnect = true;
+      };
+    };
+  };
 
   modules.system = {
     nvidia.enable = true;
