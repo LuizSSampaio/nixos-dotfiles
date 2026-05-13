@@ -2,11 +2,8 @@
 let
   gui = with pkgs; [
     bitwarden-desktop
-    mission-center
     nautilus
     pinta
-    gnome-calculator
-    gnome-disk-utility
     localsend
     qbittorrent
     mpv
@@ -16,12 +13,15 @@ let
     gnome-disk-utility
     vial
     kdePackages.kdenlive
+    kdePackages.ark
+    krita
     tutanota-desktop
-    chatterino2
+    mumble
+    godot
+    blender
   ];
   cli = with pkgs; [
     bitwarden-cli
-    atuin
     btop
     unzip
     zip
@@ -32,9 +32,6 @@ let
     fd
     fzf
     eza
-    impala
-    bluetui
-    wiremix
     yazi
     gnupg
   ];
