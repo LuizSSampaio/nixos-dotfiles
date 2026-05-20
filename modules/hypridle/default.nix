@@ -4,8 +4,12 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.hypridle;
+  noctaliaEnabled = config.modules.noctalia.enable or false;
+  lockCommand =
+    if noctaliaEnabled then "noctalia-shell ipc call lockScreen lock" else "pidof hyprlock || hyprlock";
 
   # Script to turn off monitors based on the active window manager
   dpmsOffScript = pkgs.writeShellScript "dpms-off" ''
@@ -41,7 +45,8 @@ with lib; let
     # Restore brightness after waking up
     ${pkgs.brightnessctl}/bin/brightnessctl -r 2>/dev/null || true
   '';
-in {
+in
+{
   options.modules.hypridle = {
     enable = mkEnableOption "hypridle idle daemon";
   };
@@ -51,14 +56,14 @@ in {
       enable = true;
       settings = {
         general = {
-          lock_cmd = "pidof hyprlock || hyprlock";
-          before_sleep_cmd = "loginctl lock-session";
+          lock_cmd = lockCommand;
+          before_sleep_cmd = lockCommand;
           after_sleep_cmd = "${dpmsOnScript}";
         };
         listener = [
           {
             timeout = 300;
-            on-timeout = "loginctl lock-session";
+            on-timeout = lockCommand;
           }
           {
             timeout = 330;

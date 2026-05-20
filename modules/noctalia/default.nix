@@ -17,6 +17,21 @@ in
       programs.noctalia-shell = {
         enable = true;
 
+        plugins = {
+          version = 2;
+          sources = [
+            {
+              name = "Noctalia Plugins";
+              url = "https://github.com/noctalia-dev/noctalia-plugins";
+              enabled = true;
+            }
+          ];
+          states.polkit-agent = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+        };
+
         settings = {
           bar = {
             position = "top";
@@ -81,6 +96,8 @@ in
           };
         };
       };
+
+      xdg.configFile."noctalia/plugins.json".force = true;
     })
 
     # Niri integration: spawn noctalia-shell on startup

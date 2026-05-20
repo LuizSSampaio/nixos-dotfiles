@@ -154,7 +154,10 @@
     '';
   };
 
-  security.rtkit.enable = true;
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
   hardware.bluetooth.enable = true;
   networking = {
     networkmanager.enable = true;

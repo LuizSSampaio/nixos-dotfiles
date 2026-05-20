@@ -4,9 +4,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.hyprland;
-in {
+in
+{
   imports = [
     ./bindings.nix
     ./env.nix
@@ -21,7 +23,7 @@ in {
 
     monitors = mkOption {
       type = types.listOf types.str;
-      default = [", preferred, auto, 1"];
+      default = [ ", preferred, auto, 1" ];
       description = ''
         List of monitor configurations for Hyprland.
         Format: "name, resolution@rate, position, scale"
@@ -47,13 +49,13 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.variables = ["--all"];
+      systemd.variables = [ "--all" ];
 
       settings = {
         monitor = cfg.monitors;
       };
     };
 
-    services.hyprpolkitagent.enable = true;
+    services.hyprpolkitagent.enable = mkDefault (!(config.modules.noctalia.enable or false));
   };
 }

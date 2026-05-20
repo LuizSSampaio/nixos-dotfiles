@@ -11,7 +11,7 @@
         ",preferred,auto,auto"
       ];
     };
-    hyprlock.enable = true;
+    hyprlock.enable = false;
     hypridle.enable = true;
     niri = {
       enable = true;
