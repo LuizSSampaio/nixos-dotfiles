@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib;
@@ -9,6 +10,9 @@ let
   batteryThresholdCfg = config.modules.system.batteryThreshold or { enable = false; };
   batteryThresholdPluginEnabled = batteryThresholdCfg.enable or false;
   batteryThresholdWidget = { id = "plugin:battery-threshold"; };
+  privacyIndicatorWidget = { id = "plugin:privacy-indicator"; };
+  tailscaleWidget = { id = "plugin:tailscale"; };
+  screenToolkitWidget = { id = "plugin:screen-toolkit"; };
 in
 {
   options.modules.noctalia = {
@@ -32,6 +36,18 @@ in
           states =
             {
               polkit-agent = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
+              privacy-indicator = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
+              tailscale = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
+              screen-toolkit = {
                 enabled = true;
                 sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
               };
@@ -75,6 +91,7 @@ in
               right = [
                 { id = "Tray"; }
                 { id = "NotificationHistory"; }
+                privacyIndicatorWidget
                 { id = "Brightness"; }
                 {
                   id = "Battery";
@@ -83,6 +100,8 @@ in
               ]
               ++ optional batteryThresholdPluginEnabled batteryThresholdWidget
               ++ [
+                tailscaleWidget
+                screenToolkitWidget
                 {
                   id = "Volume";
                   displayMode = "alwaysShow";
@@ -122,6 +141,15 @@ in
       };
 
       xdg.configFile."noctalia/plugins.json".force = true;
+      home.packages = with pkgs; [
+        slurp
+        tesseract
+        imagemagick
+        zbar
+        translate-shell
+        wl-screenrec
+        gifski
+      ];
       xdg.configFile."noctalia/plugins/battery-threshold/manifest.json" = mkIf batteryThresholdPluginEnabled {
         source = ./plugins/battery-threshold/manifest.json;
       };
