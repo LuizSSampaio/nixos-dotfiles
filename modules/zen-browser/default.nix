@@ -17,6 +17,8 @@ in
   imports = [ inputs.zen-browser.homeModules.beta ];
 
   config = mkIf cfg.enable {
+    stylix.targets.zen-browser.profileNames = mkDefault [ "managed" ];
+
     programs.zen-browser = {
       enable = true;
 
