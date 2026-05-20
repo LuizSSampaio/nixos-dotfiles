@@ -9,6 +9,7 @@ with lib; let
 in {
   imports = [
     ./config.nix
+    ./dynamic-refresh-rate.nix
     ./bindings.nix
     ./windows.nix
   ];

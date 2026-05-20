@@ -15,6 +15,12 @@
     hypridle.enable = true;
     niri = {
       enable = true;
+      dynamicRefreshRate = {
+        enable = true;
+        output = "eDP-2";
+        acRefreshRate = 120.001;
+        batteryRefreshRate = 60.001;
+      };
       monitors = [
         {
           name = "eDP-2";
