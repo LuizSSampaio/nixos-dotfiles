@@ -56,6 +56,7 @@
   ];
 
   modules.system = {
+    batteryThreshold.enable = true;
     nvidia.enable = true;
     greetd = {
       enable = true;

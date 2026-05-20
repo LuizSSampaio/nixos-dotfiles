@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ./battery-threshold.nix
     ./greetd.nix
     ./nvidia.nix
     ./steam.nix

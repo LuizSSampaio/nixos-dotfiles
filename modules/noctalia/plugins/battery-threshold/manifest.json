@@ -1,0 +1,18 @@
+{
+  "id": "battery-threshold",
+  "name": "Battery Threshold",
+  "version": "1.0.0",
+  "author": "Codex",
+  "description": "Toggle Lenovo battery conservation mode from the Noctalia bar.",
+  "entryPoints": {
+    "barWidget": "BatteryThresholdWidget.qml"
+  },
+  "metadata": {
+    "defaultSettings": {
+      "sysfsPath": "/sys/devices/pci0000:00/0000:00:14.3/PNP0C09:00/VPC2004:00/conservation_mode",
+      "conservationUnit": "battery-threshold-mode@conservation.service",
+      "normalUnit": "battery-threshold-mode@normal.service",
+      "pollIntervalMs": 10000
+    }
+  }
+}
