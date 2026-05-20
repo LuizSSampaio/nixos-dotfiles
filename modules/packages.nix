@@ -17,8 +17,6 @@ let
     krita
     tutanota-desktop
     mumble
-    godot
-    blender
   ];
   cli = with pkgs; [
     bitwarden-cli
