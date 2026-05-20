@@ -3,9 +3,20 @@
   lib,
   ...
 }:
-with lib; let
-  anyWaylandEnabled = config.modules.hyprland.enable or false || config.modules.niri.enable or false;
-in {
+with lib;
+let
+  hyprlandEnabled = config.modules.hyprland.enable or false;
+  niriEnabled = config.modules.niri.enable or false;
+  anyWaylandEnabled = hyprlandEnabled || niriEnabled;
+  desktopName =
+    if niriEnabled then
+      "niri"
+    else if hyprlandEnabled then
+      "Hyprland"
+    else
+      null;
+in
+{
   config = mkIf anyWaylandEnabled {
     home.sessionVariables = {
       # Chromium/Electron Wayland support
@@ -30,6 +41,8 @@ in {
 
       # Session type indicator
       XDG_SESSION_TYPE = "wayland";
+      XDG_SESSION_DESKTOP = desktopName;
+      XDG_CURRENT_DESKTOP = desktopName;
     };
   };
 }

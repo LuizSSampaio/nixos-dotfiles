@@ -4,7 +4,8 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.system.greetd;
   username = "luiz";
 
@@ -13,10 +14,16 @@ with lib; let
       niri = "niri-session";
       hyprland = "start-hyprland";
     }
-    .${
-      cfg.session
-    };
-in {
+    .${cfg.session};
+  desktopName =
+    {
+      niri = "niri";
+      hyprland = "Hyprland";
+    }
+    .${cfg.session};
+  sessionEnvironment = "${pkgs.coreutils}/bin/env XDG_CURRENT_DESKTOP=${desktopName} XDG_SESSION_DESKTOP=${desktopName} XDG_SESSION_TYPE=wayland";
+in
+{
   options.modules.system.greetd = {
     enable = mkEnableOption "greetd display manager";
 
@@ -35,11 +42,11 @@ in {
       enable = true;
       settings = {
         initial_session = {
-          command = "${sessionCommand}";
+          command = "${sessionEnvironment} ${sessionCommand}";
           user = "${username}";
         };
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${sessionCommand}";
+          command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd '${sessionEnvironment} ${sessionCommand}'";
           user = "greeter";
         };
       };
