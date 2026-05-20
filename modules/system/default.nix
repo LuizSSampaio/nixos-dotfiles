@@ -42,15 +42,6 @@
     };
   };
 
-  virtualisation.libvirtd = {
-    enable = true;
-    allowedBridges = [
-      "virbr0"
-      "br0"
-    ];
-  };
-  programs.virt-manager.enable = true;
-
   console.keyMap = "us-acentos";
 
   time.timeZone = "America/Sao_Paulo";
@@ -75,7 +66,6 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "libvirtd"
     ];
     shell = pkgs.zsh;
   };
@@ -105,7 +95,9 @@
     config = {
       common = {
         default = [
-          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = [
           "gtk"
         ];
         "org.freedesktop.impl.portal.ScreenCast" = [
@@ -122,11 +114,16 @@
           "hyprland"
           "gtk"
         ];
+        "org.freedesktop.impl.portal.FileChooser" = [
+          "gtk"
+        ];
       };
       niri = {
         default = [
           "gtk"
-          "gnome"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = [
+          "gtk"
         ];
         "org.freedesktop.impl.portal.ScreenCast" = [
           "gnome"
@@ -167,13 +164,7 @@
 
       trustedInterfaces = [
         "tailscale0"
-        "virbr0"
       ];
-
-      extraForwardRules = ''
-        iifname "virbr0" accept
-        oifname "virbr0" ct state established,related accept
-      '';
 
       allowedTCPPorts = [ 53317 ];
       allowedUDPPorts = [
