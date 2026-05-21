@@ -20,6 +20,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       ispell
+      gcc
     ];
 
     programs.doom-emacs = {
