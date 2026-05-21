@@ -17,13 +17,13 @@
       enable = true;
       dynamicRefreshRate = {
         enable = true;
-        output = "eDP-2";
+        output = "eDP-1";
         acRefreshRate = 120.001;
         batteryRefreshRate = 60.001;
       };
       monitors = [
         {
-          name = "eDP-2";
+          name = "eDP-1";
           scale = 2.0;
         }
         {
