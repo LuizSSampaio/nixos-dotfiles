@@ -17,6 +17,7 @@ let
     krita
     tutanota-desktop
     mumble
+    cinny-desktop
   ];
   cli = with pkgs; [
     bitwarden-cli
@@ -51,7 +52,6 @@ in
         inherit sha256;
       }}";
     }
-    "im.riot.Riot"
   ];
 
   programs.nh = {
