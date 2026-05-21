@@ -67,6 +67,12 @@ in
             normalUnit = "battery-threshold-mode@normal.service";
             pollIntervalMs = 10000;
           };
+          privacy-indicator = {
+            hideInactiveStates = true;
+          };
+          tailscale = {
+            compactMode = true;
+          };
         };
 
         settings = {
@@ -142,6 +148,9 @@ in
 
       xdg.configFile."noctalia/plugins.json".force = true;
       home.packages = with pkgs; [
+        curl
+        grim
+        jq
         slurp
         tesseract
         imagemagick
