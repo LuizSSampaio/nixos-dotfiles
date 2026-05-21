@@ -14,13 +14,10 @@ let
     vial
     kdePackages.kdenlive
     kdePackages.ark
-    krita
-    tutanota-desktop
     mumble
     cinny-desktop
   ];
   cli = with pkgs; [
-    bitwarden-cli
     btop
     unzip
     zip
