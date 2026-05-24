@@ -12,6 +12,7 @@
     ./hyprland
     ./emacs
     ./ghostty
+    ./kitty
     ./git
     ./dunst
     ./starship

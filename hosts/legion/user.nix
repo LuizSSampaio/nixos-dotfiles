@@ -25,7 +25,7 @@
         }
       ];
     };
-    ghostty.enable = true;
+    kitty.enable = true;
     git.enable = true;
     starship.enable = true;
     zsh.enable = true;
