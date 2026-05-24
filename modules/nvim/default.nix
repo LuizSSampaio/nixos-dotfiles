@@ -3,9 +3,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.nvim;
-in {
+in
+{
   options.modules.nvim = {
     enable = mkEnableOption "nvim";
   };
@@ -95,12 +97,12 @@ in {
           clang.enable = true;
           json.enable = true;
           lua.enable = true;
-          zig.enable = true;
+          zig.enable = false;
           typst.enable = true;
-          ts.enable = true;
+          ts.enable = false;
           just.enable = true;
-          java.enable = true;
-          qml.enable = true;
+          java.enable = false;
+          qml.enable = false;
           rust = {
             enable = true;
             extensions.crates-nvim.enable = true;
@@ -215,7 +217,6 @@ in {
         };
 
         notes = {
-          mind-nvim.enable = true;
           todo-comments.enable = true;
         };
 
@@ -242,9 +243,9 @@ in {
         };
 
         assistant = {
-          chatgpt.enable = false;
+          chatgpt.enable = true;
           copilot = {
-            enable = true;
+            enable = false;
             cmp.enable = false;
           };
           codecompanion-nvim.enable = true;

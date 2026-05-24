@@ -1,17 +1,7 @@
-{ ... }:
-{
-  imports = [ ../../modules/default.nix ];
+{...}: {
+  imports = [../../modules/default.nix];
 
   config.modules = {
-    hyprland = {
-      enable = false;
-      monitors = [
-        "eDP-2,highrr,auto,auto"
-        "HDMI-A-1,highrr,auto-left,auto"
-        ",preferred,auto,auto"
-      ];
-    };
-    hyprlock.enable = false;
     hypridle.enable = true;
     niri = {
       enable = true;
@@ -39,11 +29,10 @@
     git.enable = true;
     starship.enable = true;
     zsh.enable = true;
-    vicinae.enable = false;
     zen-browser.enable = true;
     direnv.enable = true;
-    nvim.enable = false;
-    emacs.enable = true;
+    nvim.enable = true;
+    tmux.enable = true;
     obs-studio.enable = true;
     noctalia.enable = true;
   };
