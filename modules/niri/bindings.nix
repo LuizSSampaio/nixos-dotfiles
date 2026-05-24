@@ -3,15 +3,13 @@
   config,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.niri;
-in
-{
+in {
   config = mkIf cfg.enable {
     programs.niri.settings.binds = with config.lib.niri.actions; {
       # Application launchers
-      "Mod+Return".action = spawn "ghostty";
+      "Mod+Return".action = spawn "kitty";
       "Mod+Space".action = spawn-sh "noctalia-shell ipc call launcher toggle";
       "Mod+Escape".action = spawn-sh "noctalia-shell ipc call sessionMenu toggle";
       # "Mod+Space".action = spawn "vicinae" "toggle";
@@ -19,7 +17,7 @@ in
 
       "Mod+Shift+B".action = spawn "zen-beta";
       "Mod+Shift+F".action = spawn "dolphin" "--new-window";
-      "Mod+Shift+E".action = spawn-sh "emacs";
+      "Mod+Shift+E".action = spawn-sh "nvim";
       "Mod+Shift+Slash".action = spawn "bitwarden";
 
       # Window management
@@ -109,9 +107,9 @@ in
       "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
       # Screenshots
-      "Print".action.screenshot = { };
-      "Ctrl+Print".action.screenshot-screen = { };
-      "Alt+Print".action.screenshot-window = { };
+      "Print".action.screenshot = {};
+      "Ctrl+Print".action.screenshot-screen = {};
+      "Alt+Print".action.screenshot-window = {};
 
       # # Media controls
       # "XF86AudioRaiseVolume" = {
