@@ -4,12 +4,10 @@
   config,
   ...
 }:
-with lib;
-let
+with lib; let
   inherit (config.lib.stylix) colors;
   cfg = config.modules.tmux;
-in
-{
+in {
   options.modules.tmux = {
     enable = mkEnableOption "tmux terminal multiplexer";
   };
@@ -53,9 +51,9 @@ in
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
 
-        # Rectangular bottom bar using Stylix colors; no rounded separators.
+        # Rectangular top bar using Stylix colors; no rounded separators.
         set -g status on
-        set -g status-position bottom
+        set -g status-position top
         set -g status-justify left
         set -g status-interval 5
         set -g status-style "bg=#${colors.base00},fg=#${colors.base05}"
