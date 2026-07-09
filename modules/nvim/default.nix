@@ -3,11 +3,9 @@
   config,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.nvim;
-in
-{
+in {
   options.modules.nvim = {
     enable = mkEnableOption "nvim";
   };
@@ -108,6 +106,7 @@ in
             extensions.crates-nvim.enable = true;
           };
           toml.enable = true;
+          odin.enable = true;
         };
 
         visuals = {
@@ -203,9 +202,9 @@ in
           multicursors.enable = true;
           smart-splits.enable = true;
           undotree.enable = true;
-          # Issues with treesitter
-          # nvim-biscuits.enable = true;
+          nvim-biscuits.enable = true;
           direnv.enable = true;
+          snacks-nvim.enable = true;
 
           preview.glow.enable = true;
 
@@ -243,7 +242,7 @@ in
         };
 
         assistant = {
-          chatgpt.enable = true;
+          chatgpt.enable = false;
           copilot = {
             enable = false;
             cmp.enable = false;
