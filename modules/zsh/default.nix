@@ -37,6 +37,7 @@ in {
         lt = "eza --tree --level=2 --long --icons --git";
         lta = "lt -a";
         n = "nvim";
+        t = "tmux new -As0";
       };
     };
 
