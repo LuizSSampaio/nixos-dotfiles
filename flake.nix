@@ -24,17 +24,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-doom-emacs-unstraightened = {
-      url = "github:marienz/nix-doom-emacs-unstraightened";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-doom-emacs-unstraightened = {
+    #   url = "github:marienz/nix-doom-emacs-unstraightened";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     stylix = {
       url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    vicinae.url = "github:vicinaehq/vicinae";
-    vicinae-extensions = {
-      url = "github:vicinaehq/extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
@@ -46,10 +41,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    watershot = {
-      url = "github:Kirottu/watershot";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,7 +50,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -68,7 +59,6 @@
     nixpkgs,
     home-manager,
     stylix,
-    vicinae,
     nix-flatpak,
     nvf,
     niri,
@@ -96,7 +86,6 @@
               extraSpecialArgs = {inherit inputs;};
               sharedModules = [
                 stylix.homeModules.stylix
-                vicinae.homeManagerModules.default
                 nix-flatpak.homeManagerModules.nix-flatpak
                 nvf.homeManagerModules.default
                 niri.homeModules.niri
