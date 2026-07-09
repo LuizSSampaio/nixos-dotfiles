@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   home.stateVersion = "25.11";
   imports = [
     ./packages.nix
@@ -10,15 +9,10 @@
     ./hyprlock
     ./hypridle
     ./hyprland
-    ./emacs
     ./ghostty
     ./kitty
     ./git
-    ./dunst
     ./starship
-    ./waybar
-    ./vicinae
-    ./watershot
     ./zsh
     ./zen-browser
     ./direnv
@@ -27,7 +21,6 @@
     ./tmux
     ./zellij
     ./niri
-    ./quickshell
     ./obs-studio
     ./noctalia
   ];
