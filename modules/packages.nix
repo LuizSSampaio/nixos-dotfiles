@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   gui = with pkgs; [
-    bitwarden-desktop
+    # bitwarden-desktop
     nautilus
     pinta
     localsend
@@ -16,6 +15,7 @@ let
     kdePackages.ark
     mumble
     cinny-desktop
+    darktable
   ];
   cli = with pkgs; [
     btop
@@ -34,8 +34,7 @@ let
   dev = with pkgs; [
     opencode
   ];
-in
-{
+in {
   home = {
     packages = gui ++ cli ++ dev;
   };
