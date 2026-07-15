@@ -2,8 +2,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     ./battery-threshold.nix
     ./greetd.nix
@@ -170,7 +169,7 @@
         "tailscale0"
       ];
 
-      allowedTCPPorts = [ 53317 ];
+      allowedTCPPorts = [53317];
       allowedUDPPorts = [
         53317
         config.services.tailscale.port
@@ -183,7 +182,12 @@
   ];
 
   systemd.network.wait-online.enable = false;
-  boot.initrd.systemd.network.wait-online.enable = false;
+  boot = {
+    initrd.systemd.network.wait-online.enable = false;
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback
+    ];
+  };
 
   system.stateVersion = "25.11";
 }
