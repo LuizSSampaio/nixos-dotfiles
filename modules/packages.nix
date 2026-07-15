@@ -1,6 +1,5 @@
 {pkgs, ...}: let
   gui = with pkgs; [
-    # bitwarden-desktop
     nautilus
     pinta
     localsend
@@ -33,6 +32,7 @@
   ];
   dev = with pkgs; [
     opencode
+    forgejo-cli
   ];
 in {
   home = {

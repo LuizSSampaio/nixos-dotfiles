@@ -1,17 +1,22 @@
-{ pkgs, lib, config, ... }:
-
-with lib;
-let cfg = config.modules.git;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.git;
 in {
-  options.modules.git = { enable = mkEnableOption "git"; };
+  options.modules.git = {enable = mkEnableOption "git";};
 
   config = mkIf cfg.enable {
     programs.git = {
       enable = true;
+      lfs.enable = true;
       settings = {
         user = {
           name = "Luiz Henrique Silva Sampaio";
-          email = "luizhsampaio07@gmail.com";
+          email = "luiz@lsamp.dev";
         };
         credential.helper = "store";
       };
@@ -19,7 +24,7 @@ in {
 
     programs.gh = {
       enable = true;
-      gitCredentialHelper = { enable = true; };
+      gitCredentialHelper = {enable = true;};
     };
   };
 }
