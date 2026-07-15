@@ -14,7 +14,7 @@
     kdePackages.ark
     mumble
     cinny-desktop
-    darktable
+    aseprite
   ];
   cli = with pkgs; [
     btop
@@ -33,6 +33,7 @@
   dev = with pkgs; [
     opencode
     forgejo-cli
+    wakatime-cli
   ];
 in {
   home = {
