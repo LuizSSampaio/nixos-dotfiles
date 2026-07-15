@@ -93,20 +93,20 @@ in {
           markdown.enable = true;
           bash.enable = true;
           clang.enable = true;
+          cmake.enable = true;
           json.enable = true;
           lua.enable = true;
-          zig.enable = false;
           typst.enable = true;
           ts.enable = false;
           just.enable = true;
           java.enable = false;
-          qml.enable = false;
           rust = {
             enable = true;
             extensions.crates-nvim.enable = true;
           };
           toml.enable = true;
-          odin.enable = true;
+          glsl.enable = true;
+          wgsl.enable = true;
         };
 
         visuals = {
@@ -205,6 +205,9 @@ in {
           nvim-biscuits.enable = true;
           direnv.enable = true;
           snacks-nvim.enable = true;
+          new-file-template.enable = true;
+          yazi-nvim.enable = true;
+          vim-wakatime.enable = true;
 
           preview.glow.enable = true;
 
