@@ -15,6 +15,8 @@ in {
       enable = true;
 
       settings.vim = {
+        additionalRuntimePaths = [ ./templates ];
+
         options = {
           shiftwidth = 2;
           tabstop = 2;
@@ -190,14 +192,14 @@ in {
           registers = "unnamedplus";
         };
 
+        runner.run-nvim.enable = true;
+
         utility = {
-          ccc.enable = false;
           diffview-nvim.enable = true;
           yanky-nvim = {
             enable = true;
             setupOpts.ring.storage = "sqlite";
           };
-          icon-picker.enable = true;
           surround.enable = true;
           multicursors.enable = true;
           smart-splits.enable = true;
@@ -208,6 +210,8 @@ in {
           new-file-template.enable = true;
           yazi-nvim.enable = true;
           vim-wakatime.enable = true;
+          crazy-coverage.enable = true;
+          oil-nvim.enable = true;
 
           preview.glow.enable = true;
 
