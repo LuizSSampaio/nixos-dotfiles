@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib; let
@@ -15,26 +16,19 @@ in {
       enable = true;
 
       settings.vim = {
-        additionalRuntimePaths = [ ./templates ];
+        additionalRuntimePaths = [./templates];
 
         options = {
-          shiftwidth = 2;
-          tabstop = 2;
+          shiftwidth = 4;
+          tabstop = 4;
           scrolloff = 5;
         };
 
         keymaps = [
           {
-            key = "<leader>e";
-            mode = "n";
-            action = "<Cmd>Neotree toggle<CR>";
-            silent = true;
-            desc = "File Tree [Neotree]";
-          }
-          {
             key = "<leader>bd";
             mode = "n";
-            action = "<Cmd>Bdelet<CR>";
+            action = "<Cmd>Bdelete<CR>";
             silent = true;
             desc = "Close buffer";
           }
@@ -52,6 +46,44 @@ in {
             silent = true;
             desc = "Next buffer";
           }
+
+          {
+            key = "<leader>e";
+            mode = "n";
+            action = "<Cmd>Oil<CR>";
+            silent = true;
+            desc = "Open Oil [oil.nvim]";
+          }
+
+          {
+            key = "<leader>gd";
+            mode = "n";
+            action = "<Cmd>DiffviewOpen<CR>";
+            silent = true;
+            desc = "Open Diff View [diffview.nvim]";
+          }
+          {
+            key = "<leader>gD";
+            mode = "n";
+            action = "<Cmd>DiffviewClose<CR>";
+            silent = true;
+            desc = "Close Diff View [diffview.nvim]";
+          }
+
+          {
+            key = "<leader>rr";
+            mode = "n";
+            action = "<Cmd>RunFile<CR>";
+            silent = true;
+            desc = "Run File [run-nvim]";
+          }
+          {
+            key = "<leader>rR";
+            mode = "n";
+            action = "<Cmd>RunLast<CR>";
+            silent = true;
+            desc = "Run Last [run-nvim]";
+          }
         ];
 
         spellcheck = {
@@ -67,6 +99,23 @@ in {
           otter-nvim.enable = true;
           nvim-docs-view.enable = true;
           harper-ls.enable = true;
+
+          servers.clangd = {
+            cmd = lib.mkForce [
+              "${pkgs.clang-tools}/bin/clangd"
+              "-j=12"
+              "--background-index"
+              "--clang-tidy"
+              "--completion-style=detailed"
+              "--header-insertion=iwyu"
+              "--header-insertion-decorators"
+              "--log=error"
+            ];
+
+            init_options = {
+              fallbackFlags = ["-std=c++23"];
+            };
+          };
         };
 
         diagnostics = {
@@ -150,7 +199,7 @@ in {
 
         filetree = {
           neo-tree = {
-            enable = true;
+            enable = false;
           };
         };
 
@@ -249,18 +298,7 @@ in {
         };
 
         assistant = {
-          chatgpt.enable = false;
-          copilot = {
-            enable = false;
-            cmp.enable = false;
-          };
           codecompanion-nvim.enable = true;
-          avante-nvim = {
-            enable = false;
-            setupOpts = {
-              provider = "copilot";
-            };
-          };
         };
 
         comments = {
