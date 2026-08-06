@@ -22,6 +22,7 @@
     ./zellij
     ./niri
     ./obs-studio
+    ./emacs
     ./noctalia
   ];
 }

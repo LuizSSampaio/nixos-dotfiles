@@ -34,6 +34,7 @@
     nvim.enable = true;
     tmux.enable = true;
     obs-studio.enable = true;
+    emacs.enable = true;
     noctalia.enable = true;
   };
 }

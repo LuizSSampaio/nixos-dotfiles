@@ -24,10 +24,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nix-doom-emacs-unstraightened = {
-    #   url = "github:marienz/nix-doom-emacs-unstraightened";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +63,7 @@
     nvf,
     niri,
     noctalia,
+    nix-doom-emacs-unstraightened,
     ...
   } @ inputs: let
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
