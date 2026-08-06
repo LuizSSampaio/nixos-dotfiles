@@ -62,3 +62,5 @@
 
 (package! meson-mode
   :recipe (:host github :repo "wentasah/meson-mode"))
+
+(package! wakatime-mode)
