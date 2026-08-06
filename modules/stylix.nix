@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   stylix = {
     enable = true;
 
@@ -19,9 +19,9 @@
 
     icons = {
       enable = true;
-      package = pkgs.yaru-theme;
-      dark = "Yaru-prussiangreen";
-      light = "Yaru-prussiangreen";
+      package = pkgs.papirus-icon-theme;
+      dark = "Papirus-Dark";
+      light = "Papirus";
     };
 
     fonts = {
