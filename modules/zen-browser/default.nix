@@ -50,7 +50,6 @@ in
           };
 
           ExtensionSettings = mkExtensionSettings {
-            "languagetool-webextension@languagetool.org" = "languagetool";
             "enhancerforyoutube@maximerf.addons.mozilla.org" = "enhancer-for-youtube";
             "myallychou@gmail.com" = "youtube-recommended-videos";
           };
@@ -175,6 +174,7 @@ in
           github-file-icons
           istilldontcareaboutcookies
           stylus
+          private-grammar-checker-harper
         ];
       };
     };
