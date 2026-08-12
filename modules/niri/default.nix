@@ -82,6 +82,10 @@ in {
   config = mkIf cfg.enable {
     programs.niri = {
       enable = true;
+      # Use nixpkgs' niri instead of niri-flake's package:
+      # niri-flake's make-niri requires libdisplay-info_0_2, which was
+      # removed from nixpkgs (2026-08-04). pkgs.niri uses libdisplay-info_0_3.
+      package = pkgs.niri;
     };
 
     home.packages = with pkgs; [
