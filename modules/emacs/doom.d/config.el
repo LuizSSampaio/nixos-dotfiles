@@ -78,6 +78,14 @@
   (add-to-list 'eglot-server-programs
                '(meson-mode . ("mesonlsp" "--lsp"))))
 
+(use-package! slang-mode
+  :mode (("\\.slang\\'" . slang-mode)
+         ("\\.sl\\'" . slang-mode)
+         ("\\.slangh\\'" . slang-mode))
+  :config
+  (require 'slang-lsp)
+  (slang-lsp-initialize))
+
 (use-package wakatime-mode
   :ensure t
   :config

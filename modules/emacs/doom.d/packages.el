@@ -63,4 +63,7 @@
 (package! meson-mode
   :recipe (:host github :repo "wentasah/meson-mode"))
 
+(package! slang-mode
+  :recipe (:host github :repo "K1ngst0m/slang-mode"))
+
 (package! wakatime-mode)
