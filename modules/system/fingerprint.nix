@@ -45,7 +45,7 @@ in
 
     # fprintd ships the daemon; PAM integration is opt-in per service.
     security.pam.services = builtins.listToAttrs (
-      map (svc: lib.nameValuePair svc { fprintdAuth = true; }) cfg.pamServices
+      map (svc: lib.nameValuePair svc { fprintAuth = true; }) cfg.pamServices
     );
   };
 }
