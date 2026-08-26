@@ -5,8 +5,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
     image = pkgs.fetchurl {
-      url = "https://gruvbox-wallpapers.pages.dev/wallpapers/pixelart/dock.png";
-      hash = "sha256-t+leCHSupUwK8q/bGXb3OJpf0SuEkFxX27tlFo8Gxv8=";
+      url = "https://gruvbox-wallpapers.pages.dev/wallpapers/anime/wall.jpg";
+      sha256 = "1yyzpffr4a9iklswfvzz1k69bc0g3dbrz68qv4yfhcrrq3fl1phf";
     };
 
     polarity = "dark";
