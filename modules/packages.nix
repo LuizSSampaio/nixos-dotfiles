@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   gui = with pkgs; [
     nautilus
     pinta
@@ -14,7 +15,8 @@
     kdePackages.ark
     mumble
     cinny-desktop
-    aseprite
+    easyeffects
+    blender
   ];
   cli = with pkgs; [
     btop
@@ -34,8 +36,10 @@
     opencode
     forgejo-cli
     wakatime-cli
+    nodejs_26
   ];
-in {
+in
+{
   home = {
     packages = gui ++ cli ++ dev;
   };
