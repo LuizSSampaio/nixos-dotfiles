@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./battery-threshold.nix
+    ./fingerprint.nix
     ./greetd.nix
     ./nvidia.nix
     ./steam.nix
