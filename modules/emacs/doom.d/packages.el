@@ -63,7 +63,8 @@
 (package! meson-mode
   :recipe (:host github :repo "wentasah/meson-mode"))
 
-(package! slang-mode
-  :recipe (:host github :repo "K1ngst0m/slang-mode"))
+(package! slang-ts-mode
+  :recipe (:host codeberg :repo "hikari/slang-ts-mode" :branch "main")
+  :pin "5a76998ed9a4cadc80f3d3a82c1dfe42a82d2bb6")
 
 (package! wakatime-mode)
