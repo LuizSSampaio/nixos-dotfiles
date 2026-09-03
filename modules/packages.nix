@@ -2,7 +2,6 @@
 let
   gui = with pkgs; [
     nautilus
-    pinta
     localsend
     qbittorrent
     mpv
@@ -34,9 +33,7 @@ let
   ];
   dev = with pkgs; [
     opencode
-    forgejo-cli
     wakatime-cli
-    nodejs_26
   ];
 in
 {
