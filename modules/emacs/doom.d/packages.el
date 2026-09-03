@@ -53,13 +53,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! typst-ts-mode
-  :recipe (:type git :host sourcehut :repo "meow_king/typst-ts-mode"))
-
-(package! websocket)        ;; required by typst-preview.el
-(package! typst-preview      ;; from MELPA
-  :recipe (:host github :repo "havarddj/typst-preview.el"))
-
 (package! meson-mode
   :recipe (:host github :repo "wentasah/meson-mode"))
 
