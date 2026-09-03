@@ -98,7 +98,6 @@ in {
           trouble.enable = true;
           otter-nvim.enable = true;
           nvim-docs-view.enable = true;
-          harper-ls.enable = true;
 
           servers.clangd = {
             cmd = lib.mkForce [
@@ -148,7 +147,6 @@ in {
           json.enable = true;
           lua.enable = true;
           typst.enable = true;
-          ts.enable = false;
           just.enable = true;
           java.enable = false;
           rust = {
