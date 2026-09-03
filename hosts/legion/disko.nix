@@ -16,6 +16,19 @@
 { ... }:
 {
   disko.devices = {
+    # Volatile root: everything on / is lost on reboot; persistent state is
+    # bind-mounted back from the ext4 at /nix by preservation
+    # (hosts/legion/persistence.nix). Previous generations mount the ext4
+    # at "/" instead — booting one from the Limine menu is the rollback.
+    nodev."/" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "defaults"
+        "mode=0755"
+        "size=8G"
+      ];
+    };
+
     disk.boot = {
       device = "/dev/disk/by-id/nvme-SKHynix_HFS001TEJ9X115N_AMCAN00441280AO4D";
       type = "disk";
@@ -51,7 +64,13 @@
               content = {
                 type = "filesystem";
                 format = "ext4";
-                mountpoint = "/";
+                # Persistent store (the ext4's fs root is mounted at /nix):
+                # holds /nix/store and, at its on-disk root, the preserved
+                # /etc, /home, /var, /root trees that preservation
+                # bind-mounts back into place. Zero data movement: the
+                # on-disk /etc, /home, /var, /root keep their pre-migration
+                # physical locations.
+                mountpoint = "/nix";
                 mountOptions = [ "defaults" ];
               };
             };

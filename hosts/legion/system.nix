@@ -3,6 +3,7 @@
   imports = [
     ../../modules/system/default.nix
     ./disko.nix
+    ./persistence.nix
   ];
 
   boot = {
@@ -17,6 +18,11 @@
     };
     initrd.availableKernelModules = [ "dm_mod" ];
   };
+
+  # Canary guard for the impermanence migration: no unattended reboots until
+  # the preservation list has been validated in daily use. Remove after the
+  # canary period (see AGENTS.md, "Impermanence").
+  system.autoUpgrade.allowReboot = lib.mkForce false;
 
   modules.system = {
     batteryThreshold.enable = true;
