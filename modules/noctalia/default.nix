@@ -9,10 +9,18 @@ let
   cfg = config.modules.noctalia;
   batteryThresholdCfg = config.modules.system.batteryThreshold or { enable = false; };
   batteryThresholdPluginEnabled = batteryThresholdCfg.enable or false;
-  batteryThresholdWidget = { id = "plugin:battery-threshold"; };
-  privacyIndicatorWidget = { id = "plugin:privacy-indicator"; };
-  tailscaleWidget = { id = "plugin:tailscale"; };
-  screenToolkitWidget = { id = "plugin:screen-toolkit"; };
+  batteryThresholdWidget = {
+    id = "plugin:battery-threshold";
+  };
+  privacyIndicatorWidget = {
+    id = "plugin:privacy-indicator";
+  };
+  tailscaleWidget = {
+    id = "plugin:tailscale";
+  };
+  screenToolkitWidget = {
+    id = "plugin:screen-toolkit";
+  };
 in
 {
   options.modules.noctalia = {
@@ -33,31 +41,30 @@ in
               enabled = true;
             }
           ];
-          states =
-            {
-              polkit-agent = {
-                enabled = true;
-                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-              };
-              privacy-indicator = {
-                enabled = true;
-                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-              };
-              tailscale = {
-                enabled = true;
-                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-              };
-              screen-toolkit = {
-                enabled = true;
-                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-              };
-            }
-            // optionalAttrs batteryThresholdPluginEnabled {
-              battery-threshold = {
-                enabled = true;
-                sourceUrl = "local://nixos-dotfiles/noctalia/battery-threshold";
-              };
+          states = {
+            polkit-agent = {
+              enabled = true;
+              sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
             };
+            privacy-indicator = {
+              enabled = true;
+              sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+            };
+            tailscale = {
+              enabled = true;
+              sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+            };
+            screen-toolkit = {
+              enabled = true;
+              sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+            };
+          }
+          // optionalAttrs batteryThresholdPluginEnabled {
+            battery-threshold = {
+              enabled = true;
+              sourceUrl = "local://nixos-dotfiles/noctalia/battery-threshold";
+            };
+          };
         };
 
         pluginSettings = optionalAttrs batteryThresholdPluginEnabled {
@@ -78,7 +85,7 @@ in
         settings = {
           bar = {
             position = "top";
-            barType = "floating";
+            barType = "simple";
             showCapsule = true;
             outerCorners = false;
             widgets = {
@@ -98,24 +105,15 @@ in
                 { id = "Tray"; }
                 { id = "NotificationHistory"; }
                 privacyIndicatorWidget
-                { id = "Brightness"; }
                 {
                   id = "Battery";
-                  displayMode = "alwaysShow";
+                  displayMode = "onhover";
                 }
               ]
               ++ optional batteryThresholdPluginEnabled batteryThresholdWidget
               ++ [
                 tailscaleWidget
                 screenToolkitWidget
-                {
-                  id = "Volume";
-                  displayMode = "alwaysShow";
-                }
-                {
-                  id = "Bluetooth";
-                  displayMode = "alwaysShow";
-                }
                 {
                   id = "ControlCenter";
                   useDistroLogo = true;
@@ -126,6 +124,8 @@ in
 
           general = {
             animationSpeed = 1;
+            autoStartAuth = true;
+            allowPasswordWithFprintd = true;
             enableShadows = true;
             lockOnSuspend = true;
             telemetryEnabled = false;
@@ -143,6 +143,19 @@ in
             useWallpaperColors = false;
             predefinedScheme = "Noctalia (default)";
           };
+
+          wallpaper.enabled = false;
+
+          controlCenter = {
+            cards = [
+              { id = "profile-card"; enabled = true; }
+              { id = "shortcuts-card"; enabled = true; }
+              { id = "audio-card"; enabled = true; }
+              { id = "brightness-card"; enabled = true; }
+              { id = "weather-card"; enabled = true; }
+              { id = "media-sysmon-card"; enabled = true; }
+            ];
+          };
         };
       };
 
@@ -159,12 +172,16 @@ in
         wl-screenrec
         gifski
       ];
-      xdg.configFile."noctalia/plugins/battery-threshold/manifest.json" = mkIf batteryThresholdPluginEnabled {
-        source = ./plugins/battery-threshold/manifest.json;
-      };
-      xdg.configFile."noctalia/plugins/battery-threshold/BatteryThresholdWidget.qml" = mkIf batteryThresholdPluginEnabled {
-        source = ./plugins/battery-threshold/BatteryThresholdWidget.qml;
-      };
+      xdg.configFile."noctalia/plugins/battery-threshold/manifest.json" =
+        mkIf batteryThresholdPluginEnabled
+          {
+            source = ./plugins/battery-threshold/manifest.json;
+          };
+      xdg.configFile."noctalia/plugins/battery-threshold/BatteryThresholdWidget.qml" =
+        mkIf batteryThresholdPluginEnabled
+          {
+            source = ./plugins/battery-threshold/BatteryThresholdWidget.qml;
+          };
     })
 
     # Niri integration: spawn noctalia-shell on startup
