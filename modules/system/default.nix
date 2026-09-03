@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./battery-threshold.nix
     ./fingerprint.nix
@@ -11,6 +12,7 @@
     ./steam.nix
     ./plymouth.nix
     ./polkit-kde.nix
+    ./sops.nix
   ];
 
   services = {
@@ -170,7 +172,7 @@
         "tailscale0"
       ];
 
-      allowedTCPPorts = [53317];
+      allowedTCPPorts = [ 53317 ];
       allowedUDPPorts = [
         53317
         config.services.tailscale.port

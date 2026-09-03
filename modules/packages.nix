@@ -33,6 +33,8 @@ let
   ];
   dev = with pkgs; [
     opencode
+    sops
+    age
     wakatime-cli
   ];
 in

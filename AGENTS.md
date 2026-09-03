@@ -63,6 +63,40 @@ nix flake lock --update-input nixpkgs         # Update specific input
 nix flake metadata                            # Show current input versions
 ```
 
+## Secrets Management (sops-nix)
+
+Secrets are encrypted in-repo with sops-nix. The single identity is a dedicated
+passphrase-less SSH ed25519 key (`~/.ssh/id_ed25519`); sops-nix converts it to
+an age key at activation via `sops.age.sshKeyPaths`.
+
+| Item                    | Path                                        |
+|-------------------------|---------------------------------------------|
+| Encryption rules        | `.sops.yaml`                                |
+| Encrypted secret files  | `secrets/*.yaml`                            |
+| SSH key (private)       | `~/.ssh/id_ed25519` (passphrase-less, dedicated) |
+| CLI identity (derived)  | `~/.config/sops/age/keys.txt` (derived from the SSH key) |
+| Decrypted (home-manager)| `~/.config/sops-nix/secrets/<name>` (symlink into `$XDG_RUNTIME_DIR`) |
+
+```bash
+sops secrets/opencode.yaml    # edit secrets (uses derived identity at default path)
+```
+
+To add a secret: add a key to a file under `secrets/`, define `sops.secrets.<name>` with
+`sopsFile`, then reference it via the stable symlink
+`~/.config/sops-nix/secrets/<name>` (config files can use opencode-style
+`{file:...}` interpolation). Never commit plaintext secret values.
+
+The `.sops.yaml` recipient is the SSH public key converted with
+`nix shell nixpkgs#ssh-to-age -c ssh-to-age < ~/.ssh/id_ed25519.pub`.
+To rotate the SSH key, keep the old key in place until the secrets are
+re-encrypted: generate the new key at a temp path, put its recipient in
+`.sops.yaml`, run `sops updatekeys` on every file under `secrets/` (this still
+decrypts with the old identity), then swap the new key into
+`~/.ssh/id_ed25519` and re-derive the CLI identity
+(`ssh-to-age -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt`).
+Run `git add` on changed files under `secrets/` before rebuilding — git flakes
+ignore unstaged new files.
+
 ## Code Style Guidelines
 
 ### Nix Language Conventions

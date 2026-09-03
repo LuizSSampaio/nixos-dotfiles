@@ -1,0 +1,7 @@
+keys:
+  - &luiz age1el86hrs4xw987m2x846xzt8u9m9plh47hxgv80j9xrtvywksf4ts2s06ds
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *luiz

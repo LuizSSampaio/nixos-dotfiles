@@ -1,7 +1,9 @@
-{...}: {
-  imports = [../../modules/default.nix];
+{ ... }: {
+  imports = [ ../../modules/default.nix ];
 
   config.modules = {
+    sops.enable = true;
+    opencode.enable = true;
     hypridle.enable = true;
     niri = {
       enable = true;
