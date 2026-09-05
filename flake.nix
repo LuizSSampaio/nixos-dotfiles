@@ -57,11 +57,6 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    preservation.url = "github:nix-community/preservation";
   };
 
   outputs =
@@ -75,8 +70,6 @@
       noctalia,
       nix-doom-emacs-unstraightened,
       sops-nix,
-      disko,
-      preservation,
       ...
     }@inputs:
     let
@@ -94,8 +87,6 @@
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
-            disko.nixosModules.disko
-            preservation.nixosModules.preservation
             {
               nix.settings.allowed-users = [ "luiz" ];
               nix.settings.trusted-users = [ "luiz" ];
