@@ -4,13 +4,17 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.zsh;
-in {
-  options.modules.zsh = {enable = mkEnableOption "zsh shell";};
+in
+{
+  options.modules.zsh = {
+    enable = mkEnableOption "zsh shell";
+  };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [zsh];
+    home.packages = with pkgs; [ zsh ];
 
     programs.zsh = {
       enable = true;
@@ -42,6 +46,11 @@ in {
     };
 
     programs.zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    programs.devenv = {
       enable = true;
       enableZshIntegration = true;
     };
