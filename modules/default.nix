@@ -26,5 +26,6 @@
     ./noctalia
     ./sops
     ./opencode
+    ./antigravity-cli
   ];
 }
