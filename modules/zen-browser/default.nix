@@ -117,9 +117,9 @@ in
             isEssential = true;
             position = 0;
           };
-          "Perplexity" = {
+          "Gemini" = {
             id = "fbe8aca9-6962-45eb-a099-0e7e18e9f25d";
-            url = "https://www.perplexity.ai/";
+            url = "https://gemini.google.com";
             isEssential = true;
             position = 1;
           };
