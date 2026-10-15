@@ -57,6 +57,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    openlogi = {
+      url = "github:AprilNEA/OpenLogi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -70,6 +74,7 @@
       noctalia,
       nix-doom-emacs-unstraightened,
       sops-nix,
+      openlogi,
       ...
     }@inputs:
     let
@@ -87,6 +92,8 @@
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
+            openlogi.nixosModules.default
+            { programs.openlogi.enable = true; }
             {
               nix.settings.allowed-users = [ "luiz" ];
               nix.settings.trusted-users = [ "luiz" ];
