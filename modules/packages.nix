@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   gui = with pkgs; [
     nautilus
@@ -13,9 +13,9 @@ let
     kdePackages.kdenlive
     kdePackages.ark
     mumble
-    cinny-desktop
     easyeffects
     blender
+    element-desktop
   ];
   cli = with pkgs; [
     btop
@@ -32,10 +32,11 @@ let
     gnupg
   ];
   dev = with pkgs; [
-    opencode
     sops
     age
     wakatime-cli
+    antigravity-hub
+    antigravity-acp
   ];
 in
 {
