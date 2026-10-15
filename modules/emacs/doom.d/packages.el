@@ -61,3 +61,7 @@
   :pin "5a76998ed9a4cadc80f3d3a82c1dfe42a82d2bb6")
 
 (package! wakatime-mode)
+
+(package! shell-maker)
+(package! acp)
+(package! agent-shell)
