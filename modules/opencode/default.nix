@@ -3,8 +3,7 @@
   pkgs,
   config,
   ...
-}:
-let
+}: let
   cfg = config.modules.opencode;
 
   secretPath = name: "${config.home.homeDirectory}/.config/sops-nix/secrets/${name}";
@@ -30,8 +29,7 @@ let
       };
     };
   };
-in
-{
+in {
   options.modules.opencode = {
     enable = lib.mkEnableOption "declarative opencode configuration with sops-nix secrets";
   };
@@ -44,13 +42,15 @@ in
       }
     ];
 
+    # enable = true;
+
     sops.secrets = {
       context7_api_key.sopsFile = ../../secrets/opencode.yaml;
       github_mcp_token.sopsFile = ../../secrets/opencode.yaml;
     };
 
     xdg.configFile."opencode/opencode.json".source =
-      (pkgs.formats.json { }).generate "opencode.json"
-        opencodeConfig;
+      (pkgs.formats.json {}).generate "opencode.json"
+      opencodeConfig;
   };
 }
