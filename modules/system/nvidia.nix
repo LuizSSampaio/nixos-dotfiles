@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 with lib;
 let
@@ -8,15 +13,30 @@ let
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
     export __VK_LAYER_NV_optimus=NVIDIA_only
+
+    # Fallback defaults for Proton/VKD3D that can still be overridden per-game
+    export VKD3D_VULKAN_DEVICE="''${VKD3D_VULKAN_DEVICE:-10de:*}"
+    export PROTON_ENABLE_NVAPI="''${PROTON_ENABLE_NVAPI:-1}"
+    export PROTON_HIDE_NVIDIA_GPU="''${PROTON_HIDE_NVIDIA_GPU:-0}"
+
     exec "$@"
   '';
-in {
-  options.modules.system.nvidia = { enable = mkEnableOption "nvidia support"; };
+in
+{
+  options.modules.system.nvidia = {
+    enable = mkEnableOption "nvidia support";
+  };
 
   config = mkIf cfg.enable {
-    hardware.graphics.enable = true;
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
 
-    services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+    services.xserver.videoDrivers = [
+      "amdgpu"
+      "nvidia"
+    ];
     environment.systemPackages = [ nvidia-offload ];
 
     hardware.nvidia = {
