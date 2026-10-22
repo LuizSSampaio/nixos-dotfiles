@@ -7,9 +7,10 @@
 with lib;
 let
   cfg = config.modules.niri.dynamicRefreshRate;
+  noctaliaEnabled = config.modules.noctalia.enable or false;
   niriPackage = config.programs.niri.package or pkgs.niri;
 
-  refreshScript = pkgs.writeShellScript "niri-dynamic-refresh-rate" ''
+  refreshScript = pkgs.writeShellScriptBin "niri-set-refresh-rate" ''
     set -u
 
     export PATH="${lib.makeBinPath [
@@ -127,35 +128,71 @@ let
       log "set $output to $mode"
     }
 
-    last_target=""
-    last_socket=""
+    get_target() {
+      mode="''${1:-auto}"
+      case "$mode" in
+        ac)
+          printf '%s\n' "$ac_refresh"
+          ;;
+        battery)
+          printf '%s\n' "$battery_refresh"
+          ;;
+        auto)
+          if on_ac_power; then
+            printf '%s\n' "$ac_refresh"
+          else
+            printf '%s\n' "$battery_refresh"
+          fi
+          ;;
+        *)
+          printf '%s\n' "$mode"
+          ;;
+      esac
+    }
 
-    while true; do
-      if on_ac_power; then
-        target="$ac_refresh"
-      else
-        target="$battery_refresh"
-      fi
+    daemon_loop() {
+      last_target=""
+      last_socket=""
 
-      if discover_niri_socket; then
-        socket="$NIRI_SOCKET"
-      else
-        socket=""
-      fi
+      while true; do
+        target="$(get_target auto)"
 
-      if [ "$socket" != "$last_socket" ]; then
-        last_target=""
-        last_socket="$socket"
-      fi
-
-      if [ "$target" != "$last_target" ]; then
-        if apply_refresh "$target"; then
-          last_target="$target"
+        if discover_niri_socket; then
+          socket="$NIRI_SOCKET"
+        else
+          socket=""
         fi
-      fi
 
-      sleep "$poll_interval"
-    done
+        if [ "$socket" != "$last_socket" ]; then
+          last_target=""
+          last_socket="$socket"
+        fi
+
+        if [ "$target" != "$last_target" ]; then
+          if apply_refresh "$target"; then
+            last_target="$target"
+          fi
+        fi
+
+        sleep "$poll_interval"
+      done
+    }
+
+    case "''${1:-auto}" in
+      --daemon|daemon)
+        daemon_loop
+        ;;
+      *)
+        target="$(get_target "''${1:-auto}")"
+        for attempt in $(seq 1 5); do
+          if apply_refresh "$target"; then
+            exit 0
+          fi
+          sleep 0.5
+        done
+        exit 1
+        ;;
+    esac
   '';
 in {
   options.modules.niri.dynamicRefreshRate = {
@@ -186,21 +223,38 @@ in {
     };
   };
 
-  config = mkIf (config.modules.niri.enable && cfg.enable) {
-    systemd.user.services.niri-dynamic-refresh-rate = {
-      Unit = {
-        Description = "Adjust niri refresh rate based on AC power";
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-      };
+  config = mkIf (config.modules.niri.enable && cfg.enable) (mkMerge [
+    {
+      home.packages = [ refreshScript ];
+    }
 
-      Service = {
-        ExecStart = toString refreshScript;
-        Restart = "on-failure";
-        RestartSec = 5;
+    # When Noctalia is enabled, trigger refresh rate updates via its native power hooks
+    (mkIf noctaliaEnabled {
+      programs.noctalia.settings.hooks = {
+        started = [ "${refreshScript}/bin/niri-set-refresh-rate auto" ];
+        battery_charging = [ "${refreshScript}/bin/niri-set-refresh-rate ac" ];
+        battery_plugged = [ "${refreshScript}/bin/niri-set-refresh-rate ac" ];
+        battery_discharging = [ "${refreshScript}/bin/niri-set-refresh-rate battery" ];
       };
+    })
 
-      Install.WantedBy = [ "graphical-session.target" ];
-    };
-  };
+    # When Noctalia is disabled, fall back to the polling systemd service
+    (mkIf (!noctaliaEnabled) {
+      systemd.user.services.niri-dynamic-refresh-rate = {
+        Unit = {
+          Description = "Adjust niri refresh rate based on AC power";
+          After = [ "graphical-session.target" ];
+          PartOf = [ "graphical-session.target" ];
+        };
+
+        Service = {
+          ExecStart = "${refreshScript}/bin/niri-set-refresh-rate --daemon";
+          Restart = "on-failure";
+          RestartSec = 5;
+        };
+
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+    })
+  ]);
 }

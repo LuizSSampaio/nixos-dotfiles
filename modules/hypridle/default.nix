@@ -9,7 +9,7 @@ let
   cfg = config.modules.hypridle;
   noctaliaEnabled = config.modules.noctalia.enable or false;
   lockCommand =
-    if noctaliaEnabled then "noctalia-shell ipc call lockScreen lock" else "pidof hyprlock || hyprlock";
+    if noctaliaEnabled then "noctalia msg session lock" else "pidof hyprlock || hyprlock";
 
   # Script to turn off monitors based on the active window manager
   dpmsOffScript = pkgs.writeShellScript "dpms-off" ''

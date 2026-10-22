@@ -1,5 +1,5 @@
-{...}: {
-  imports = [../../modules/default.nix];
+{ ... }: {
+  imports = [ ../../modules/default.nix ];
 
   config.modules = {
     sops.enable = true;
@@ -10,14 +10,14 @@
       enable = true;
       dynamicRefreshRate = {
         enable = true;
-        output = "eDP-1";
+        output = "eDP-2";
         acRefreshRate = 120.001;
         batteryRefreshRate = 60.001;
       };
       monitors = [
         {
-          name = "eDP-1";
-          scale = 2.0;
+          name = "eDP-2";
+          scale = 1.8;
         }
         {
           name = "HDMI-A-1";

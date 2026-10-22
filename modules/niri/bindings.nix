@@ -10,8 +10,8 @@ in {
     programs.niri.settings.binds = with config.lib.niri.actions; {
       # Application launchers
       "Mod+Return".action = spawn "kitty";
-      "Mod+Space".action = spawn-sh "noctalia-shell ipc call launcher toggle";
-      "Mod+Escape".action = spawn-sh "noctalia-shell ipc call sessionMenu toggle";
+      "Mod+Space".action = spawn "noctalia" "msg" "panel-toggle" "launcher";
+      "Mod+Escape".action = spawn "noctalia" "msg" "panel-toggle" "session";
       # "Mod+Space".action = spawn "vicinae" "toggle";
       # "Mod+Escape".action = spawn "vicinae" "vicinae://extensions/vicinae/power";
 
@@ -157,11 +157,11 @@ in {
       #   action = sh "playerctl previous";
       # };
 
-      "XF86AudioRaiseVolume".action = spawn "noctalia-shell" "ipc" "call" "volume" "increase";
-      "XF86AudioLowerVolume".action = spawn "noctalia-shell" "ipc" "call" "volume" "decrease";
-      "XF86AudioMute".action = spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput";
-      "XF86MonBrightnessUp".action = spawn "noctalia-shell" "ipc" "call" "brightness" "increase";
-      "XF86MonBrightnessDown".action = spawn "noctalia-shell" "ipc" "call" "brightness" "decrease";
+      "XF86AudioRaiseVolume".action = spawn "noctalia" "msg" "volume-up";
+      "XF86AudioLowerVolume".action = spawn "noctalia" "msg" "volume-down";
+      "XF86AudioMute".action = spawn "noctalia" "msg" "volume-mute";
+      "XF86MonBrightnessUp".action = spawn "noctalia" "msg" "brightness-up";
+      "XF86MonBrightnessDown".action = spawn "noctalia" "msg" "brightness-down";
     };
   };
 }
