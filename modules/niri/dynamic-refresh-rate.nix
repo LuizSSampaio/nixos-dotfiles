@@ -98,7 +98,10 @@ let
 
         output_entries
         | select(.name == $output)
-        | (.current_mode // ([.modes[]? | select(.is_preferred == true)][0]) // .modes[0]?) as $base
+        | (if (.current_mode | type) == "number" then .modes[.current_mode]
+           elif (.current_mode | type) == "object" then .current_mode
+           else ([.modes[]? | select(.is_preferred == true)][0] // .modes[0]?)
+           end) as $base
         | ($base.width // empty) as $width
         | ($base.height // empty) as $height
         | [
