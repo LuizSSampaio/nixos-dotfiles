@@ -188,7 +188,15 @@
   boot = {
     initrd.systemd.network.wait-online.enable = false;
     extraModulePackages = with config.boot.kernelPackages; [
-      v4l2loopback
+      (v4l2loopback.overrideAttrs (old: {
+        # v4l2loopback includes kmod in nativeBuildInputs, causing kernel's modules_install
+        # to run depmod into $out. This generates module map files (modules.devname, etc.)
+        # that collide with the base kernel modules in pkgs.buildEnv.
+        makeFlags = (old.makeFlags or [ ]) ++ [ "DEPMOD=echo" ];
+        postInstall = (old.postInstall or "") + ''
+          rm -f $out/lib/modules/*/modules.*
+        '';
+      }))
     ];
   };
 
