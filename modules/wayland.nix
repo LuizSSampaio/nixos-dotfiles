@@ -23,8 +23,8 @@ in
       NIXOS_OZONE_WL = "1";
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
 
-      # GTK Wayland support with fallbacks
-      GDK_BACKEND = "wayland,x11,*";
+      # Do NOT set GDK_BACKEND: when it is set, xdg-desktop-portal-gnome
+      # falls back to "settings only" mode and screen sharing breaks.
 
       # GTK 4.20+ dead keys and compose support
       GTK_IM_MODULE = "simple";
