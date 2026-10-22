@@ -168,7 +168,6 @@ in
           privacy-badger
           return-youtube-dislikes
           youtube-no-translation
-          terms-of-service-didnt-read
           bitwarden
           fastforwardteam
           github-file-icons
